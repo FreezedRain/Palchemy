@@ -6,6 +6,8 @@ namespace Potions.Gameplay
     public class CharacterLogic : MonoBehaviour
     {
         public Vector2 Forward => _forward;
+        public ItemHolder ItemHolder => _itemHolder;
+        public Interactor Interactor => _interactor;
         
         private void Awake()
         {
@@ -29,6 +31,9 @@ namespace Potions.Gameplay
             _movement.Move(inputState.Direction);
             _visuals.FaceDirection(inputState.Direction);
         }
+
+        [SerializeField]
+        private ItemHolder _itemHolder;
 
         private Vector2 _forward;
 

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,6 +8,9 @@ namespace Potions.Gameplay
 {
     public class Interactor : MonoBehaviour
     {
+        public event Action<BaseInteractable> Interacted;
+
+        public bool ShowBubbles => _showBubbles;
         public CharacterLogic Character => _character;
         public BaseInteractable Interactable => _activeInteractable;
 
@@ -14,12 +19,28 @@ namespace Potions.Gameplay
         public void Interact()
         {
             if (_activeInteractable != null)
-                _activeInteractable.OnInteract(this);
+            {
+                _activeInteractable.Interact(this);
+                Interacted?.Invoke(_activeInteractable);
+            }
         }
-        
+
+        private void Awake()
+        {
+            _ownInteractables = GetComponents<BaseInteractable>().ToList();
+        }
+
         private void Update()
         {
-            _activeInteractable = FindClosest();
+            var newInteractable = FindInteractable();
+            if (newInteractable != _activeInteractable)
+            {
+                if (_showBubbles)
+                    _activeInteractable?.SetActive(false);
+                _activeInteractable = newInteractable;
+                if (_showBubbles)
+                    _activeInteractable?.SetActive(true);
+            }
         }
 
         private void OnDrawGizmosSelected()
@@ -29,7 +50,7 @@ namespace Potions.Gameplay
             Handles.DrawWireArc(Vector3.zero, Vector3.forward, from, _allowedAngle, 1f);
         }
 
-        private BaseInteractable FindClosest()
+        private BaseInteractable FindInteractable()
         {
             bool IsFacingAngle(BaseInteractable interactable, out float distance)
             {
@@ -48,9 +69,9 @@ namespace Potions.Gameplay
             BaseInteractable closest = null;
             foreach (var interactable in BaseInteractable.Interactables)
             {
-                
-                if (IsFacingAngle(interactable, out float distance) && distance <= minDistance
-                                                                    && interactable.CanInteract(this))
+                if (!_ownInteractables.Contains(interactable) && IsFacingAngle(interactable, out float distance)
+                                                             && distance <= minDistance
+                                                             && interactable.CanInteract(this))
                 {
                     minDistance = distance;
                     closest = interactable;
@@ -62,8 +83,11 @@ namespace Potions.Gameplay
 
         private CharacterLogic _character;
         private BaseInteractable _activeInteractable;
+        private List<BaseInteractable> _ownInteractables;
 
         [SerializeField]
         private float _allowedAngle;
+        [SerializeField]
+        private bool _showBubbles;
     }
 }
