@@ -7,17 +7,21 @@ namespace Potions.Gameplay
     {
         public Vector2 Forward => _forward;
         public ItemHolder ItemHolder => _itemHolder;
-        public Interactor Interactor => _interactor;
-        
+        public Interactor Interactor { get; private set; }
+        public CharacterMovement Movement { get; private set; }
+        public CharacterVisuals Visuals { get; private set; }
+
+        public void LookTowards(Vector2 dir) => _lookDirection = dir;
+
         private void Awake()
         {
             _input = GetComponent<IInputProvider>();
-            _movement = GetComponent<CharacterMovement>();
-            _visuals = GetComponent<CharacterVisuals>();
-            _interactor = GetComponent<Interactor>();
+            Movement = GetComponent<CharacterMovement>();
+            Visuals = GetComponent<CharacterVisuals>();
+            Interactor = GetComponent<Interactor>();
             
-            _interactor.Setup(this);
-            _input.Interacted += _interactor.Interact;
+            Interactor.Setup(this);
+            _input.Interacted += Interactor.Interact;
         }
 
         private void Update()
@@ -28,18 +32,19 @@ namespace Potions.Gameplay
                 _forward = inputState.Direction;
             }
 
-            _movement.Move(inputState.Direction);
-            _visuals.FaceDirection(inputState.Direction);
+            Movement.Move(inputState.Direction);
+            Visuals.FaceDirection(_lookDirection ?? inputState.Direction);
+            Visuals.IsMoving = inputState.Direction != Vector2.zero;
+
+            _lookDirection = null;
         }
 
         [SerializeField]
         private ItemHolder _itemHolder;
 
         private Vector2 _forward;
+        private Vector2? _lookDirection;
 
         private IInputProvider _input;
-        private CharacterMovement _movement;
-        private CharacterVisuals _visuals;
-        private Interactor _interactor;
     }
 }

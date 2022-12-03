@@ -23,6 +23,7 @@ namespace Potions.Gameplay
                 _teacher = interactor;
                 SetState(State.Learn);
             }
+            _character.Visuals.Bump();
         }
 
         private void Awake()
@@ -45,11 +46,17 @@ namespace Potions.Gameplay
                     DoWork();
                     break;
             }
+
+            foreach (var task in _tasks)
+            {
+                print(task);
+            }
         }
 
         private void DoLearn()
         {
-            MoveTowards(_teacher.transform.position, 1.25f);
+            MoveTowards(_teacher.transform.position, 1.5f);
+            _character.LookTowards((_teacher.transform.position - transform.position).normalized);
         }
 
         private void DoWork()
@@ -64,17 +71,8 @@ namespace Potions.Gameplay
             {
                 _taskIdx = (_taskIdx + 1) % _tasks.Count;
                 print($"Going to task {_tasks[_taskIdx]}");
-                StartCoroutine(CoDoTask(_tasks[_taskIdx]));
+                _taskCoroutine = StartCoroutine(CoDoTask(_tasks[_taskIdx]));
             }
-        }
-
-        private void OnTeacherInteracted(BaseInteractable interactable)
-        {
-            if (interactable is GolemInteractable)
-            {
-                return;
-            }
-            _tasks.Add(interactable);
         }
 
         private IEnumerator CoDoTask(BaseInteractable goal)
@@ -90,7 +88,7 @@ namespace Potions.Gameplay
 
             int pathIndex = 0;
             // Move towards the goal until we can interact
-            while (_character.Interactor.Interactable != goal)
+            while (_character.Interactor.ClosestInteractable != goal)
             {
                 if (pathIndex < path.corners.Length && !MoveTowards(path.corners[pathIndex], 0.1f))
                 {
@@ -104,10 +102,25 @@ namespace Potions.Gameplay
             // Stop
             _inputState.Direction = Vector2.zero;
             
-            // Interact with the goal (after a small delay)
-            yield return new WaitForSeconds(0.2f);
-            Interacted?.Invoke();
-
+            // Wait until we can interact
+            while (true)
+            {
+                // If we can interact
+                if (_character.Interactor.CanInteract)
+                {
+                    // Wait a bit
+                    yield return new WaitForSeconds(0.2f);
+                    // If we can still interact, do it and exit the loop
+                    if (_character.Interactor.CanInteract)
+                    {
+                        Interacted?.Invoke();
+                        break;
+                    }
+                }
+                // Otherwise, wait
+                yield return null;
+            }
+            
             // Wait a bit after interacting
             yield return new WaitForSeconds(0.2f);
             _taskInProgress = false;
@@ -132,26 +145,28 @@ namespace Potions.Gameplay
                 case State.Idle:
                     break;
                 case State.Learn:
+                    if (_taskCoroutine != null)
+                        StopCoroutine(_taskCoroutine);
                     _teacher.Interacted += OnTeacherInteracted;
                     _tasks.Clear();
                     break;
                 case State.Work:
                     _teacher.Interacted -= OnTeacherInteracted;
                     _taskIdx = -1;
+                    _taskInProgress = false;
                     break;
             }
             _currentState = state;
         }
         
-        private List<BaseInteractable> _tasks;
-
-        private CharacterLogic _character;
-
-        private Interactor _teacher;
-
-        private bool _taskInProgress;
-        private int _taskIdx = -1;
-        private InputState _inputState;
+        
+        private void OnTeacherInteracted(BaseInteractable interactable)
+        {
+            if (interactable is GolemInteractable)
+                return;
+            _tasks.Add(interactable);
+            _character.Visuals.Bump();
+        }
         
         private enum State
         {
@@ -159,7 +174,16 @@ namespace Potions.Gameplay
             Learn,
             Work
         }
+        
+        private CharacterLogic _character;
+        private Interactor _teacher;
+
+        private Coroutine _taskCoroutine;
 
         private State _currentState = State.Idle;
+        private List<BaseInteractable> _tasks;
+        private bool _taskInProgress;
+        private int _taskIdx = -1;
+        private InputState _inputState;
     }
 }

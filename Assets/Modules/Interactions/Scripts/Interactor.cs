@@ -12,16 +12,18 @@ namespace Potions.Gameplay
 
         public bool ShowBubbles => _showBubbles;
         public CharacterLogic Character => _character;
-        public BaseInteractable Interactable => _activeInteractable;
+        public BaseInteractable ClosestInteractable => _closestInteractable;
+        public bool CanInteract => _closestInteractable && _closestInteractable.CanInteract(this);
 
         public void Setup(CharacterLogic character) => _character = character;
 
         public void Interact()
         {
-            if (_activeInteractable != null)
+            if (CanInteract)
             {
-                _activeInteractable.Interact(this);
-                Interacted?.Invoke(_activeInteractable);
+                _closestInteractable.Interact(this);
+                Interacted?.Invoke(_closestInteractable);
+                Character.Visuals.Bump();
             }
         }
 
@@ -33,14 +35,24 @@ namespace Potions.Gameplay
         private void Update()
         {
             var newInteractable = FindInteractable();
-            if (newInteractable != _activeInteractable)
+            if (newInteractable != _closestInteractable)
             {
                 if (_showBubbles)
-                    _activeInteractable?.SetActive(false);
-                _activeInteractable = newInteractable;
-                if (_showBubbles)
-                    _activeInteractable?.SetActive(true);
+                {
+                    _closestInteractable?.SetActive(false);
+                    
+                    if (newInteractable && newInteractable.CanInteract(this))
+                        newInteractable.SetActive(true);
+                }
+                _closestInteractable = newInteractable;
             }
+            else if (_canInteractBefore != CanInteract)
+            {
+                bool canInteract = CanInteract;
+                _closestInteractable?.SetActive(canInteract);
+                _canInteractBefore = canInteract;
+            }
+
         }
 
         private void OnDrawGizmosSelected()
@@ -70,8 +82,7 @@ namespace Potions.Gameplay
             foreach (var interactable in BaseInteractable.Interactables)
             {
                 if (!_ownInteractables.Contains(interactable) && IsFacingAngle(interactable, out float distance)
-                                                             && distance <= minDistance
-                                                             && interactable.CanInteract(this))
+                                                             && distance <= minDistance)
                 {
                     minDistance = distance;
                     closest = interactable;
@@ -82,8 +93,9 @@ namespace Potions.Gameplay
         }
 
         private CharacterLogic _character;
-        private BaseInteractable _activeInteractable;
+        private BaseInteractable _closestInteractable;
         private List<BaseInteractable> _ownInteractables;
+        private bool _canInteractBefore;
 
         [SerializeField]
         private float _allowedAngle;

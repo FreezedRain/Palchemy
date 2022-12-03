@@ -432,6 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4acb1aea294b6ba17a9c8418e0b0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsMoving: 0
   _spriteRenderer: {fileID: 5622046470374464440}
   _spriteSet:
     Up: {fileID: 21300000, guid: 2f02a1d6e11e8c64d983521d54efc698, type: 3}
@@ -439,6 +440,10 @@ MonoBehaviour:
     Down: {fileID: 21300000, guid: 44638d0810c78ee44872d05f14a0d8fe, type: 3}
     DownRight: {fileID: 21300000, guid: 18eca6c09a603bc458c3d4cd985de9a5, type: 3}
     UpRight: {fileID: 21300000, guid: 0ea86bda3fed71c4a80b6b180319e8ed, type: 3}
+  _visualsParent: {fileID: 3359029042015740521}
+  _squashSpeed: 5
+  _squashAmount: 0.045
+  _bumpAmount: 0.1
 --- !u!114 &2484561847642702903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,6 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allowedAngle: 90
+  _showBubbles: 0
 --- !u!1 &7420767293762884989
 GameObject:
   m_ObjectHideFlags: 0
