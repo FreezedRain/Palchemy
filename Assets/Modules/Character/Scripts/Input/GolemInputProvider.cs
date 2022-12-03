@@ -87,31 +87,24 @@ namespace Potions.Gameplay
             }
 
             int pathIndex = 0;
-            // Move towards the goal until we can interact
-            while (_character.Interactor.ClosestInteractable != goal)
-            {
-                if (pathIndex < path.corners.Length && !MoveTowards(path.corners[pathIndex], 0.1f))
-                {
-                    pathIndex++;
-                    print($"Path index {pathIndex}, total {path.corners}");
-                }
-
-                yield return null;
-            }
-            
-            // Stop
-            _inputState.Direction = Vector2.zero;
             
             // Wait until we can interact
             while (true)
             {
-                // If we can interact
-                if (_character.Interactor.CanInteract)
+                // Move towards the goal
+                if (!MoveTowards(path.corners[pathIndex], 0.1f) && pathIndex < path.corners.Length)
                 {
-                    // Wait a bit
+                    pathIndex++;
+                }
+                
+                // If we can interact
+                if (_character.Interactor.ClosestInteractable == goal && _character.Interactor.CanInteract)
+                {
+                    // Stop and wait a bit
+                    _inputState.Direction = Vector2.zero;
                     yield return new WaitForSeconds(0.2f);
                     // If we can still interact, do it and exit the loop
-                    if (_character.Interactor.CanInteract)
+                    if (_character.Interactor.ClosestInteractable == goal && _character.Interactor.CanInteract)
                     {
                         Interacted?.Invoke();
                         break;
@@ -120,7 +113,7 @@ namespace Potions.Gameplay
                 // Otherwise, wait
                 yield return null;
             }
-            
+
             // Wait a bit after interacting
             yield return new WaitForSeconds(0.2f);
             _taskInProgress = false;
@@ -162,7 +155,7 @@ namespace Potions.Gameplay
         
         private void OnTeacherInteracted(BaseInteractable interactable)
         {
-            if (interactable is GolemInteractable)
+            if (interactable is GolemInteractable golemInteractable)
                 return;
             _tasks.Add(interactable);
             _character.Visuals.Bump();

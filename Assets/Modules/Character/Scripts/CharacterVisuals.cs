@@ -9,8 +9,7 @@ namespace Potions.Gameplay
         
         public void FaceDirection(Vector2 dir)
         {
-            if (dir == Vector2.zero)
-                return;
+            if (dir == Vector2.zero) return;
             
             (Sprite sprite, bool flip) = _spriteSet.GetSprite(dir);
             _spriteRenderer.sprite = sprite;

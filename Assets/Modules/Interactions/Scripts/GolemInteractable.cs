@@ -4,6 +4,8 @@ namespace Potions.Gameplay
 {
     public class GolemInteractable : BaseInteractable
     {
+        public GolemInputProvider Golem => _golem;
+        
         public override bool CanInteract(Interactor interactor) => true;
         
         protected override void OnInteract(Interactor interactor)

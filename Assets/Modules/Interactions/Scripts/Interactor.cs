@@ -19,12 +19,11 @@ namespace Potions.Gameplay
 
         public void Interact()
         {
-            if (CanInteract)
-            {
-                _closestInteractable.Interact(this);
-                Interacted?.Invoke(_closestInteractable);
-                Character.Visuals.Bump();
-            }
+            if (!CanInteract) return;
+            
+            _closestInteractable.Interact(this);
+            Interacted?.Invoke(_closestInteractable);
+            Character.Visuals.Bump();
         }
 
         private void Awake()
@@ -40,7 +39,6 @@ namespace Potions.Gameplay
                 if (_showBubbles)
                 {
                     _closestInteractable?.SetActive(false);
-                    
                     if (newInteractable && newInteractable.CanInteract(this))
                         newInteractable.SetActive(true);
                 }
@@ -49,10 +47,10 @@ namespace Potions.Gameplay
             else if (_canInteractBefore != CanInteract)
             {
                 bool canInteract = CanInteract;
-                _closestInteractable?.SetActive(canInteract);
+                if (_showBubbles)
+                    _closestInteractable?.SetActive(canInteract);
                 _canInteractBefore = canInteract;
             }
-
         }
 
         private void OnDrawGizmosSelected()
