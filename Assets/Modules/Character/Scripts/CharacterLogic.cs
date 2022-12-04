@@ -10,6 +10,7 @@ namespace Potions.Gameplay
         public static List<CharacterLogic> AllCharacters = new();
         
         public Vector2 Forward => _forward;
+        public bool IsMoving => _input.GetState().Direction != Vector2.zero;
         public ItemHolder ItemHolder => _itemHolder;
         public Interactor Interactor { get; private set; }
         public CharacterMovement Movement { get; private set; }

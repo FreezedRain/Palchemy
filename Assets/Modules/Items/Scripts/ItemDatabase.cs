@@ -8,9 +8,12 @@ namespace Potions.Gameplay
     {
         public static ItemData Get(string id) => id == null ? null : Instance._items[id];
 
-        public static RecipeData FindRecipe(List<string> ingredients) =>
+        public static RecipeData FindRecipeByIngredients(List<string> ingredients) =>
             Instance._recipes.FirstOrDefault(r => r.CanCook(ingredients));
-        
+
+        public static RecipeData FindRecipeByOutcome(string id) =>
+            Instance._recipes.FirstOrDefault(r => r.ResultId == id);
+
         protected override void Awake()
         {
             base.Awake();

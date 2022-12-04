@@ -8,8 +8,11 @@ public class RecipeCard : MonoBehaviour
     public RectTransform barfill;
     public Image crystalShine;
     public RectTransform barcap;
+    public Image mainSprite;
 
     private bool shining = false;
+
+    public void SetSprite(Sprite sprite) => mainSprite.sprite = sprite;
 
     public void SetFill(float amountFill)
     {

@@ -108,10 +108,10 @@ namespace Potions.Gameplay
                 Vector2 movementDirection = path.corners[pathIndex] - transform.position;
 
                 // If on the last point of the path, move towards the goal
-                // if (pathIndex == path.corners.Length - 1)
-                // {
-                //     movementDirection =_tasks[_taskIdx].transform.position - transform.position;
-                // }
+                if (pathIndex == path.corners.Length - 1)
+                {
+                    movementDirection =_tasks[_taskIdx].transform.position - transform.position;
+                }
                 
                 // If we should steer, rotate the direction
                 if (ShouldSteer(movementDirection.normalized, out float amount))
@@ -127,6 +127,7 @@ namespace Potions.Gameplay
                 {
                     // Stop and wait a bit
                     _inputState.Direction = Vector2.zero;
+                    _character.LookTowards((_tasks[_taskIdx].transform.position - transform.position).normalized);
 
                     if (_character.Interactor.CanInteract)
                     {
@@ -210,7 +211,7 @@ namespace Potions.Gameplay
             foreach (var golem in CharacterLogic.AllCharacters)
             {
                 // Skip ourselves
-                if (golem == _character)
+                if (golem == _character || !golem.IsMoving)
                     continue;
                 
                 Vector2 obstacleDiff = golem.transform.position - transform.position;

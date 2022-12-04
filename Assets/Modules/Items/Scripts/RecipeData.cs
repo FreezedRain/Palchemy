@@ -8,6 +8,7 @@ namespace Potions.Gameplay
     {
         public string ResultId => _resultId;
         public IReadOnlyList<string> Ingredients => _ingredients;
+        public Sprite PageSprite => _pageSprite;
 
         public bool CanCook(List<string> usedIngredients)
         {
@@ -22,6 +23,8 @@ namespace Potions.Gameplay
 
         [SerializeField]
         private string _resultId;
+        [SerializeField]
+        private Sprite _pageSprite;
         [SerializeField]
         public List<string> _ingredients;
     }

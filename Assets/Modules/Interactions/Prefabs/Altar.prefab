@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4450147085846658045}
-  - component: {fileID: 4450147085846658034}
+  - component: {fileID: 7478470365542359027}
   m_Layer: 0
   m_Name: Altar
   m_TagString: Untagged
@@ -120,7 +120,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4450147085846658034
+--- !u!114 &7478470365542359027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,10 +129,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4450147085846658047}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132d3eba60764f76ae5fb5295d8a39b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a1cce7d872e4c71b12d7fd7641c51c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _range: 1.5
+  _range: 1.1
   _bubble: {fileID: 3209357657516504859}
 --- !u!1 &4450147086058663344
 GameObject:
