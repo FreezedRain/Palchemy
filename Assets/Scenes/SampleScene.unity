@@ -868,6 +868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemsFolder: Items
+  _recipesFolder: Recipes
 --- !u!4 &1382319895
 Transform:
   m_ObjectHideFlags: 0

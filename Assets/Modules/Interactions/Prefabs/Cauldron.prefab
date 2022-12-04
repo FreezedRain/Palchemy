@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4450147085846658045}
-  - component: {fileID: 4450147085846658034}
+  - component: {fileID: 7446401786984951148}
   m_Layer: 0
   m_Name: Cauldron
   m_TagString: Untagged
@@ -120,7 +120,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4450147085846658034
+--- !u!114 &7446401786984951148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,11 +129,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4450147085846658047}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132d3eba60764f76ae5fb5295d8a39b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 94e56deed29d499f863dde4a1a0ea1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _range: 1.1
+  _range: 1.25
   _bubble: {fileID: 3209357657516504859}
+  _cookDuration: 1.5
+  _cookSprite: {fileID: 21300000, guid: 14a57a80872e3bc438c95db76cc2cdab, type: 3}
+  _fullSprite: {fileID: 21300000, guid: e16632cc644aff14ba102bf5076f519f, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 1bccdcdc0c274354b9e1025f3a0a5bd3, type: 3}
+  _spriteRenderer: {fileID: 4450147086058663351}
 --- !u!1 &4450147086058663344
 GameObject:
   m_ObjectHideFlags: 0
