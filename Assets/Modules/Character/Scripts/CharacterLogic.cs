@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Potions.Gameplay
@@ -5,6 +7,8 @@ namespace Potions.Gameplay
     [RequireComponent(typeof(CharacterMovement), typeof(CharacterVisuals), typeof(Interactor))]
     public class CharacterLogic : MonoBehaviour
     {
+        public static List<CharacterLogic> AllCharacters = new();
+        
         public Vector2 Forward => _forward;
         public ItemHolder ItemHolder => _itemHolder;
         public Interactor Interactor { get; private set; }
@@ -23,6 +27,9 @@ namespace Potions.Gameplay
             Interactor.Setup(this);
             _input.Interacted += Interactor.Interact;
         }
+
+        private void OnEnable() => AllCharacters.Add(this);
+        private void OnDisable() => AllCharacters.Remove(this);
 
         private void Update()
         {

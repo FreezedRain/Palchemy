@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -54,7 +55,7 @@ namespace Potions.Gameplay
 
         private void DoLearn()
         {
-            MoveTowards(_teacher.transform.position, 1f);
+            MoveTowards(_teacher.transform.position, 1.5f);
             _character.LookTowards((_teacher.transform.position - transform.position).normalized);
         }
 
@@ -89,12 +90,29 @@ namespace Potions.Gameplay
             // Wait until we can interact
             while (true)
             {
-                // Move towards the goal
-                if (!MoveTowards(path.corners[pathIndex], 0.1f))
+                // Advance to next path point if close
+                if ((path.corners[pathIndex] - transform.position).magnitude < 0.125f)
                 {
                     pathIndex = Mathf.Clamp(pathIndex + 1, 0, path.corners.Length - 1);
                 }
                 
+                Vector2 movementDirection = path.corners[pathIndex] - transform.position;
+
+                // If on the last point of the path, move towards the goal
+                // if (pathIndex == path.corners.Length - 1)
+                // {
+                //     movementDirection =_tasks[_taskIdx].transform.position - transform.position;
+                // }
+                
+                // If we should steer, rotate the direction
+                if (ShouldSteer(out float amount))
+                {
+                    movementDirection = Quaternion.AngleAxis(-amount * _steerAmount, Vector3.forward) *
+                                        movementDirection;
+                }
+
+                MoveTowards(transform.position + (Vector3) movementDirection, 0.0f);
+
                 // If we can interact
                 if (_character.Interactor.ClosestInteractable == goal)
                 {
@@ -153,8 +171,58 @@ namespace Potions.Gameplay
             }
             _currentState = state;
         }
-        
-        
+
+        // private void OnDrawGizmos()
+        // {
+        //     Gizmos.color = Color.green;
+        //     if (path == null)
+        //         return;
+        //     for (int i = 0; i < path.corners.Length - 1; i++)
+        //     {
+        //         Gizmos.DrawLine(path.corners[i], path.corners[i + 1]);
+        //     }
+        //
+        //     Gizmos.color = Color.cyan;
+        //     Gizmos.DrawLine(transform.position, closestGolem.transform.position);
+        // }
+
+        private bool ShouldSteer(out float amount)
+        {
+            // Move towards the goal
+            float totalAngle = 0f;
+            int totalObstacles = 0;
+
+            // Find average avoidance angle
+            foreach (var golem in CharacterLogic.AllCharacters)
+            {
+                // Skip ourselves
+                if (golem == _character)
+                    continue;
+                
+                Vector2 obstacleDiff = golem.transform.position - transform.position;
+                float obstacleAngle = Vector2.SignedAngle(_character.Forward, obstacleDiff.normalized) / 90f;
+
+                // If close enough and facing towards each other
+                if (obstacleDiff.magnitude < 2.5f && Mathf.Abs(obstacleAngle) < 1f)
+                {
+                    totalObstacles++;
+                    totalAngle += obstacleAngle;
+                }
+            }
+
+            // If no obstacles, don't steer
+            if (totalObstacles == 0)
+            {
+                amount = 0f;
+                return false;
+            }
+            
+            // Compute steering amount
+            float averageAngle = totalAngle / totalObstacles;
+            amount = (1f - Mathf.Abs(averageAngle)) * Mathf.Sign(averageAngle);
+            return true;
+        }
+
         private void OnTeacherInteracted(BaseInteractable interactable)
         {
             if (interactable is GolemInteractable golemInteractable)
@@ -169,7 +237,10 @@ namespace Potions.Gameplay
             Learn,
             Work
         }
-        
+
+        [SerializeField]
+        private float _steerAmount;
+
         private CharacterLogic _character;
         private Interactor _teacher;
 
