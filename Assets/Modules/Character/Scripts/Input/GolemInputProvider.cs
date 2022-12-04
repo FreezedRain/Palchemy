@@ -85,12 +85,15 @@ namespace Potions.Gameplay
         {
             _taskInProgress = true;
             NavMeshPath path = new NavMeshPath();
+            _debugPath = path;
             // Find path to the goal
             if (!NavMesh.CalculatePath(transform.position, goal.transform.position, NavMesh.AllAreas, path))
             {
                 _taskInProgress = false;
                 yield break;
             }
+
+            _debugPath = path;
 
             int pathIndex = 0;
             // Wait until we can interact
@@ -111,7 +114,7 @@ namespace Potions.Gameplay
                 // }
                 
                 // If we should steer, rotate the direction
-                if (ShouldSteer(out float amount))
+                if (ShouldSteer(movementDirection.normalized, out float amount))
                 {
                     movementDirection = Quaternion.AngleAxis(-amount * _steerAmount, Vector3.forward) *
                                         movementDirection;
@@ -180,21 +183,24 @@ namespace Potions.Gameplay
             _currentState = state;
         }
 
-        // private void OnDrawGizmos()
-        // {
-        //     Gizmos.color = Color.green;
-        //     if (path == null)
-        //         return;
-        //     for (int i = 0; i < path.corners.Length - 1; i++)
-        //     {
-        //         Gizmos.DrawLine(path.corners[i], path.corners[i + 1]);
-        //     }
-        //
-        //     Gizmos.color = Color.cyan;
-        //     Gizmos.DrawLine(transform.position, closestGolem.transform.position);
-        // }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            if (_debugPath == null)
+                return;
+            for (int i = 0; i < _debugPath.corners.Length - 1; i++)
+            {
+                Gizmos.DrawLine(_debugPath.corners[i], _debugPath.corners[i + 1]);
+            }
 
-        private bool ShouldSteer(out float amount)
+            // Gizmos.color = Color.yellow;
+            // Gizmos.DrawLine(transform.position, transform.position + (Vector3) _character.Forward);
+            //
+            // Gizmos.color = Color.cyan;
+            // Gizmos.DrawLine(transform.position, closestGolem.transform.position);
+        }
+
+        private bool ShouldSteer(Vector2 moveDirection, out float amount)
         {
             // Move towards the goal
             float totalAngle = 0f;
@@ -208,7 +214,8 @@ namespace Potions.Gameplay
                     continue;
                 
                 Vector2 obstacleDiff = golem.transform.position - transform.position;
-                float obstacleAngle = Vector2.SignedAngle(_character.Forward, obstacleDiff.normalized) / 90f;
+                float obstacleAngle = Vector2.SignedAngle(moveDirection, obstacleDiff.normalized) / 90f;
+                float golemAngle = Vector2.SignedAngle(moveDirection, golem.Forward) / 90f;
 
                 // If close enough and facing towards each other
                 if (obstacleDiff.magnitude < 2.5f && Mathf.Abs(obstacleAngle) < 1f)
@@ -264,5 +271,8 @@ namespace Potions.Gameplay
         private bool _taskInProgress;
         private int _taskIdx = -1;
         private InputState _inputState;
+        
+        // Debug
+        private NavMeshPath _debugPath;
     }
 }
