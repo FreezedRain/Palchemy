@@ -14,14 +14,18 @@ namespace Potions.Gameplay
 
         public void Interact(Interactor interactor)
         {
-            if (_currentState == State.Learn)
+            switch (_currentState)
             {
-                SetState(State.Work);
-            }
-            else
-            {
-                _teacher = interactor;
-                SetState(State.Learn);
+                case State.Idle:
+                    _teacher = interactor;
+                    SetState(State.Learn);
+                    break;
+                case State.Learn:
+                    SetState(State.Work);
+                    break;
+                case State.Work:
+                    SetState(State.Idle);
+                    break;
             }
             _character.Visuals.Bump();
         }
@@ -45,11 +49,6 @@ namespace Potions.Gameplay
                 case State.Work:
                     DoWork();
                     break;
-            }
-
-            foreach (var task in _tasks)
-            {
-                print(task);
             }
         }
 
@@ -92,22 +91,26 @@ namespace Potions.Gameplay
             while (true)
             {
                 // Move towards the goal
-                if (!MoveTowards(path.corners[pathIndex], 0.1f) && pathIndex < path.corners.Length)
+                if (!MoveTowards(path.corners[pathIndex], 0.1f))
                 {
-                    pathIndex++;
+                    pathIndex = Mathf.Clamp(pathIndex + 1, 0, path.corners.Length - 1);
                 }
                 
                 // If we can interact
-                if (_character.Interactor.ClosestInteractable == goal && _character.Interactor.CanInteract)
+                if (_character.Interactor.ClosestInteractable == goal)
                 {
                     // Stop and wait a bit
                     _inputState.Direction = Vector2.zero;
-                    yield return new WaitForSeconds(0.2f);
-                    // If we can still interact, do it and exit the loop
-                    if (_character.Interactor.ClosestInteractable == goal && _character.Interactor.CanInteract)
+
+                    if (_character.Interactor.CanInteract)
                     {
-                        Interacted?.Invoke();
-                        break;
+                        yield return new WaitForSeconds(0.2f);
+                        // If we can still interact, do it and exit the loop
+                        if (_character.Interactor.ClosestInteractable == goal && _character.Interactor.CanInteract)
+                        {
+                            Interacted?.Invoke();
+                            break;
+                        }
                     }
                 }
                 // Otherwise, wait
@@ -136,10 +139,10 @@ namespace Potions.Gameplay
             switch (state)
             {
                 case State.Idle:
-                    break;
-                case State.Learn:
                     if (_taskCoroutine != null)
                         StopCoroutine(_taskCoroutine);
+                    break;
+                case State.Learn:
                     _teacher.Interacted += OnTeacherInteracted;
                     _tasks.Clear();
                     break;
