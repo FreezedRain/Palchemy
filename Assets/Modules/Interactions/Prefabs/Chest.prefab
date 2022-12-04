@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28981e0bae0543f9b25c84178a7fb0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _range: 1.1
+  _range: 1.35
   _bubble: {fileID: 3826879131621119268}
   _itemId: fruit
   _itemHolder: {fileID: 2616655912999886392}
@@ -683,7 +683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246359082294103681, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.95
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1246359082294103681, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
       propertyPath: m_LocalPosition.z

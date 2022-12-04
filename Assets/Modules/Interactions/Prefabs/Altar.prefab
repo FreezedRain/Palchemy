@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1cce7d872e4c71b12d7fd7641c51c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _range: 1.1
+  _range: 1.25
   _bubble: {fileID: 3209357657516504859}
 --- !u!1 &4450147086058663344
 GameObject:
@@ -312,7 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246359082294103681, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 1246359082294103681, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
       propertyPath: m_LocalPosition.z

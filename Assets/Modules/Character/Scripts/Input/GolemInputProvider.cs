@@ -89,6 +89,7 @@ namespace Potions.Gameplay
             // Find path to the goal
             if (!NavMesh.CalculatePath(transform.position, goal.transform.position, NavMesh.AllAreas, path))
             {
+                Debug.LogWarning($"Pathfinding failed for {transform.name}");
                 _taskInProgress = false;
                 yield break;
             }
