@@ -12,9 +12,11 @@ namespace Potions.Gameplay
 
         protected override string GetItem() => null;
         
-        protected override void OnItemAdded(string id)
+        protected override void OnItemAdded(string id) => ItemAdded?.Invoke(id);
+
+        public override bool CanSkip(Interactor interactor)
         {
-            ItemAdded?.Invoke(id);
+            return !CanInteract(interactor);
         }
     }
 }

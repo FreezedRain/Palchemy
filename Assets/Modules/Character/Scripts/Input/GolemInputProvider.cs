@@ -76,7 +76,7 @@ namespace Potions.Gameplay
             if (!_taskInProgress)
             {
                 _taskIdx = (_taskIdx + 1) % _tasks.Count;
-                _taskCoroutine = StartCoroutine(CoDoTask(_tasks[_taskIdx]));
+                _taskCoroutine = StartCoroutine(CoDoTask(_currentTask));
                 _taskList.SetStateExecuting(_tasks.Count, _taskIdx);
             }
         }
@@ -110,7 +110,7 @@ namespace Potions.Gameplay
                 // If on the last point of the path, move towards the goal
                 if (pathIndex == path.corners.Length - 1)
                 {
-                    movementDirection =_tasks[_taskIdx].transform.position - transform.position;
+                    movementDirection =_currentTask.transform.position - transform.position;
                 }
                 
                 // If we should steer, rotate the direction
@@ -127,7 +127,7 @@ namespace Potions.Gameplay
                 {
                     // Stop and wait a bit
                     _inputState.Direction = Vector2.zero;
-                    _character.LookTowards((_tasks[_taskIdx].transform.position - transform.position).normalized);
+                    _character.LookTowards((_currentTask.transform.position - transform.position).normalized);
 
                     if (_character.Interactor.CanInteract)
                     {
@@ -138,6 +138,12 @@ namespace Potions.Gameplay
                             Interacted?.Invoke();
                             break;
                         }
+                    }
+                    else if (_currentTask.CanSkip(_character.Interactor))
+                    {
+                        yield return new WaitForSeconds(0.3f);
+                        _taskInProgress = false;
+                        yield break;
                     }
                 }
                 // Otherwise, wait
@@ -266,6 +272,7 @@ namespace Potions.Gameplay
         private Interactor _teacher;
 
         private Coroutine _taskCoroutine;
+        private BaseInteractable _currentTask => _tasks[_taskIdx];
 
         private State _currentState = State.Idle;
         private List<BaseInteractable> _tasks;

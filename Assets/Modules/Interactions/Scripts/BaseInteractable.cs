@@ -9,6 +9,7 @@ namespace Potions.Gameplay
         public float Range => _range;
 
         public virtual bool CanInteract(Interactor interactor) => true;
+        public virtual bool CanSkip(Interactor interactor) => false;
         public virtual void SetActive(bool active) => _bubble.IsActive = active;
 
         public void Interact(Interactor interactor) => OnInteract(interactor);
