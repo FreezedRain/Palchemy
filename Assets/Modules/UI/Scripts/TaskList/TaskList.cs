@@ -32,7 +32,7 @@ public class TaskList : MonoBehaviour
                 GameObject blip_obj = Instantiate(blip_prefab);
 
                 blip_obj.transform.SetParent(transform);
-                blip_obj.transform.localPosition = new Vector2(-width / 2 + j * width / numTasksPerRow, height / 2 - i * height / numRows);
+                blip_obj.transform.localPosition = new Vector2(-width / 2 + j * width / (numTasksPerRow - 1), height / 2 - i * height / (float)numRows);
 
                 blips.Add(blip_obj.GetComponent<TaskListBlip>());
             }
@@ -59,11 +59,11 @@ public class TaskList : MonoBehaviour
         {
             if (i < numTasksLearnt)
             {
-                if (i < executingIndex - 1)
+                if (i < executingIndex)
                 {
                     blips[i].SetState(TaskListBlip.TASK_BLIP_STATE.DONE);
                 }
-                else if (i == executingIndex - 1)
+                else if (i == executingIndex)
                 {
                     blips[i].SetState(TaskListBlip.TASK_BLIP_STATE.DOING);
                 }
