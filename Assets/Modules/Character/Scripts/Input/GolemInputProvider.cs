@@ -54,7 +54,7 @@ namespace Potions.Gameplay
 
         private void DoLearn()
         {
-            MoveTowards(_teacher.transform.position, 1.5f);
+            MoveTowards(_teacher.transform.position, 1f);
             _character.LookTowards((_teacher.transform.position - transform.position).normalized);
         }
 

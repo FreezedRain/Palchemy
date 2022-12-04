@@ -9,15 +9,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3151879557543221032, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.9
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 3151879557543221032, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.9
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 3151879557543221032, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.15
+      value: -0.0059999526
+      objectReference: {fileID: 0}
+    - target: {fileID: 3359029042015740521, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.212
       objectReference: {fileID: 0}
     - target: {fileID: 5622046470374464441, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: m_LocalScale.x
@@ -26,6 +30,10 @@ PrefabInstance:
     - target: {fileID: 5622046470374464441, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622046470374464441, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.455
       objectReference: {fileID: 0}
     - target: {fileID: 5622046470610926490, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: m_RootOrder
@@ -74,6 +82,10 @@ PrefabInstance:
     - target: {fileID: 5622046470610926491, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: m_Name
       value: Golem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966898172799541492, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
+      propertyPath: m_Color.a
+      value: 0.23529412
       objectReference: {fileID: 0}
     - target: {fileID: 7953425037859952771, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: _allowedAngle
@@ -136,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986637f4ff604d49870d07743eb84cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _range: 1.25
+  _range: 1
   _bubble: {fileID: 8549012507539657258}
 --- !u!1001 &7489421789747813546
 PrefabInstance:
