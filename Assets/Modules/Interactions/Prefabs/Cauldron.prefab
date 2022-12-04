@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e56deed29d499f863dde4a1a0ea1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _range: 1.25
+  _range: 1.5
   _bubble: {fileID: 3209357657516504859}
   _cookDuration: 5
   _cookSprite: {fileID: 21300000, guid: 14a57a80872e3bc438c95db76cc2cdab, type: 3}
@@ -317,7 +317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1246359082294103681, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 1246359082294103681, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
       propertyPath: m_LocalPosition.z

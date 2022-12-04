@@ -12,13 +12,9 @@ namespace Potions.Gameplay
 
         public bool CanCook(List<string> usedIngredients)
         {
-            foreach (string id in usedIngredients)
-            {
-                if (!_ingredients.Contains(id))
-                    return false;
-            }
-
-            return true;
+            if (usedIngredients.Count != _ingredients.Count)
+                return false;
+            return new HashSet<string>(usedIngredients).SetEquals(_ingredients);
         }
 
         [SerializeField]
