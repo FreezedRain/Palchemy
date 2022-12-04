@@ -12,12 +12,12 @@ public class TaskList : MonoBehaviour
 
     private List<TaskListBlip> blips = new List<TaskListBlip>();
 
-    private void Start()
-    {
-        Setup(5, 2);
-
-        SetStateExecuting(7, 4);
-    }
+    // private void Start()
+    // {
+    //     Setup(5, 2);
+    //
+    //     SetStateExecuting(7, 4);
+    // }
 
     public void Setup(int numTasksPerRow, int numRows)
     {

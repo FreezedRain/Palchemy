@@ -37,6 +37,12 @@ namespace Potions.Gameplay
             _character = GetComponent<CharacterLogic>();
         }
 
+        private void Start()
+        {
+            _taskList.Setup(_maxTaskCount, 1);
+            _taskList.SetStateLearning(0);
+        }
+
         private void Update()
         {
             switch (_currentState)
@@ -70,8 +76,8 @@ namespace Potions.Gameplay
             if (!_taskInProgress)
             {
                 _taskIdx = (_taskIdx + 1) % _tasks.Count;
-                print($"Going to task {_tasks[_taskIdx]}");
                 _taskCoroutine = StartCoroutine(CoDoTask(_tasks[_taskIdx]));
+                _taskList.SetStateExecuting(_tasks.Count, _taskIdx);
             }
         }
 
@@ -162,11 +168,13 @@ namespace Potions.Gameplay
                 case State.Learn:
                     _teacher.Interacted += OnTeacherInteracted;
                     _tasks.Clear();
+                    _taskList.SetStateLearning(0);
                     break;
                 case State.Work:
                     _teacher.Interacted -= OnTeacherInteracted;
                     _taskIdx = -1;
                     _taskInProgress = false;
+                    _taskList.SetStateExecuting(_tasks.Count, 0);
                     break;
             }
             _currentState = state;
@@ -225,9 +233,10 @@ namespace Potions.Gameplay
 
         private void OnTeacherInteracted(BaseInteractable interactable)
         {
-            if (interactable is GolemInteractable golemInteractable)
+            if (interactable is GolemInteractable golemInteractable || _tasks.Count >= _maxTaskCount)
                 return;
             _tasks.Add(interactable);
+            _taskList.SetStateLearning(_tasks.Count);
             _character.Visuals.Bump();
         }
         
@@ -240,6 +249,10 @@ namespace Potions.Gameplay
 
         [SerializeField]
         private float _steerAmount;
+        [SerializeField]
+        private int _maxTaskCount;
+        [SerializeField]
+        private TaskList _taskList;
 
         private CharacterLogic _character;
         private Interactor _teacher;
