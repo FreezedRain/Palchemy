@@ -86,7 +86,6 @@ namespace Potions.Gameplay
             }
 
             int pathIndex = 0;
-            
             // Wait until we can interact
             while (true)
             {

@@ -176,6 +176,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7953425037859952771, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
+      propertyPath: _allowGolems
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7953425037859952771, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: _allowedAngle
       value: 90
       objectReference: {fileID: 0}

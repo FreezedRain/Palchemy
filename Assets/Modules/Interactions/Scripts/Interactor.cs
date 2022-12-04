@@ -79,8 +79,11 @@ namespace Potions.Gameplay
             BaseInteractable closest = null;
             foreach (var interactable in BaseInteractable.Interactables)
             {
-                if (!_ownInteractables.Contains(interactable) && IsFacingAngle(interactable, out float distance)
-                                                             && distance <= minDistance)
+                // Skip golems and own interactables
+                if (!_allowGolems && interactable is GolemInteractable || _ownInteractables.Contains(interactable))
+                    continue;
+                if (IsFacingAngle(interactable, out float distance)
+                    && distance <= minDistance)
                 {
                     minDistance = distance;
                     closest = interactable;
@@ -99,5 +102,7 @@ namespace Potions.Gameplay
         private float _allowedAngle;
         [SerializeField]
         private bool _showBubbles;
+        [SerializeField]
+        private bool _allowGolems;
     }
 }
