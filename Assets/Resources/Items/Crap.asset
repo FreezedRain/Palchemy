@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373ef7d3b9be4a75a15e6109a4e019bd, type: 3}
   m_Name: Crap
   m_EditorClassIdentifier: 
-  _id: crap
-  _sprite: {fileID: 21300000, guid: 1a96ab5f501a8e84c9016458682e1ccb, type: 3}
+  _id: mistake
+  _sprite: {fileID: 21300000, guid: 8cf429f9642e17a4e9d460e4d8bc6fbb, type: 3}
+  _isIngredient: 0

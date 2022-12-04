@@ -60,7 +60,7 @@ namespace Potions.Gameplay
                     break;
                 case State.Full:
                     _cookTimer = 0;
-                    _cookedItemId = ItemDatabase.FindRecipeByIngredients(_ingredients)?.ResultId ?? "crap";
+                    _cookedItemId = ItemDatabase.FindRecipeByIngredients(_ingredients)?.ResultId ?? "mistake";
                     _ingredients.Clear();
                     _spriteRenderer.sprite = _fullSprite;
                     break;
