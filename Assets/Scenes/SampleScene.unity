@@ -1170,22 +1170,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2857410650935014305, guid: 88887a6ba40c7bf45af2299be987849a, type: 3}
-      propertyPath: _bumpAmount
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2857410650935014305, guid: 88887a6ba40c7bf45af2299be987849a, type: 3}
-      propertyPath: _squashAmount
-      value: 0.045
-      objectReference: {fileID: 0}
-    - target: {fileID: 4967360312959232191, guid: 88887a6ba40c7bf45af2299be987849a, type: 3}
-      propertyPath: _showBubbles
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7244641941828750243, guid: 88887a6ba40c7bf45af2299be987849a, type: 3}
-      propertyPath: m_Mass
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 7244641941828750246, guid: 88887a6ba40c7bf45af2299be987849a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1233,10 +1217,6 @@ PrefabInstance:
     - target: {fileID: 7244641941828750247, guid: 88887a6ba40c7bf45af2299be987849a, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7244641941993909124, guid: 88887a6ba40c7bf45af2299be987849a, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88887a6ba40c7bf45af2299be987849a, type: 3}

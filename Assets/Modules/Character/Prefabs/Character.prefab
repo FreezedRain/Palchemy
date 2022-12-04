@@ -141,7 +141,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1289342781705204954}
-  - component: {fileID: 1957149501}
   m_Layer: 0
   m_Name: ItemHolder
   m_TagString: Untagged
@@ -165,19 +164,6 @@ Transform:
   m_Father: {fileID: 3359029042015740521}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1957149501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4186102504212667704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2480f1e8cca7b4797f8fb01dc6e4a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 448014342}
 --- !u!1 &5485526709969708087
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4994b14845d43ca80f016476ccc5318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemHolder: {fileID: 1957149501}
+  _itemHolder: {fileID: 0}
 --- !u!114 &7953425037859952771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,6 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _allowedAngle: 90
   _showBubbles: 0
+  _allowGolems: 0
 --- !u!1 &7420767293762884989
 GameObject:
   m_ObjectHideFlags: 0
