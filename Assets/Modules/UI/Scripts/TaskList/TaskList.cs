@@ -7,8 +7,8 @@ public class TaskList : MonoBehaviour
 
     public GameObject blip_prefab;
 
-    private float taskWidth = 0.15f;
-    private float taskHeight = 0.15f;
+    private float taskWidth = 0.12f;
+    private float taskHeight = 0.12f;
 
     private List<TaskListBlip> blips = new List<TaskListBlip>();
 
