@@ -20,6 +20,7 @@ namespace Potions.Level
             if (_progress >= _data.Goal)
             {
                 _isComplete = true;
+                _card.SetShine(true);
             }
 
             if (_isComplete) return;

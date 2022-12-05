@@ -26,17 +26,34 @@ namespace Potions.Level
 
         private void Update()
         {
-            foreach (var goal in _goals)
-                goal.Update();
+            if (_isComplete) return;
+            UpdateGoals();
         }
 
         private void OnAltarItemAdded(string id)
         {
-            print($"Delivered {id}");
             foreach (var goal in _goals)
             {
                 if (goal.CanAcceptItem(id))
                     goal.AcceptItem(id);
+            }
+        }
+
+        private void UpdateGoals()
+        {
+            bool allComplete = true;
+            foreach (var goal in _goals)
+            {
+                goal.Update();
+                allComplete &= goal.IsComplete;
+            }
+
+            // If all goals are complete
+            if (allComplete)
+            {
+                // Proceed to next level?
+                _isComplete = true;
+                print("Level Complete!");
             }
         }
 
@@ -46,5 +63,6 @@ namespace Potions.Level
         private List<ItemGoalData> _goalsData;
 
         private List<ItemGoal> _goals;
+        private bool _isComplete;
     }
 }
