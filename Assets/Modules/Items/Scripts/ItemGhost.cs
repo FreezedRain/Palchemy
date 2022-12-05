@@ -11,9 +11,10 @@ namespace Potions.Gameplay
         public void Setup(string id)
         {
             GetComponent<ItemHolder>().SetItem(id);
-            var seq = LeanTween.sequence();
-
             // seq.append(0.25f);
+            var seq = LeanTween.sequence();
+            LeanTween.delayedCall(gameObject, 0.45f,
+                () => ParticleManager.Spawn(ParticleType.Splash, transform.position));
             seq.append(LeanTween.moveLocalY(gameObject, transform.localPosition.y + 0.7f, 0.3f).setEaseOutCubic());
             seq.append(LeanTween.scale(gameObject, Vector3.one * 1.85f, 0.2f).setEaseInCubic());
             seq.insert(LeanTween.alpha(gameObject, 0, 0.15f));
