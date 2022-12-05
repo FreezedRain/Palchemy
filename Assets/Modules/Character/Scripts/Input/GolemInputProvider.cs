@@ -25,7 +25,8 @@ namespace Potions.Gameplay
                     SetState(State.Work);
                     break;
                 case State.Work:
-                    SetState(State.Idle);
+                    _teacher = interactor;
+                    SetState(State.Learn);
                     break;
             }
             _character.Visuals.Bump();
@@ -147,7 +148,7 @@ namespace Potions.Gameplay
                     }
                     else if (_currentTask.CanSkip(_character.Interactor))
                     {
-                        yield return new WaitForSeconds(0.3f);
+                        yield return new WaitForSeconds(0.4f);
                         _taskInProgress = false;
                         yield break;
                     }
