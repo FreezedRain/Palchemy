@@ -90,8 +90,13 @@ namespace Potions.Gameplay
             if (!NavMesh.CalculatePath(transform.position, goal.transform.position, NavMesh.AllAreas, path))
             {
                 Debug.LogWarning($"Pathfinding failed for {transform.name}");
-                _taskInProgress = false;
-                yield break;
+                NavMeshHit _navMeshHit;
+                NavMesh.SamplePosition(goal.transform.position, out _navMeshHit, 2f, NavMesh.AllAreas);
+                if (!NavMesh.CalculatePath(transform.position, _navMeshHit.position, NavMesh.AllAreas, path))
+                {
+                    _taskInProgress = false;
+                    yield break;
+                }
             }
 
             _debugPath = path;
