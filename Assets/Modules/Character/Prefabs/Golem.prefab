@@ -111,6 +111,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5622046470610926491, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
   m_PrefabInstance: {fileID: 3066852442740748348}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2260669156470924271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7244641941828750247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  smoothType: 0
+  subdivisions: 2
+  iterations: 2
+  strength: 0.5
+  uniformLength: 1
+  maxSegmentLength: 0.5
+  bezierTangentLength: 0.4
+  offset: 0.2
+  factor: 0.1
 --- !u!114 &5344262759466896513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,9 +145,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383d133ebf0d481e886a866c840c53f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _steerAmount: 30
+  _steerAmount: 10
   _maxTaskCount: 4
   _taskList: {fileID: 6184219137068804235}
+--- !u!114 &6196619439498524071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7244641941828750247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!114 &6327139197361234457
 MonoBehaviour:
   m_ObjectHideFlags: 0

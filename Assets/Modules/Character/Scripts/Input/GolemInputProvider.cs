@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -36,6 +37,7 @@ namespace Potions.Gameplay
         {
             _tasks = new();
             _character = GetComponent<CharacterLogic>();
+            _seeker = GetComponent<Seeker>();
         }
 
         private void Start()
@@ -85,40 +87,35 @@ namespace Potions.Gameplay
         private IEnumerator CoDoTask(BaseInteractable goal)
         {
             _taskInProgress = true;
-            NavMeshPath path = new NavMeshPath();
-            _debugPath = path;
+            Path path = null;
+            
             // Find path to the goal
-            if (!NavMesh.CalculatePath(transform.position, goal.transform.position, NavMesh.AllAreas, path))
+            _seeker.StartPath(transform.position, goal.transform.position, p => path = p);
+            
+            while (path == null)
             {
-                Debug.LogWarning($"Pathfinding failed for {transform.name}");
-                NavMeshHit _navMeshHit;
-                NavMesh.SamplePosition(goal.transform.position, out _navMeshHit, 2f, NavMesh.AllAreas);
-                if (!NavMesh.CalculatePath(transform.position, _navMeshHit.position, NavMesh.AllAreas, path))
-                {
-                    _taskInProgress = false;
-                    yield break;
-                }
+                yield return null;
             }
-
-            _debugPath = path;
+            
+            print("Found path!");
 
             int pathIndex = 0;
             // Wait until we can interact
             while (true)
             {
                 // Advance to next path point if close
-                if ((path.corners[pathIndex] - transform.position).magnitude < 0.125f)
+                if ((path.vectorPath[pathIndex] - transform.position).magnitude < 0.3f)
                 {
-                    pathIndex = Mathf.Clamp(pathIndex + 1, 0, path.corners.Length - 1);
+                    pathIndex = Mathf.Clamp(pathIndex + 1, 0, path.vectorPath.Count - 1);
                 }
                 
-                Vector2 movementDirection = path.corners[pathIndex] - transform.position;
+                Vector2 movementDirection = path.vectorPath[pathIndex] - transform.position;
 
-                // If on the last point of the path, move towards the goal
-                if (pathIndex == path.corners.Length - 1 && _currentTask)
-                {
-                    movementDirection =_currentTask.transform.position - transform.position;
-                }
+                // // If on the last point of the path, move towards the goal
+                // if (pathIndex == path.vectorPath.Count - 1 && _currentTask)
+                // {
+                //     movementDirection =_currentTask.transform.position - transform.position;
+                // }
                 
                 // If we should steer, rotate the direction
                 if (ShouldSteer(movementDirection.normalized, out float amount))
@@ -276,6 +273,7 @@ namespace Potions.Gameplay
         private TaskList _taskList;
 
         private CharacterLogic _character;
+        private Seeker _seeker;
         private Interactor _teacher;
 
         private Coroutine _taskCoroutine;
@@ -286,7 +284,7 @@ namespace Potions.Gameplay
         private bool _taskInProgress;
         private int _taskIdx = -1;
         private InputState _inputState;
-        
+
         // Debug
         private NavMeshPath _debugPath;
     }
