@@ -88,43 +88,46 @@ namespace Potions.Gameplay
         {
             _taskInProgress = true;
             Path path = null;
-            
-            // Find path to the goal
-            _seeker.StartPath(transform.position, goal.transform.position, p => path = p);
-            
-            while (path == null)
-            {
-                yield return null;
-            }
-            
-            print("Found path!");
-
             int pathIndex = 0;
+            // var pathCoroutine = StartCoroutine(CoUpdatePath(goal.transform, 0.5f, p =>
+            // {
+            //     path = p;
+            //     pathIndex = 0;
+            // }));
+            _seeker.StartPath(transform.position, goal.transform.position, p => path = p);
+
             // Wait until we can interact
             while (true)
             {
-                // Advance to next path point if close
-                if ((path.vectorPath[pathIndex] - transform.position).magnitude < 0.3f)
+                if (path != null)
                 {
-                    pathIndex = Mathf.Clamp(pathIndex + 1, 0, path.vectorPath.Count - 1);
-                }
+                    // Advance to next path point if close
+                    if ((path.vectorPath[pathIndex] - transform.position).magnitude < 0.25f)
+                    {
+                        pathIndex = Mathf.Clamp(pathIndex + 1, 0, path.vectorPath.Count - 1);
+                    }
                 
-                Vector2 movementDirection = path.vectorPath[pathIndex] - transform.position;
+                    Vector2 movementDirection = path.vectorPath[pathIndex] - transform.position;
 
-                // // If on the last point of the path, move towards the goal
-                // if (pathIndex == path.vectorPath.Count - 1 && _currentTask)
-                // {
-                //     movementDirection =_currentTask.transform.position - transform.position;
-                // }
+                    // // If on the last point of the path, move towards the goal
+                    // if (pathIndex == path.vectorPath.Count - 1 && _currentTask)
+                    // {
+                    //     movementDirection =_currentTask.transform.position - transform.position;
+                    // }
                 
-                // If we should steer, rotate the direction
-                if (ShouldSteer(movementDirection.normalized, out float amount))
+                    // If we should steer, rotate the direction
+                    if (ShouldSteer(movementDirection.normalized, out float amount))
+                    {
+                        movementDirection = Quaternion.AngleAxis(-amount * _steerAmount, Vector3.forward) *
+                                            movementDirection;
+                    }
+
+                    MoveTowards(transform.position + (Vector3) movementDirection, 0.05f);
+                }
+                else
                 {
-                    movementDirection = Quaternion.AngleAxis(-amount * _steerAmount, Vector3.forward) *
-                                        movementDirection;
+                    _inputState.Direction = Vector2.zero;
                 }
-
-                MoveTowards(transform.position + (Vector3) movementDirection, 0.0f);
 
                 // If we can interact
                 if (_character.Interactor.ClosestInteractable == goal)
@@ -157,6 +160,21 @@ namespace Potions.Gameplay
             // Wait a bit after interacting
             yield return new WaitForSeconds(0.2f);
             _taskInProgress = false;
+            // StopCoroutine(pathCoroutine);
+        }
+
+        private IEnumerator CoUpdatePath(Transform goal, float delay, OnPathDelegate callback)
+        {
+            while (true)
+            {
+                if (!goal)
+                {
+                    callback?.Invoke(null);
+                    yield return null;
+                }
+                _seeker.StartPath(transform.position, goal.transform.position, callback);
+                yield return new WaitForSeconds(delay);
+            }
         }
 
         private bool MoveTowards(Vector3 point, float stoppingDistance)
@@ -221,7 +239,7 @@ namespace Potions.Gameplay
             foreach (var golem in CharacterLogic.AllCharacters)
             {
                 // Skip ourselves
-                if (golem == _character || !golem.IsMoving)
+                if (golem == _character)
                     continue;
                 
                 Vector2 obstacleDiff = golem.transform.position - transform.position;
@@ -282,6 +300,7 @@ namespace Potions.Gameplay
         private State _currentState = State.Idle;
         private List<BaseInteractable> _tasks;
         private bool _taskInProgress;
+
         private int _taskIdx = -1;
         private InputState _inputState;
 
