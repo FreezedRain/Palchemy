@@ -116,7 +116,7 @@ namespace Potions.Gameplay
                 Vector2 movementDirection = path.corners[pathIndex] - transform.position;
 
                 // If on the last point of the path, move towards the goal
-                if (pathIndex == path.corners.Length - 1)
+                if (pathIndex == path.corners.Length - 1 && _currentTask)
                 {
                     movementDirection =_currentTask.transform.position - transform.position;
                 }
@@ -280,7 +280,7 @@ namespace Potions.Gameplay
         private Interactor _teacher;
 
         private Coroutine _taskCoroutine;
-        private BaseInteractable _currentTask => _tasks[_taskIdx];
+        private BaseInteractable _currentTask => _taskIdx < _tasks.Count ? _tasks[_taskIdx] : null;
 
         private State _currentState = State.Idle;
         private List<BaseInteractable> _tasks;
