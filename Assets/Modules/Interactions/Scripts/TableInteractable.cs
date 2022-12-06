@@ -10,11 +10,8 @@ namespace Potions.Gameplay
         protected override void OnItemAdded(string id)
         {
             _itemId = id;
-            _itemHolder.SetItem(id);
         }
-
-        [SerializeField]
-        private ItemHolder _itemHolder;
+        
         private string _itemId;
     }
 }

@@ -14,12 +14,16 @@ namespace Potions.Gameplay
             
             var holder = interactor.Character.ItemHolder;
             string heldItemId = holder.ItemId;
-            holder.SetItem(GetItem());
+            holder.SetItem(GetItem(), _itemHolder.transform.position);
+            _itemHolder.SetItem(heldItemId, holder.transform.position);
             OnItemAdded(heldItemId);
         }
 
         protected virtual string GetItem() => null;
 
         protected virtual void OnItemAdded(string id) { }
+
+        [SerializeField]
+        protected ItemHolder _itemHolder;
     }
 }

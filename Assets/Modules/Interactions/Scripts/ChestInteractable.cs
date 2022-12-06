@@ -8,11 +8,11 @@ namespace Potions.Gameplay
         protected override string GetItem() => _itemId;
         public override bool CanSkip(Interactor interactor) => !CanInteract(interactor);
 
-        private void Start() => _itemHolder.SetItem(_itemId, animate: false);
+        private void Start() => _previewItem.SetItem(_itemId);
 
         [SerializeField]
         private string _itemId;
         [SerializeField]
-        private ItemHolder _itemHolder;
+        private ItemHolder _previewItem;
     }
 }
