@@ -32,10 +32,10 @@ namespace Potions.Level
             _timer += Time.deltaTime;
             _timer2 += Time.deltaTime;
             
-            Debug.Log($"IP10s: {items.Count(i => _timer2 - i <= 10f)} IPS: {items.Count(i => _timer2 - i <= 10f) / 10f} for {_data.ItemId}");
-
             while (_timer >= 1f)
             {
+                Debug.Log($"IP10s: {items.Count(i => _timer2 - i <= 10f)} IPS: {items.Count(i => _timer2 - i <= 10f) / 10f} for {_data.ItemId}");
+
                 _progress = Mathf.Clamp(_progress - _data.Decay * _timer, 0, _data.Goal);
                 _timer = 0f;
                 _card.Fill = _progress / _data.Goal;

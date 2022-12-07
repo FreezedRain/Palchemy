@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Potions.Gameplay
 {
@@ -97,61 +95,16 @@ namespace Potions.Gameplay
         private IEnumerator CoDoTask(BaseInteractable goal)
         {
             _taskInProgress = true;
-            NavMeshPath path = new NavMeshPath();
-            coolPath = new();
-            _debugPath = path;
-
-            int lastValidPointIndex = 0;
+            _debugPath = null;
+            
             // Find path to the goal
-            if (goal.TryGetComponent<NavMeshObstacle>(out var obstacle))
-            {
-                obstacle.enabled = false;
-            }
-
-            // yield return null;
-            if (!NavMesh.CalculatePath(transform.position, goal.transform.position, NavMesh.AllAreas, path))
-            {
-                Debug.LogWarning($"Pathfinding failed for {transform.name}");
-                NavMeshHit _navMeshHit;
-                NavMesh.SamplePosition(goal.transform.position, out _navMeshHit, 2f, NavMesh.AllAreas);
-                if (!NavMesh.CalculatePath(transform.position, _navMeshHit.position, NavMesh.AllAreas, path))
-                {
-                    Debug.LogWarning($"Pathfinding failed again for {transform.name}");
-                    _taskInProgress = false;
-                    yield break;
-                }
-            }
+            var path = CustomNavMesh.CalculatePath(transform.position, goal.transform, _pathMask);
             
-            for (int i = 0; i < path.corners.Length; i++)
+            if (path == null)
             {
-                Vector3 point = path.corners[i];
-
-                RaycastHit2D hit = Physics2D.CircleCast(point, 0.2f, (goal.transform.position - point).normalized, 999f, _pathMask);
-
-                if (hit.collider != null)
-                {
-                    print($"Checking point {i}, we hit {hit.collider.transform.parent.name}");
-                }
-                else
-                {
-                    print($"Checking point {i}, we hit fuck all");
-                }
-
-                if (hit.collider != null && hit.collider.transform.parent.gameObject != goal.gameObject)
-                {
-                    coolPath.Add(point);
-                }
-                else
-                {
-                    coolPath.Add(point);
-                    coolPath.Add(goal.transform.position);
-                    break;
-                }
-            }
-            
-            if (goal.TryGetComponent<NavMeshObstacle>(out var obstacle2))
-            {
-                obstacle2.enabled = true;
+                _taskInProgress = false;
+                Debug.LogWarning($"Pathfinding failed for {transform.name}!");
+                yield break;
             }
 
             _debugPath = path;
@@ -161,19 +114,13 @@ namespace Potions.Gameplay
             while (true)
             {
                 // Advance to next path point if close
-                if ((coolPath[pathIndex] - transform.position).magnitude < 0.25f)
+                if ((path[pathIndex] - transform.position).magnitude < 0.25f)
                 {
-                    pathIndex = Mathf.Clamp(pathIndex + 1, 0, coolPath.Count - 1);
+                    pathIndex = Mathf.Clamp(pathIndex + 1, 0, path.Count - 1);
                 }
                 
-                Vector2 movementDirection = coolPath[pathIndex] - transform.position;
-                //
-                // // If on the last point of the path, move towards the goal
-                // if (pathIndex == path.corners.Length - 1 && _currentTask)
-                // {
-                //     movementDirection =_currentTask.transform.position - transform.position;
-                // }
-                //
+                Vector2 movementDirection = path[pathIndex] - transform.position;
+                
                 // If we should steer, rotate the direction
                 if (ShouldSteer(movementDirection.normalized, out float amount))
                 {
@@ -257,17 +204,10 @@ namespace Potions.Gameplay
             Gizmos.color = Color.green;
             if (_debugPath == null)
                 return;
-            for (int i = 0; i < _debugPath.corners.Length - 1; i++)
+            for (int i = 0; i < _debugPath.Count - 1; i++)
             {
-                Gizmos.DrawWireSphere(_debugPath.corners[i], 0.2f);
-                Gizmos.DrawLine(_debugPath.corners[i], _debugPath.corners[i + 1]);
-            }
-            
-            Gizmos.color = Color.blue;
-            for (int i = 0; i < coolPath.Count - 1; i++)
-            {
-                Gizmos.DrawWireSphere(coolPath[i], 0.2f);
-                Gizmos.DrawLine(coolPath[i], coolPath[i + 1]);
+                Gizmos.DrawWireSphere(_debugPath[i], 0.2f);
+                Gizmos.DrawLine(_debugPath[i], _debugPath[i + 1]);
             }
 
             // Gizmos.color = Color.yellow;
@@ -351,9 +291,8 @@ namespace Potions.Gameplay
         private bool _taskInProgress;
         private int _taskIdx = -1;
         private InputState _inputState;
-        private List<Vector3> coolPath;
-        
+
         // Debug
-        private NavMeshPath _debugPath;
+        private List<Vector3> _debugPath;
     }
 }
