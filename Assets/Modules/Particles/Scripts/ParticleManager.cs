@@ -14,7 +14,6 @@ namespace Potions.Gameplay
         public static void Spawn(ParticleType type, Vector3 position, Transform parent = null)
         {
             var prefab = Instance.GetParticleObject(type);
-            print($"Spawning {prefab}");
             if (prefab)
                 Instantiate(prefab, position, Quaternion.identity, parent);
         }
@@ -23,7 +22,7 @@ namespace Potions.Gameplay
         {
             ParticleType.None => null,
             ParticleType.Splash => _splash,
-            _ => throw new ArgumentOutOfRangeException(nameof(type), $"VfxType not found: {type}"),
+            _ => throw new ArgumentOutOfRangeException(nameof(type), $"VFX {type} doesn't exist!"),
         };
 
         [Header("Particles")]
