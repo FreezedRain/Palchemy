@@ -45,11 +45,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5622046470610926490, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.26999992
+      value: 0.32084888
       objectReference: {fileID: 0}
     - target: {fileID: 5622046470610926490, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2599999
+      value: -0.8831464
       objectReference: {fileID: 0}
     - target: {fileID: 5622046470610926490, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: m_LocalPosition.z
@@ -123,9 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383d133ebf0d481e886a866c840c53f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _steerAmount: 30
+  _steerAmount: 20
   _maxTaskCount: 4
   _taskList: {fileID: 6184219137068804235}
+  _pathMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &6327139197361234457
 MonoBehaviour:
   m_ObjectHideFlags: 0
