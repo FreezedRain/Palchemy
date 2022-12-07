@@ -13,7 +13,7 @@ namespace Potions.Gameplay
         public bool ShowBubbles => _showBubbles;
         public CharacterLogic Character => _character;
         public BaseInteractable ClosestInteractable => _closestInteractable;
-        public bool CanInteract => _closestInteractable && _closestInteractable.CanInteract(this);
+        public bool CanInteract => _closestInteractable && (_closestInteractable.CanInteract(this) || _closestInteractable.CanAltInteract(this));
 
         public void Setup(CharacterLogic character) => _character = character;
 
@@ -22,6 +22,15 @@ namespace Potions.Gameplay
             if (!CanInteract) return;
             
             _closestInteractable.Interact(this);
+            Interacted?.Invoke(_closestInteractable);
+            Character.Visuals.Bump();
+        }
+
+        public void AltInteract()
+        {
+            if (!CanInteract) return;
+            
+            _closestInteractable.AltInteract(this);
             Interacted?.Invoke(_closestInteractable);
             Character.Visuals.Bump();
         }

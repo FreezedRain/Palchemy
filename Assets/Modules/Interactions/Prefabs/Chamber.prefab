@@ -135,8 +135,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _range: 1.5
   _bubble: {fileID: 3209357657516504859}
+  _animationHelper: {fileID: 4898083416160130519}
   _golemPrefab: {fileID: 645503322570273803, guid: 5fe83483828b4af428a738d7e4554493, type: 3}
   _golemSpawnPoint: {fileID: 9173999634730799811}
+  _spriteRenderer: {fileID: 4450147086058663351}
+  _openSprite: {fileID: 21300000, guid: 5b335e91f9181f243b5b439f3676287a, type: 3}
+  _closedSprite: {fileID: 21300000, guid: b03345c11de14224bade8baecbd19bd9, type: 3}
 --- !u!1 &4450147086058663344
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,6 +152,7 @@ GameObject:
   - component: {fileID: 4450147086058663345}
   - component: {fileID: 4450147086058663351}
   - component: {fileID: 4450147086058663350}
+  - component: {fileID: 4898083416160130519}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -233,6 +238,18 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4898083416160130519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4450147086058663344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf9035065b79e040b9f9d73b27943f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5413229200331316369
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5413229200331316369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.25, z: 0}
+  m_LocalPosition: {x: 0, y: -0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

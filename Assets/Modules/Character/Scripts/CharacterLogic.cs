@@ -27,6 +27,7 @@ namespace Potions.Gameplay
             
             Interactor.Setup(this);
             _input.Interacted += Interactor.Interact;
+            _input.AltInteracted += Interactor.AltInteract;
         }
 
         private void OnEnable() => AllCharacters.Add(this);

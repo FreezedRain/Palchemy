@@ -6,7 +6,8 @@ namespace Potions.Gameplay
     public enum ParticleType
     {
         None,
-        Splash
+        Splash,
+        Mold
     }
     
     public class ParticleManager : MonoSingleton<ParticleManager>
@@ -22,12 +23,15 @@ namespace Potions.Gameplay
         {
             ParticleType.None => null,
             ParticleType.Splash => _splash,
+            ParticleType.Mold => _mold,
             _ => throw new ArgumentOutOfRangeException(nameof(type), $"VFX {type} doesn't exist!"),
         };
 
         [Header("Particles")]
         [SerializeField]
         private GameObject _splash;
+        [SerializeField]
+        private GameObject _mold;
     }
 
 }

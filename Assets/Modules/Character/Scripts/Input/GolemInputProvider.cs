@@ -10,10 +10,22 @@ namespace Potions.Gameplay
     public class GolemInputProvider : MonoBehaviour, IInputProvider
     {
         public event Action Interacted;
+        public event Action AltInteracted;
+
+        public ItemHolder ItemHolder => _character.ItemHolder;
 
         public InputState GetState() => _inputState;
 
         public void Interact(Interactor interactor)
+        {
+            var holder = interactor.Character.ItemHolder;
+            string heldItemId = holder.ItemId;
+            holder.SetItem(_character.ItemHolder.ItemId);
+            _character.ItemHolder.SetItem(heldItemId);
+            _character.Visuals.Bump();
+        }
+        
+        public void AltInteract(Interactor interactor)
         {
             switch (_currentState)
             {
@@ -225,7 +237,7 @@ namespace Potions.Gameplay
                 case State.Learn:
                     if (_taskCoroutine != null)
                         StopCoroutine(_taskCoroutine);
-                    _character.ItemHolder.SetItem(null);
+                    // _character.ItemHolder.SetItem(null);
                     _teacher.Interacted += OnTeacherInteracted;
                     _tasks.Clear();
                     _taskList.SetStateLearning(0);

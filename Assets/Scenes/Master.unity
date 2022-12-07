@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _splash: {fileID: 2122281512274312796, guid: 4166a18358f16c74ba13484275120928, type: 3}
+  _mold: {fileID: 2122281512274312796, guid: 5873ee8d786128b4e9897ef63d3ac332, type: 3}
 --- !u!1 &1108734366
 GameObject:
   m_ObjectHideFlags: 0

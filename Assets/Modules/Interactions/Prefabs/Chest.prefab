@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _range: 1.35
   _bubble: {fileID: 3826879131621119268}
+  _animationHelper: {fileID: 4641652580690595422}
   _itemId: fruit
   _itemHolder: {fileID: 2616655912999886392}
 --- !u!1 &2616655912459446550
@@ -147,6 +148,7 @@ GameObject:
   - component: {fileID: 2616655912459446551}
   - component: {fileID: 2616655912459446549}
   - component: {fileID: 2616655912459446548}
+  - component: {fileID: 4641652580690595422}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -233,6 +235,18 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4641652580690595422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2616655912459446550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf9035065b79e040b9f9d73b27943f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2616655912751653283
 GameObject:
   m_ObjectHideFlags: 0
