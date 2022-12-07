@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4450147084847743026}
   - component: {fileID: 4450147084847743027}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4450147085846658045}
   - component: {fileID: 7446401786984951148}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cauldron
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4450147086058663345}
   - component: {fileID: 4450147086058663351}
   - component: {fileID: 4450147086058663350}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 7857449299861820702}
   - component: {fileID: 512695578152266300}
   - component: {fileID: 4770868106575934777}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.55
+  m_Radius: 0.5
 --- !u!114 &4770868106575934777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +354,14 @@ PrefabInstance:
     - target: {fileID: 1246359082294103682, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
       propertyPath: m_Name
       value: Bubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246359082294103682, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246359082433658562, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
