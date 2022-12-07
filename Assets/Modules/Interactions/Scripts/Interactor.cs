@@ -13,7 +13,8 @@ namespace Potions.Gameplay
         public bool ShowBubbles => _showBubbles;
         public CharacterLogic Character => _character;
         public BaseInteractable ClosestInteractable => _closestInteractable;
-        public bool CanInteract => _closestInteractable && (_closestInteractable.CanInteract(this) || _closestInteractable.CanAltInteract(this));
+        public bool CanInteract => _closestInteractable && _closestInteractable.CanInteract(this);
+        public bool CanAltInteract => _closestInteractable && _closestInteractable.CanAltInteract(this);
 
         public void Setup(CharacterLogic character) => _character = character;
 
@@ -28,7 +29,7 @@ namespace Potions.Gameplay
 
         public void AltInteract()
         {
-            if (!CanInteract) return;
+            if (!CanAltInteract) return;
             
             _closestInteractable.AltInteract(this);
             Interacted?.Invoke(_closestInteractable);
@@ -53,12 +54,16 @@ namespace Potions.Gameplay
                 }
                 _closestInteractable = newInteractable;
             }
-            else if (_canInteractBefore != CanInteract)
+            else
             {
-                bool canInteract = CanInteract;
-                if (_showBubbles)
-                    _closestInteractable?.SetActive(canInteract);
-                _canInteractBefore = canInteract;
+                bool canInteractNow = CanInteract;
+
+                if (_canInteractBefore != canInteractNow)
+                {
+                    if (_showBubbles)
+                        _closestInteractable?.SetActive(canInteractNow);
+                    _canInteractBefore = canInteractNow;
+                }
             }
         }
 

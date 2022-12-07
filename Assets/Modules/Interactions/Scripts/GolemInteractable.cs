@@ -6,10 +6,7 @@ namespace Potions.Gameplay
     {
         public GolemInputProvider Golem => _golem;
 
-        public override bool CanInteract(Interactor interactor)
-        {
-            return _golem.ItemHolder.Item != null;
-        }
+        public override bool CanInteract(Interactor interactor) => true;
         public override bool CanAltInteract(Interactor interactor) => true;
 
         protected override void OnInteract(Interactor interactor)

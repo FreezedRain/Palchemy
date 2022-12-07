@@ -29,7 +29,7 @@ namespace Potions.Gameplay
                 return holder.ItemId != "bottle";
             }
 
-            return false;
+            return _ingredients.Count >= _maxIngredients;
         }
 
         protected override string GetItem() => _cookedItemId;

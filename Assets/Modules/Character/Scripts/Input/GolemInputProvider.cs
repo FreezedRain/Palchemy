@@ -83,19 +83,22 @@ namespace Potions.Gameplay
                 SetState(State.Idle);
                 return;
             }
-            
+
             if (!_taskInProgress)
             {
                 _taskIdx = (_taskIdx + 1) % _tasks.Count;
-                _taskCoroutine = StartCoroutine(CoDoTask(_currentTask));
+                _taskCoroutine = StartCoroutine(CoDoTask(_currentTask, _justStartedWork ? 0.75f : 0.2f));
+                _justStartedWork = false;
                 _taskList.SetStateExecuting(_tasks.Count, _taskIdx);
             }
         }
 
-        private IEnumerator CoDoTask(BaseInteractable goal)
+        private IEnumerator CoDoTask(BaseInteractable goal, float startDelay)
         {
             _taskInProgress = true;
             _debugPath = null;
+
+            yield return new WaitForSeconds(startDelay);
             
             // Find path to the goal
             var path = CustomNavMesh.CalculatePath(transform.position, goal.transform, _pathMask);
@@ -159,7 +162,6 @@ namespace Potions.Gameplay
             }
 
             // Wait a bit after interacting
-            yield return new WaitForSeconds(0.2f);
             _taskInProgress = false;
         }
 
@@ -191,6 +193,7 @@ namespace Potions.Gameplay
                     break;
                 case State.Work:
                     _teacher.Interacted -= OnTeacherInteracted;
+                    _justStartedWork = true;
                     _taskIdx = -1;
                     _taskInProgress = false;
                     _taskList.SetStateExecuting(_tasks.Count, 0);
@@ -291,6 +294,7 @@ namespace Potions.Gameplay
         private bool _taskInProgress;
         private int _taskIdx = -1;
         private InputState _inputState;
+        private bool _justStartedWork;
 
         // Debug
         private List<Vector3> _debugPath;
