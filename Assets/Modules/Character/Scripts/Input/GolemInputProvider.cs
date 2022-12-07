@@ -225,6 +225,7 @@ namespace Potions.Gameplay
                 case State.Learn:
                     if (_taskCoroutine != null)
                         StopCoroutine(_taskCoroutine);
+                    _character.ItemHolder.SetItem(null);
                     _teacher.Interacted += OnTeacherInteracted;
                     _tasks.Clear();
                     _taskList.SetStateLearning(0);

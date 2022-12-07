@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,30 +7,29 @@ namespace Potions.Gameplay
     {
         protected override bool CanHolderInteract(ItemHolder holder)
         {
+            if (_currentState == State.Cook || holder.ItemId == null)
+            {
+                return false;
+            }
             if (_currentState == State.Full)
             {
                 return holder.ItemId == "bottle";
             }
 
-            return holder.ItemId != null && holder.Item.IsIngredient;
+            return holder.Item.IsIngredient && _ingredients.Count + 1 <= _maxIngredients;
         }
 
         protected override bool CanHolderSkip(ItemHolder holder)
         {
             if (holder.ItemId == null)
                 return true;
+
+            if (_currentState == State.Full)
+            {
+                return holder.ItemId != "bottle";
+            }
+
             return false;
-            //
-            // if (_currentState == State.Full)
-            // {
-            //     return holder.ItemId != "bottle";
-            // }
-            // else if (_currentState == State.Cook)
-            // {
-            //     return holder.ItemId != "bottle" && !holder.Item.IsIngredient;
-            // }
-            //
-            // return !holder.Item.IsIngredient;
         }
 
         protected override string GetItem() => _cookedItemId;
@@ -96,6 +94,8 @@ namespace Potions.Gameplay
 
         [SerializeField]
         private float _cookDuration;
+        [SerializeField]
+        private int _maxIngredients;
         [Header("Sprites")]
         [SerializeField]
         private Sprite _cookSprite;
