@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373ef7d3b9be4a75a15e6109a4e019bd, type: 3}
+  m_Name: GolemHeart
+  m_EditorClassIdentifier: 
+  _id: golem_heart
+  _sprite: {fileID: 21300000, guid: 45fa9a27984f66a48ae804a2638a5a66, type: 3}
+  _isIngredient: 0
+  _grindedId: 

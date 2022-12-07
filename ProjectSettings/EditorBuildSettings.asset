@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Master.unity
     guid: ab8033a0f6f31f04a96411abce50bcee
   - enabled: 1
-    path: Assets/Scenes/Levels/Conveyor.unity
-    guid: 7333dec7930207f4db3b1e2c3c819ac8
-  - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
     guid: 8192779443a2c084e9c20987df35f06c
+  - enabled: 1
+    path: Assets/Scenes/Levels/Helper.unity
+    guid: 7b0bacf3d1ef6244fb347daa92eab3dd
+  - enabled: 1
+    path: Assets/Scenes/Levels/Intro.unity
+    guid: c1bf4ae659ac38f4094a215b512e9992
   m_configObjects: {}

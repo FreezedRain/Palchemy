@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Potions.Gameplay;
+using Potions.Global;
 using UnityEngine;
 
 namespace Potions.Level
@@ -54,6 +55,7 @@ namespace Potions.Level
                 // Proceed to next level?
                 _isComplete = true;
                 print("Level Complete!");
+                LeanTween.delayedCall(3f, () => GameManager.Instance.Transitions.LoadLevel("LevelSelect"));
             }
         }
 

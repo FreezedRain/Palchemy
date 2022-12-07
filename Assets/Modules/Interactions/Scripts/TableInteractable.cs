@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Potions.Gameplay
@@ -13,8 +14,16 @@ namespace Potions.Gameplay
             _itemHolder.SetItem(id);
         }
 
+        private void Start()
+        {
+            if (!String.IsNullOrEmpty(_overrideItemId))
+                OnItemAdded(_overrideItemId);
+        }
+
         [SerializeField]
         private ItemHolder _itemHolder;
+        [SerializeField]
+        private string _overrideItemId;
         private string _itemId;
     }
 }

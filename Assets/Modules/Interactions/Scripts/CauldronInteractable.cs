@@ -20,17 +20,18 @@ namespace Potions.Gameplay
         {
             if (holder.ItemId == null)
                 return true;
-            
-            if (_currentState == State.Full)
-            {
-                return holder.ItemId != "bottle";
-            }
-            else if (_currentState == State.Cook)
-            {
-                return holder.ItemId != "bottle" && !holder.Item.IsIngredient;
-            }
-
-            return !holder.Item.IsIngredient;
+            return false;
+            //
+            // if (_currentState == State.Full)
+            // {
+            //     return holder.ItemId != "bottle";
+            // }
+            // else if (_currentState == State.Cook)
+            // {
+            //     return holder.ItemId != "bottle" && !holder.Item.IsIngredient;
+            // }
+            //
+            // return !holder.Item.IsIngredient;
         }
 
         protected override string GetItem() => _cookedItemId;
