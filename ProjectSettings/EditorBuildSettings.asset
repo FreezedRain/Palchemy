@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Intro.unity
     guid: c1bf4ae659ac38f4094a215b512e9992
+  - enabled: 1
+    path: Assets/Scenes/Levels/Two.unity
+    guid: 2edd7c2df41cdbf4aa9ddd95e13f40f2
+  - enabled: 1
+    path: Assets/Scenes/Levels/KitchenBoy.unity
+    guid: 8543df5e5c57f7b46a0022ff229ce24d
   m_configObjects: {}
