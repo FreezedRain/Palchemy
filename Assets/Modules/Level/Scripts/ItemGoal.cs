@@ -34,7 +34,7 @@ namespace Potions.Level
             
             while (_timer >= 1f)
             {
-                Debug.Log($"IP10s: {items.Count(i => _timer2 - i <= 10f)} IPS: {items.Count(i => _timer2 - i <= 10f) / 10f} for {_data.ItemId}");
+                Debug.Log($"IP30s: {items.Count(i => _timer2 - i <= 30f)} IPS: {items.Count(i => _timer2 - i <= 30f) / 30f} for {_data.ItemId}");
 
                 _progress = Mathf.Clamp(_progress - _data.Decay * _timer, 0, _data.Goal);
                 _timer = 0f;

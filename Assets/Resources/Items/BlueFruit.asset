@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 373ef7d3b9be4a75a15e6109a4e019bd, type: 3}
-  m_Name: FruitPotion
+  m_Name: BlueFruit
   m_EditorClassIdentifier: 
-  _id: fruit_potion
-  _sprite: {fileID: 21300000, guid: 923f1d2b41afbb44ba76286c46c1432a, type: 3}
-  _isIngredient: 0
+  _id: blue_fruit
+  _sprite: {fileID: 21300000, guid: 57f99450ec5896c499ae7e854cf840fe, type: 3}
+  _isIngredient: 1
+  _grindedId: fruit_powder

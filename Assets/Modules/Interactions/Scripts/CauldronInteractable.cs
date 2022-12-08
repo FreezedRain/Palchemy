@@ -29,7 +29,17 @@ namespace Potions.Gameplay
                 return holder.ItemId != "bottle";
             }
 
-            return _ingredients.Count >= _maxIngredients;
+            if (_currentState == State.Empty)
+            {
+                return !holder.Item.IsIngredient;
+            }
+            
+            if (_currentState == State.Cook && _ingredients.Count >= _maxIngredients)
+            {
+                return holder.ItemId != "bottle";
+            }
+
+            return false;
         }
 
         protected override string GetItem() => _cookedItemId;
