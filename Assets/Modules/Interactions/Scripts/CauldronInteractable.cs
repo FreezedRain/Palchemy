@@ -7,16 +7,22 @@ namespace Potions.Gameplay
     {
         protected override bool CanHolderInteract(ItemHolder holder, InteractionType type)
         {
-            if (_currentState == State.Cook || holder.ItemId == null)
+            if (holder.ItemId == null)
             {
                 return false;
             }
+            
+            if (_currentState is State.Cook or State.Empty)
+            {
+                return holder.Item.IsIngredient;
+            }
+            
             if (_currentState == State.Full)
             {
                 return holder.ItemId == "bottle";
             }
 
-            return holder.Item.IsIngredient && _ingredients.Count + 1 <= _maxIngredients;
+            return false;
         }
 
         protected override bool CanHolderSkip(ItemHolder holder)
