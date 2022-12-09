@@ -39,13 +39,13 @@ public class TaskList : MonoBehaviour
         }
     }
 
-    public void SetStateLearning(int numTasksLearnt)
+    public void SetStateLearning(List<Potions.Gameplay.GolemInputProvider.Task> tasks)
     {
         for (int i = 0; i < blips.Count; i++)
         {
-            if (i < numTasksLearnt)
+            if (tasks != null && i < tasks.Count)
             {
-                blips[i].SetState(TaskListBlip.TASK_BLIP_STATE.IDLE);
+                blips[i].SetState(TaskListBlip.TASK_BLIP_STATE.IDLE, tasks[i].Type);
             } else
             {
                 blips[i].SetState(TaskListBlip.TASK_BLIP_STATE.NONE);
@@ -53,23 +53,23 @@ public class TaskList : MonoBehaviour
         }
     }
 
-    public void SetStateExecuting(int numTasksLearnt, int executingIndex)
+    public void SetStateExecuting(List<Potions.Gameplay.GolemInputProvider.Task> tasks, int executingIndex)
     {
         for (int i = 0; i < blips.Count; i++)
         {
-            if (i < numTasksLearnt)
+            if (i < tasks.Count)
             {
                 if (i < executingIndex)
                 {
-                    blips[i].SetState(TaskListBlip.TASK_BLIP_STATE.DONE);
+                    blips[i].SetState(TaskListBlip.TASK_BLIP_STATE.DONE, tasks[i].Type);
                 }
                 else if (i == executingIndex)
                 {
-                    blips[i].SetState(TaskListBlip.TASK_BLIP_STATE.DOING);
+                    blips[i].SetState(TaskListBlip.TASK_BLIP_STATE.DOING, tasks[i].Type);
                 }
                 else
                 {
-                    blips[i].SetState(TaskListBlip.TASK_BLIP_STATE.IDLE);
+                    blips[i].SetState(TaskListBlip.TASK_BLIP_STATE.IDLE, tasks[i].Type);
                 }
             }
             else

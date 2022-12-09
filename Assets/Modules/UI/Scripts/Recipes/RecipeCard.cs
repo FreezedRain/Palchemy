@@ -14,9 +14,9 @@ public class RecipeCard : MonoBehaviour
             if (_isShining != value)
             {
                 _isShining = value;
-                LeanTween.cancel(_barShine);
+                //LeanTween.cancel(_barShine);
                 LeanTween.cancel(_crystalShine);
-                LeanTween.alpha(_barShine, value ? 1f : 0f, 0.2f);
+                //LeanTween.alpha(_barShine, value ? 1f : 0f, 0.2f);
                 LeanTween.alpha(_crystalShine, value ? 1f : 0f, 0.2f);
             }
         }
@@ -30,7 +30,6 @@ public class RecipeCard : MonoBehaviour
         
         SetBarFill(_barDark, _smoothFill);
         // SetBarFill(_barBright, _smoothFill);
-        SetBarFill(_barShine, _smoothFill);
         _barCap.anchoredPosition = new Vector3(128 * _smoothFill, 0);
     }
 

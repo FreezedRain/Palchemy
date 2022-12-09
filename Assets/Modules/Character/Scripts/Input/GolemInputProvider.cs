@@ -51,7 +51,7 @@ namespace Potions.Gameplay
         private void Start()
         {
             _taskList.Setup(_maxTaskCount, 1);
-            _taskList.SetStateLearning(0);
+            _taskList.SetStateLearning(null);
         }
 
         private void Update()
@@ -89,7 +89,7 @@ namespace Potions.Gameplay
                 _taskIdx = (_taskIdx + 1) % _tasks.Count;
                 _taskCoroutine = StartCoroutine(CoDoTask(_currentGoal, _justStartedWork ? 0.75f : 0.2f));
                 _justStartedWork = false;
-                _taskList.SetStateExecuting(_tasks.Count, _taskIdx);
+                _taskList.SetStateExecuting(_tasks, _taskIdx);
             }
         }
 
@@ -189,14 +189,14 @@ namespace Potions.Gameplay
                     // _character.ItemHolder.SetItem(null);
                     _teacher.Interacted += OnTeacherInteracted;
                     _tasks.Clear();
-                    _taskList.SetStateLearning(0);
+                    _taskList.SetStateLearning(null);
                     break;
                 case State.Work:
                     _teacher.Interacted -= OnTeacherInteracted;
                     _justStartedWork = true;
                     _taskIdx = -1;
                     _taskInProgress = false;
-                    _taskList.SetStateExecuting(_tasks.Count, 0);
+                    _taskList.SetStateExecuting(_tasks, 0);
                     break;
             }
             _currentState = state;
@@ -267,7 +267,7 @@ namespace Potions.Gameplay
                 : BaseInteractable.InteractionType.Pickup;
             print($"Taught interaction of type {type}");
             _tasks.Add(new Task(interactable, type));
-            _taskList.SetStateLearning(_tasks.Count);
+            _taskList.SetStateLearning(_tasks);
             _character.Visuals.Bump();
         }
         
@@ -278,7 +278,7 @@ namespace Potions.Gameplay
             Work
         }
 
-        private struct Task
+        public struct Task
         {
             public BaseInteractable Interactable;
             public BaseInteractable.InteractionType Type;

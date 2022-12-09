@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Potions.Gameplay.BaseInteractable;
 
 public class TaskListBlip : MonoBehaviour
 {
@@ -12,15 +13,15 @@ public class TaskListBlip : MonoBehaviour
         DONE
     }
 
-    public Sprite spriteIdle;
-    public Sprite spriteDoing;
-    public Sprite spriteDone;
+    public Sprite spriteUp;
+    public Sprite spriteDown;
 
     private TASK_BLIP_STATE state = TASK_BLIP_STATE.NONE;
 
     public SpriteRenderer detail;
+    public SpriteRenderer progress;
 
-    public void SetState(TASK_BLIP_STATE newState)
+    public void SetState(TASK_BLIP_STATE newState, InteractionType type = InteractionType.Any)
     {
         state = newState;
         
@@ -29,16 +30,26 @@ public class TaskListBlip : MonoBehaviour
         switch(newState)
         {
             case TASK_BLIP_STATE.NONE:
+                progress.enabled = false;
                 detail.sprite = null;
                 break;
             case TASK_BLIP_STATE.IDLE:
-                detail.sprite = spriteIdle;
+                progress.enabled = false;
+                if (type == InteractionType.Pickup) detail.sprite = spriteUp;
+                if (type == InteractionType.Drop) detail.sprite = spriteDown;
+                detail.color = new Color(1, 1, 1, 0.5f);
                 break;
             case TASK_BLIP_STATE.DOING:
-                detail.sprite = spriteDoing;
+                progress.enabled = true;
+                if (type == InteractionType.Pickup) detail.sprite = spriteUp;
+                if (type == InteractionType.Drop) detail.sprite = spriteDown;
+                detail.color = new Color(1, 1, 1, 1f);
                 break;
             case TASK_BLIP_STATE.DONE:
-                detail.sprite = spriteDone;
+                progress.enabled = false;
+                if (type == InteractionType.Pickup) detail.sprite = spriteUp;
+                if (type == InteractionType.Drop) detail.sprite = spriteDown;
+                detail.color = new Color(1, 1, 1, 0.5f);
                 break;
         }
     }
@@ -47,7 +58,7 @@ public class TaskListBlip : MonoBehaviour
     {
         if (state == TASK_BLIP_STATE.DOING)
         {
-            detail.transform.eulerAngles = new Vector3(0, 0, detail.transform.eulerAngles.z - Time.deltaTime * 200);
+            progress.transform.eulerAngles = new Vector3(0, 0, progress.transform.eulerAngles.z - Time.deltaTime * 200);
         }
     }
 }
