@@ -4,9 +4,11 @@ namespace Potions.Gameplay
 {
     public class ChestInteractable : ContainerInteractable
     {
-        protected override bool CanHolderInteract(ItemHolder holder) => true;
+        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type)
+        {
+            return holder.Item == null;
+        }
         protected override string GetItem() => _itemId;
-        public override bool CanSkip(Interactor interactor) => !CanInteract(interactor);
 
         private void Start() => _itemHolder.SetItem(_itemId, animate: false);
 

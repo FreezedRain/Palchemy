@@ -5,7 +5,7 @@ namespace Potions.Gameplay
 {
     public class CauldronInteractable : ContainerInteractable
     {
-        protected override bool CanHolderInteract(ItemHolder holder)
+        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type)
         {
             if (_currentState == State.Cook || holder.ItemId == null)
             {
@@ -21,6 +21,7 @@ namespace Potions.Gameplay
 
         protected override bool CanHolderSkip(ItemHolder holder)
         {
+            return false;
             if (holder.ItemId == null)
                 return true;
 

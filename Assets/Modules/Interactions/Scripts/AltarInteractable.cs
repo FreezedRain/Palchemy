@@ -8,7 +8,7 @@ namespace Potions.Gameplay
     {
         public event Action<string> ItemAdded;
 
-        protected override bool CanHolderInteract(ItemHolder holder) => holder.ItemId != null;
+        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type) => holder.ItemId != null && holder.ItemId != "golem_heart";
 
         protected override string GetItem() => null;
 
@@ -18,11 +18,6 @@ namespace Potions.Gameplay
             var ghost = Instantiate(_itemGhostPrefab, _ghostOrigin);
             ghost.transform.localPosition = Vector3.zero;
             ghost.Setup(id);
-        }
-
-        public override bool CanSkip(Interactor interactor)
-        {
-            return !CanInteract(interactor);
         }
 
         [SerializeField]

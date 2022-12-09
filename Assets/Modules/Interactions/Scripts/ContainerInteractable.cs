@@ -4,10 +4,10 @@ namespace Potions.Gameplay
 {
     public abstract class ContainerInteractable : BaseInteractable
     {
-        public override bool CanInteract(Interactor interactor) => CanHolderInteract(interactor.Character.ItemHolder);
+        public override bool CanInteract(Interactor interactor, InteractionType type = InteractionType.Any) => CanHolderInteract(interactor.Character.ItemHolder, type);
         public override bool CanSkip(Interactor interactor) => CanHolderSkip(interactor.Character.ItemHolder);
 
-        protected virtual bool CanHolderInteract(ItemHolder holder) => true;
+        protected virtual bool CanHolderInteract(ItemHolder holder, InteractionType type = InteractionType.Any) => true;
 
         protected virtual bool CanHolderSkip(ItemHolder holder) => false;
 

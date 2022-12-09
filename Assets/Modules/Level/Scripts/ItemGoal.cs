@@ -20,14 +20,8 @@ namespace Potions.Level
 
         public void Update()
         {
-            if (_progress >= _data.Goal)
-            {
-                _isComplete = true;
-                _card.IsShining = true;
-                _card.Fill = 1f;
-            }
-
-            if (_isComplete) return;
+            _isComplete = _progress >= _data.Goal;
+            _card.IsShining = _isComplete;
 
             _timer += Time.deltaTime;
             _timer2 += Time.deltaTime;
@@ -36,10 +30,11 @@ namespace Potions.Level
             {
                 Debug.Log($"IP30s: {items.Count(i => _timer2 - i <= 30f)} IPS: {items.Count(i => _timer2 - i <= 30f) / 30f} for {_data.ItemId}");
 
-                _progress = Mathf.Clamp(_progress - _data.Decay * _timer, 0, _data.Goal);
+                _progress = Mathf.Clamp(_progress - _data.Decay * _timer, 0, _data.Goal + 1);
                 _timer = 0f;
-                _card.Fill = _progress / _data.Goal;
             }
+
+            _card.Fill = Mathf.Clamp01(_progress / _data.Goal);
         }
 
         public ItemGoal(ItemGoalData data, RecipeCard card)

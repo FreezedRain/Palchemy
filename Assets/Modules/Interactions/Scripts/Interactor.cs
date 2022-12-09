@@ -13,14 +13,15 @@ namespace Potions.Gameplay
         public bool ShowBubbles => _showBubbles;
         public CharacterLogic Character => _character;
         public BaseInteractable ClosestInteractable => _closestInteractable;
-        public bool CanInteract => _closestInteractable && _closestInteractable.CanInteract(this);
+        public bool CanInteract(BaseInteractable.InteractionType type = BaseInteractable.InteractionType.Any) => _closestInteractable
+                                                                          && _closestInteractable.CanInteract(this, type);
         public bool CanAltInteract => _closestInteractable && _closestInteractable.CanAltInteract(this);
 
         public void Setup(CharacterLogic character) => _character = character;
 
         public void Interact()
         {
-            if (!CanInteract) return;
+            if (!CanInteract()) return;
             
             _closestInteractable.Interact(this);
             Interacted?.Invoke(_closestInteractable);
@@ -49,14 +50,14 @@ namespace Potions.Gameplay
                 if (_showBubbles)
                 {
                     _closestInteractable?.SetActive(false);
-                    if (newInteractable && newInteractable.CanInteract(this))
+                    if (newInteractable && newInteractable.CanInteract(this, BaseInteractable.InteractionType.Any))
                         newInteractable.SetActive(true);
                 }
                 _closestInteractable = newInteractable;
             }
             else
             {
-                bool canInteractNow = CanInteract;
+                bool canInteractNow = CanInteract();
 
                 if (_canInteractBefore != canInteractNow)
                 {
@@ -67,12 +68,12 @@ namespace Potions.Gameplay
             }
         }
 
-        private void OnDrawGizmosSelected()
-        {
-            Handles.matrix = transform.localToWorldMatrix;
-            Vector3 from = Quaternion.AngleAxis(-_allowedAngle * 0.5f, Vector3.forward) * Vector3.up;
-            Handles.DrawWireArc(Vector3.zero, Vector3.forward, from, _allowedAngle, 1f);
-        }
+        // private void OnDrawGizmosSelected()
+        // {
+        //     Handles.matrix = transform.localToWorldMatrix;
+        //     Vector3 from = Quaternion.AngleAxis(-_allowedAngle * 0.5f, Vector3.forward) * Vector3.up;
+        //     Handles.DrawWireArc(Vector3.zero, Vector3.forward, from, _allowedAngle, 1f);
+        // }
 
         private BaseInteractable FindInteractable()
         {

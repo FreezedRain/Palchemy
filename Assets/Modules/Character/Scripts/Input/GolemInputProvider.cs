@@ -87,7 +87,7 @@ namespace Potions.Gameplay
             if (!_taskInProgress)
             {
                 _taskIdx = (_taskIdx + 1) % _tasks.Count;
-                _taskCoroutine = StartCoroutine(CoDoTask(_currentTask, _justStartedWork ? 0.75f : 0.2f));
+                _taskCoroutine = StartCoroutine(CoDoTask(_currentGoal, _justStartedWork ? 0.75f : 0.2f));
                 _justStartedWork = false;
                 _taskList.SetStateExecuting(_tasks.Count, _taskIdx);
             }
@@ -138,19 +138,19 @@ namespace Potions.Gameplay
                 {
                     // Stop and wait a bit
                     _inputState.Direction = Vector2.zero;
-                    _character.LookTowards((_currentTask.transform.position - transform.position).normalized);
+                    _character.LookTowards((_currentGoal.transform.position - transform.position).normalized);
 
-                    if (_character.Interactor.CanInteract)
+                    if (_character.Interactor.CanInteract(_tasks[_taskIdx].Type))
                     {
                         yield return new WaitForSeconds(0.2f);
                         // If we can still interact, do it and exit the loop
-                        if (_character.Interactor.ClosestInteractable == goal && _character.Interactor.CanInteract)
+                        if (_character.Interactor.ClosestInteractable == goal && _character.Interactor.CanInteract(_tasks[_taskIdx].Type))
                         {
                             Interacted?.Invoke();
                             break;
                         }
                     }
-                    else if (_currentTask.CanSkip(_character.Interactor))
+                    else if (_currentGoal.CanSkip(_character.Interactor))
                     {
                         yield return new WaitForSeconds(0.4f);
                         _taskInProgress = false;
@@ -262,7 +262,11 @@ namespace Potions.Gameplay
         {
             if (interactable is GolemInteractable golemInteractable || _tasks.Count >= _maxTaskCount)
                 return;
-            _tasks.Add(interactable);
+            var type = _teacher.Character.ItemHolder.Item == null
+                ? BaseInteractable.InteractionType.Drop
+                : BaseInteractable.InteractionType.Pickup;
+            print($"Taught interaction of type {type}");
+            _tasks.Add(new Task(interactable, type));
             _taskList.SetStateLearning(_tasks.Count);
             _character.Visuals.Bump();
         }
@@ -272,6 +276,18 @@ namespace Potions.Gameplay
             Idle,
             Learn,
             Work
+        }
+
+        private struct Task
+        {
+            public BaseInteractable Interactable;
+            public BaseInteractable.InteractionType Type;
+
+            public Task(BaseInteractable interactable, BaseInteractable.InteractionType type)
+            {
+                Interactable = interactable;
+                Type = type;
+            }
         }
 
         [SerializeField]
@@ -287,10 +303,11 @@ namespace Potions.Gameplay
         private Interactor _teacher;
 
         private Coroutine _taskCoroutine;
-        private BaseInteractable _currentTask => _taskIdx < _tasks.Count ? _tasks[_taskIdx] : null;
+        // private BaseInteractable _currentGoal => _taskIdx < _tasks.Count ? _tasks[_taskIdx] : null;
+        private BaseInteractable _currentGoal => _taskIdx < _tasks.Count ? _tasks[_taskIdx].Interactable : null;
 
         private State _currentState = State.Idle;
-        private List<BaseInteractable> _tasks;
+        private List<Task> _tasks;
         private bool _taskInProgress;
         private int _taskIdx = -1;
         private InputState _inputState;

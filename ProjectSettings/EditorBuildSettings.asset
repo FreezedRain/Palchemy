@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/Master.unity
-    guid: ab8033a0f6f31f04a96411abce50bcee
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
     guid: 8192779443a2c084e9c20987df35f06c
+  - enabled: 1
+    path: Assets/Scenes/Master.unity
+    guid: ab8033a0f6f31f04a96411abce50bcee
   - enabled: 1
     path: Assets/Scenes/Levels/Helper.unity
     guid: 7b0bacf3d1ef6244fb347daa92eab3dd
@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/KitchenBoy.unity
     guid: 8543df5e5c57f7b46a0022ff229ce24d
+  - enabled: 1
+    path: Assets/Scenes/Levels/FarAway.unity
+    guid: 1e390a70466a3344994cdd70c3d6ba5d
   m_configObjects: {}

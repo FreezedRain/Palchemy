@@ -5,7 +5,21 @@ namespace Potions.Gameplay
 {
     public class TableInteractable : ContainerInteractable
     {
-        protected override bool CanHolderInteract(ItemHolder holder) => _itemId != null ^ holder.ItemId != null;
+        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type)
+        {
+            switch (type)
+            {
+                case InteractionType.Any:
+                    return _itemId != null ^ holder.ItemId != null;
+                case InteractionType.Pickup:
+                    return _itemId != null && holder.ItemId == null;
+                case InteractionType.Drop:
+                    return _itemId == null && holder.ItemId != null;
+            }
+
+            return false;
+        }
+
         protected override string GetItem() => _itemId;
 
         protected override void OnItemAdded(string id)

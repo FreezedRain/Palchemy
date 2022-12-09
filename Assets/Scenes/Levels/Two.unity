@@ -255,11 +255,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2616655912063515432, guid: 1d03743e56e85504994224463f117d32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2616655912063515432, guid: 1d03743e56e85504994224463f117d32, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.500001
+      value: -2.500001
       objectReference: {fileID: 0}
     - target: {fileID: 2616655912063515432, guid: 1d03743e56e85504994224463f117d32, type: 3}
       propertyPath: m_LocalPosition.z
@@ -445,7 +445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2616655912063515432, guid: 1d03743e56e85504994224463f117d32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2616655912063515432, guid: 1d03743e56e85504994224463f117d32, type: 3}
       propertyPath: m_LocalPosition.y
@@ -502,11 +502,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7244641941828750246, guid: 88887a6ba40c7bf45af2299be987849a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7244641941828750246, guid: 88887a6ba40c7bf45af2299be987849a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7244641941828750246, guid: 88887a6ba40c7bf45af2299be987849a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -731,7 +731,7 @@ PrefabInstance:
     - target: {fileID: 292395652989364534, guid: ed7daab4cd8fef44da54d5ef70f3fab6, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: c3963512543c62040828e0a768adeff6, type: 2}
+      objectReference: {fileID: 23800000, guid: 59364482c8dfa5f479e1f65284cab081, type: 2}
     - target: {fileID: 292395652989364535, guid: ed7daab4cd8fef44da54d5ef70f3fab6, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -974,7 +974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8130008227402757154, guid: 8933aa279feaa6f41bea79c4a3a9b7f7, type: 3}
       propertyPath: _goalsData.Array.data[0].ItemId
-      value: fruit_potion
+      value: red_potion
       objectReference: {fileID: 0}
     - target: {fileID: 8130008227402757155, guid: 8933aa279feaa6f41bea79c4a3a9b7f7, type: 3}
       propertyPath: m_RootOrder

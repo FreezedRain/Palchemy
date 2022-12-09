@@ -6,10 +6,15 @@ namespace Potions.Gameplay
 {
     public abstract class BaseInteractable : MonoBehaviour
     {
+        public enum InteractionType
+        {
+            Any, Pickup, Drop
+        }
+        
         public static List<BaseInteractable> Interactables = new();
         public float Range => _range;
 
-        public virtual bool CanInteract(Interactor interactor) => true;
+        public virtual bool CanInteract(Interactor interactor, InteractionType type) => true;
         
         public virtual bool CanSkip(Interactor interactor) => false;
         

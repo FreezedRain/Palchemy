@@ -6,7 +6,7 @@ namespace Potions.Gameplay
 {
     public class MoldInteractable : ContainerInteractable
     {
-        protected override bool CanHolderInteract(ItemHolder holder) => !_inProgress && holder.ItemId == "golem_heart";
+        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type) => !_inProgress && holder.ItemId == "golem_heart";
 
         protected override string GetItem() => null;
 

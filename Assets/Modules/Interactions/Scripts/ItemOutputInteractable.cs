@@ -8,7 +8,7 @@ namespace Potions.Gameplay
         
         public void SetOutput(string itemId) => _output = itemId; 
             
-        protected override bool CanHolderInteract(ItemHolder holder) => holder.ItemId == null && _output != null;
+        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type) => holder.ItemId == null && _output != null;
 
         protected override string GetItem() => _output;
 

@@ -6,7 +6,7 @@ namespace Potions.Gameplay
 {
     public class GrinderInteractable : ContainerInteractable
     {
-        protected override bool CanHolderInteract(ItemHolder holder)
+        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type)
         {
             return _currentState == State.Empty && holder.Item != null && holder.Item.GrindedId != null;
         }

@@ -1,4 +1,5 @@
 using System;
+using Potions.Global;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,7 @@ namespace Potions.Gameplay
         private void OnMove(InputValue value) => _currentState.Direction = value.Get<Vector2>();
         private void OnInteract() => Interacted?.Invoke();
         private void OnAltInteract() => AltInteracted?.Invoke();
+        private void OnRestart() => GameManager.Instance.Transitions.LoadLevel("LevelSelect");
 
         private InputState _currentState;
     }
