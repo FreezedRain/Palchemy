@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,11 @@ public class RecipeCard : MonoBehaviour
                 LeanTween.alpha(_crystalShine, value ? 1f : 0f, 0.2f);
             }
         }
+    }
+
+    public void SetProgress(int current, int goal)
+    {
+        _text.text = $"{current}/{goal}";
     }
 
     public void SetBase(Sprite sprite) => _base.sprite = sprite;
@@ -47,6 +53,8 @@ public class RecipeCard : MonoBehaviour
     private RectTransform _barShine;
     [SerializeField]
     private RectTransform _crystalShine;
+    [SerializeField]
+    private TMP_Text _text;
 
     private float _smoothFill;
     private bool _isShining;

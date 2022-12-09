@@ -20,21 +20,28 @@ namespace Potions.Level
 
         public void Update()
         {
-            _isComplete = _progress >= _data.Goal;
+            int itemCount = items.Count(i => _timer2 - i <= 30f);
+            
+            _isComplete = itemCount >= _data.Goal;
             _card.IsShining = _isComplete;
 
             _timer += Time.deltaTime;
             _timer2 += Time.deltaTime;
+
+            
             
             while (_timer >= 1f)
             {
-                Debug.Log($"IP30s: {items.Count(i => _timer2 - i <= 30f)} IPS: {items.Count(i => _timer2 - i <= 30f) / 30f} for {_data.ItemId}");
+                // Debug.Log($"IP30s: {items.Count(i => _timer2 - i <= 30f)} IPS: {items.Count(i => _timer2 - i <= 30f) / 30f} for {_data.ItemId}");
 
                 _progress = Mathf.Clamp(_progress - _data.Decay * _timer, 0, _data.Goal + 1);
                 _timer = 0f;
             }
+            
+            _card.SetProgress(itemCount, (int) _data.Goal);
+            _card.Fill = itemCount / _data.Goal;
 
-            _card.Fill = Mathf.Clamp01(_progress / _data.Goal);
+            // _card.Fill = Mathf.Clamp01(_progress / _data.Goal);
         }
 
         public ItemGoal(ItemGoalData data, RecipeCard card)
