@@ -19,6 +19,8 @@ namespace Potions.Level
 
         public void Update()
         {
+            if (_data.Timespan == 0)
+                return;
             // Update logic
             _timer += Time.deltaTime;
 
