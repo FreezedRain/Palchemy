@@ -53,9 +53,11 @@ namespace Potions.Level
             if (allComplete)
             {
                 // Proceed to next level?
+                foreach (var goal in _goals)
+                    goal.SetFinished(true);
                 _isComplete = true;
                 print("Level Complete!");
-                LeanTween.delayedCall(3f, () => GameManager.Instance.Transitions.LoadLevel("LevelSelect"));
+                LeanTween.delayedCall(1f, () => GameManager.Instance.Transitions.LoadLevel("LevelSelect"));
             }
         }
 

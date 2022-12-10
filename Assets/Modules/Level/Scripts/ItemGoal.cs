@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Potions.Gameplay;
@@ -14,34 +13,46 @@ namespace Potions.Level
 
         public void AcceptItem(string id)
         {
-            _progress += 1;
-            items.Add(_timer2);
+            // _itemLog.Add(_timer);
+            _count++;
         }
 
         public void Update()
         {
-            int itemCount = items.Count(i => _timer2 - i <= 30f);
-            
-            _isComplete = itemCount >= _data.Goal;
-            _card.IsShining = _isComplete;
-
+            // Update logic
             _timer += Time.deltaTime;
-            _timer2 += Time.deltaTime;
 
-            
-            
-            while (_timer >= 1f)
+            while (_timer > _data.Timespan)
             {
-                // Debug.Log($"IP30s: {items.Count(i => _timer2 - i <= 30f)} IPS: {items.Count(i => _timer2 - i <= 30f) / 30f} for {_data.ItemId}");
-
-                _progress = Mathf.Clamp(_progress - _data.Decay * _timer, 0, _data.Goal + 1);
+                _timer -= _data.Timespan;
+                _count--;
+                if (_count < 0)
+                    _count = 0;
+            }
+            if (_count == 0)
+            {
                 _timer = 0f;
             }
+            // _itemLog = _itemLog.Where(i => _timer - i <= _data.Timespan).ToList();
+            // int itemsOverTimespan = _itemLog.Count;
+            _isComplete = _count >= _data.NumericGoal;
             
-            _card.SetProgress(itemCount, (int) _data.Goal);
-            _card.Fill = itemCount / _data.Goal;
 
-            // _card.Fill = Mathf.Clamp01(_progress / _data.Goal);
+            
+            // Update card visuals
+            _card.IsShining = _isComplete;
+            _card.SetProgress(_count, _data.NumericGoal);
+            _card.Fill = Mathf.Clamp01(_timer / _data.Timespan);
+        }
+
+        public void SetFinished(bool finished)
+        {
+            _isFinished = finished;
+            if (finished)
+            {
+                _card.Fill = 1f;
+                _card.IsShining = true;
+            }
         }
 
         public ItemGoal(ItemGoalData data, RecipeCard card)
@@ -49,17 +60,17 @@ namespace Potions.Level
             _data = data;
             _card = card;
             _card.SetBase(ItemDatabase.FindRecipeByOutcome(_data.ItemId).PageSprite);
-            items = new();
+            _itemLog = new();
         }
 
-        private float _progress;
         private bool _isComplete;
+        private bool _isFinished;
         private float _timer;
+        private int _count;
 
         private RecipeCard _card;
         private ItemGoalData _data;
-        private float _timer2;
-        
-        private List<float> items;
+
+        private List<float> _itemLog;
     }
 }

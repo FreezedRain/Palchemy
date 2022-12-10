@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Potions.Global;
 using UnityEngine;
 
 namespace Potions.Gameplay
@@ -63,6 +64,12 @@ namespace Potions.Gameplay
                 SetState(State.Empty);
             }
         }
+        
+        protected override void PlayInteractAudio(Interactor interactor)
+        {
+            var clip = interactor.Character.ItemHolder.Item == null ? _dropClip : _pickupClip;
+            clip.Play(transform.position);
+        }
 
         private void Awake()
         {
@@ -122,6 +129,11 @@ namespace Potions.Gameplay
         private Sprite _emptySprite;
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
+        [Header("Audio")]
+        [SerializeField]
+        private AudioClipData _pickupClip;
+        [SerializeField]
+        private AudioClipData _dropClip;
 
         private State _currentState = State.Empty;
         

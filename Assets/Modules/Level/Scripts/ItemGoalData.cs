@@ -8,5 +8,7 @@ namespace Potions.Level
         public string ItemId;
         public float Goal;
         public float Decay;
+        public int NumericGoal;
+        public float Timespan;
     }
 }

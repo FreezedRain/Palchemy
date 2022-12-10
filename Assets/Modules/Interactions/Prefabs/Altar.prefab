@@ -135,6 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _range: 1.3
   _bubble: {fileID: 3209357657516504859}
+  _interactClip: {fileID: 11400000, guid: ffc294f5c8eeb724e85a36c24b447004, type: 2}
+  _animationHelper: {fileID: 0}
   _itemGhostPrefab: {fileID: 1419619379332486464, guid: 18d368e537d068543a7cce1c414b096f, type: 3}
   _ghostOrigin: {fileID: 294361080657330951}
 --- !u!1 &4450147086058663344

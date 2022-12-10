@@ -744,6 +744,14 @@ PrefabInstance:
       propertyPath: _goalsData.Array.data[0].ItemId
       value: red_fruit
       objectReference: {fileID: 0}
+    - target: {fileID: 8130008227402757154, guid: 8933aa279feaa6f41bea79c4a3a9b7f7, type: 3}
+      propertyPath: _goalsData.Array.data[0].Timespan
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130008227402757154, guid: 8933aa279feaa6f41bea79c4a3a9b7f7, type: 3}
+      propertyPath: _goalsData.Array.data[0].NumericGoal
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8130008227402757155, guid: 8933aa279feaa6f41bea79c4a3a9b7f7, type: 3}
       propertyPath: m_RootOrder
       value: 3

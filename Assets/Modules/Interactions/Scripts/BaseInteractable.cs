@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Potions.Global;
 using UnityEngine;
 
 namespace Potions.Gameplay
@@ -32,6 +33,7 @@ namespace Potions.Gameplay
                 _bubble.Blink();
             if (_animationHelper)
                 _animationHelper.Bump();
+            PlayInteractAudio(interactor);
         }
         
         protected virtual void OnAltInteract(Interactor interactor)
@@ -40,6 +42,12 @@ namespace Potions.Gameplay
                 _bubble.Blink();
             if (_animationHelper)
                 _animationHelper.Bump();
+        }
+
+        protected virtual void PlayInteractAudio(Interactor interactor)
+        {
+            if (_interactClip)
+                _interactClip.Play(transform.position);
         }
 
         private void OnEnable() => Interactables.Add(this);
@@ -55,7 +63,9 @@ namespace Potions.Gameplay
         [SerializeField]
         private float _range;
         [SerializeField]
-        private InteractableBubble _bubble;
+        protected InteractableBubble _bubble;
+        [SerializeField]
+        private AudioClipData _interactClip;
         [SerializeField]
         protected AnimationHelper _animationHelper;
     }

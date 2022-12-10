@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _range: 1.35
   _bubble: {fileID: 3826879131621119268}
+  _interactClip: {fileID: 11400000, guid: ab3aea76cb3e40f40b24e2a642de12ce, type: 2}
   _animationHelper: {fileID: 4641652580690595422}
   _itemId: red_fruit
   _itemHolder: {fileID: 2616655912999886392}

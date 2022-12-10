@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _range: 1.5
   _bubble: {fileID: 3209357657516504859}
+  _interactClip: {fileID: 0}
   _animationHelper: {fileID: 2209565785872588574}
   _cookDuration: 5
   _maxIngredients: 1
@@ -141,6 +142,8 @@ MonoBehaviour:
   _fullSprite: {fileID: 21300000, guid: e16632cc644aff14ba102bf5076f519f, type: 3}
   _emptySprite: {fileID: 21300000, guid: 1bccdcdc0c274354b9e1025f3a0a5bd3, type: 3}
   _spriteRenderer: {fileID: 4450147086058663351}
+  _pickupClip: {fileID: 11400000, guid: ab3aea76cb3e40f40b24e2a642de12ce, type: 2}
+  _dropClip: {fileID: 11400000, guid: ffc294f5c8eeb724e85a36c24b447004, type: 2}
 --- !u!1 &4450147086058663344
 GameObject:
   m_ObjectHideFlags: 0

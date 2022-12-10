@@ -13,12 +13,11 @@ namespace Potions.Gameplay
 
         protected override void OnInteract(Interactor interactor)
         {
-            base.OnInteract(interactor);
-            
             var holder = interactor.Character.ItemHolder;
             string heldItemId = holder.ItemId;
             holder.SetItem(GetItem());
             OnItemAdded(heldItemId);
+            base.OnInteract(interactor);
         }
 
         protected virtual string GetItem() => null;
