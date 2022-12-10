@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4053d3ff08c4d62965862b8209f585c, type: 3}
-  m_Name: Pickup
+  m_Name: BottleFill
   m_EditorClassIdentifier: 
   _clips:
-  - {fileID: 8300000, guid: 216b42aa3a22a624c98262ce6fcd1f2f, type: 3}
+  - {fileID: 8300000, guid: a3b6094de0b31b447b4d53c869072261, type: 3}
   _volume: 1
-  _pitchMin: 1
-  _pitchMax: 1
+  _pitchMin: 0.95
+  _pitchMax: 1.05

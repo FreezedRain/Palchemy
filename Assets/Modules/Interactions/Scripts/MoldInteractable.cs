@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Potions.Global;
 using UnityEngine;
 
 namespace Potions.Gameplay
@@ -14,6 +15,7 @@ namespace Potions.Gameplay
         {
             _inProgress = true;
             var seq = LeanTween.sequence();
+            _closeClip.Play(transform.position);
             seq.append(() => _spriteRenderer.sprite = _closedSprite);
             seq.append(1f);
             seq.append(() =>
@@ -21,6 +23,7 @@ namespace Potions.Gameplay
                 _spriteRenderer.sprite = _openSprite;
                 _animationHelper.Bump();
                 ParticleManager.Spawn(ParticleType.Mold, transform.position);
+                _openClip.Play(transform.position);
                 Instantiate(_golemPrefab, _golemSpawnPoint.position, Quaternion.identity);
                 _inProgress = false;
             });
@@ -44,6 +47,11 @@ namespace Potions.Gameplay
         private Sprite _openSprite;
         [SerializeField]
         private Sprite _closedSprite;
+        [Header("Audio")]
+        [SerializeField]
+        private AudioClipData _openClip;
+        [SerializeField]
+        private AudioClipData _closeClip;
         private bool _inProgress;
     }
 }

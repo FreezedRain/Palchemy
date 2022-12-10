@@ -10,7 +10,9 @@ namespace Potions.Global
             source.loop = false;
             source.pitch = pitch;
             source.volume = volume;
+            source.spatialBlend = 0.5f;
             source.PlayOneShot(clip);
+            Destroy(source.gameObject, clip.length + 0.5f);
         }
         
         private AudioSource CreateSource(Vector3 position)

@@ -95,10 +95,17 @@ namespace Potions.Gameplay
                     _spriteRenderer.sprite = _emptySprite;
                     break;
                 case State.Cook:
+                    _boilSource.volume = 0f;
+                    _boilSource.Play();
+                    LeanTween.cancel(gameObject);
+                    LeanTween.value(gameObject, f => _boilSource.volume = f, 0f, 0.1f, 0.4f);
                     _cookTimer = _cookDuration;
                     _spriteRenderer.sprite = _cookSprite;
                     break;
                 case State.Full:
+                    LeanTween.cancel(gameObject);
+                    LeanTween.value(gameObject, f => _boilSource.volume = f, 0.1f, 0f, 0.4f)
+                        .setOnComplete(_boilSource.Stop);
                     _cookTimer = 0;
                     _cookedItemId = ItemDatabase.FindRecipeByIngredients(_ingredients)?.ResultId ?? "mistake";
                     _ingredients.Clear();
@@ -134,6 +141,8 @@ namespace Potions.Gameplay
         private AudioClipData _pickupClip;
         [SerializeField]
         private AudioClipData _dropClip;
+        [SerializeField]
+        private AudioSource _boilSource;
 
         private State _currentState = State.Empty;
         

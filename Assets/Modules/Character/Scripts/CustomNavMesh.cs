@@ -6,14 +6,14 @@ namespace Potions.Gameplay
 {
     public static class CustomNavMesh
     {
-        public static List<Vector3> CalculatePath(Vector3 from, Transform goal, LayerMask obstacleMask, float avoidRadius = 0.2f)
+        public static List<Vector3> CalculatePath(Vector3 from, Transform goal, LayerMask obstacleMask, float avoidRadius = 0.1f)
         {
             var path = new List<Vector3>();
             NavMeshPath navMeshPath = new();
             if (!NavMesh.CalculatePath(from, goal.position, NavMesh.AllAreas, navMeshPath))
             {
                 NavMeshHit _navMeshHit;
-                NavMesh.SamplePosition(goal.position, out _navMeshHit, 2f, NavMesh.AllAreas);
+                NavMesh.SamplePosition(goal.position, out _navMeshHit, 2.5f, NavMesh.AllAreas);
                 if (!NavMesh.CalculatePath(from, _navMeshHit.position, NavMesh.AllAreas, navMeshPath))
                 {
                     return null;

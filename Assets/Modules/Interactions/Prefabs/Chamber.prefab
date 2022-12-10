@@ -135,12 +135,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _range: 1.5
   _bubble: {fileID: 3209357657516504859}
+  _interactClip: {fileID: 0}
   _animationHelper: {fileID: 4898083416160130519}
   _golemPrefab: {fileID: 645503322570273803, guid: 5fe83483828b4af428a738d7e4554493, type: 3}
   _golemSpawnPoint: {fileID: 9173999634730799811}
   _spriteRenderer: {fileID: 4450147086058663351}
   _openSprite: {fileID: 21300000, guid: 5b335e91f9181f243b5b439f3676287a, type: 3}
   _closedSprite: {fileID: 21300000, guid: b03345c11de14224bade8baecbd19bd9, type: 3}
+  _openClip: {fileID: 11400000, guid: 0e95a771c9addaa41b31b86ac5336d53, type: 2}
+  _closeClip: {fileID: 11400000, guid: a0b96d17f122d324896bca066bc88578, type: 2}
 --- !u!1 &4450147086058663344
 GameObject:
   m_ObjectHideFlags: 0
