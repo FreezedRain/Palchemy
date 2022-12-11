@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Franchise.unity
     guid: 0bac842e5521d664eb12991a822d8d1d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Triage.unity
+    guid: 077122fd4c1822541874875297138ef9
   m_configObjects: {}
