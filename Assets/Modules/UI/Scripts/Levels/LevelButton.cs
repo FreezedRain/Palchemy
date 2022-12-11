@@ -19,7 +19,7 @@ namespace Potions.Level
             if (index == 0)
             {
                 LeanTween.cancel(gameObject);
-                LeanTween.delayedCall(gameObject, 0.5f, () => EventSystem.current.SetSelectedGameObject(gameObject));
+                LeanTween.delayedCall(gameObject, 0.2f, () => EventSystem.current.SetSelectedGameObject(gameObject));
             }
             // _levelText.text = $"{index + 1}. {_name}";
             _levelText.text = $"{_name}";
