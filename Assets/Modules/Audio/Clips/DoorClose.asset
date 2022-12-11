@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DoorClose
   m_EditorClassIdentifier: 
   _clips:
-  - {fileID: 8300000, guid: 379c4d46c05075e47b30ddb2ff4b376a, type: 3}
+  - {fileID: 8300000, guid: 437f8ecaaf526534fb842d09f9499c96, type: 3}
   _volume: 1
-  _pitchMin: 1.3
-  _pitchMax: 1.3
+  _pitchMin: 1
+  _pitchMax: 1

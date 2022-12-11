@@ -8,7 +8,8 @@ namespace Potions.Gameplay
     public class GolemInputProvider : MonoBehaviour, IInputProvider
     {
         public event Action Interacted;
-        public event Action AltInteracted;
+        public event Action AltInteractStarted;
+        public event Action AltInteractFinished;
 
         public ItemHolder ItemHolder => _character.ItemHolder;
 
@@ -52,6 +53,7 @@ namespace Potions.Gameplay
         {
             _taskList.Setup(_maxTaskCount, 1);
             _taskList.SetStateLearning(null);
+            SetState(State.Idle);
         }
 
         private void Update()
@@ -185,8 +187,10 @@ namespace Potions.Gameplay
             switch (state)
             {
                 case State.Idle:
+                    _taskList.Hide();
                     break;
                 case State.Learn:
+                    _taskList.Show();
                     if (_taskCoroutine != null)
                         StopCoroutine(_taskCoroutine);
                     // _character.ItemHolder.SetItem(null);
