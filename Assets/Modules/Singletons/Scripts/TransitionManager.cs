@@ -18,7 +18,7 @@ namespace Potions.Global
 
             _inTransition = true;
             var sequence = LeanTween.sequence();
-            sequence.append(LeanTween.alpha(_screenFade.rectTransform, 1f, 1f));
+            sequence.append(LeanTween.alpha(_screenFade.rectTransform, 1f, 0.5f));
             sequence.append(() => SceneManager.LoadScene(sceneName));
             sequence.append(0.5f);
             sequence.append(LeanTween.alpha(_screenFade.rectTransform, 0f, 0.5f));

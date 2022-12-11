@@ -113,6 +113,7 @@ namespace Potions.Gameplay
             _debugPath = path;
 
             int pathIndex = 0;
+            
             // Wait until we can interact
             while (true)
             {
@@ -121,7 +122,9 @@ namespace Potions.Gameplay
                 {
                     pathIndex = Mathf.Clamp(pathIndex + 1, 0, path.Count - 1);
                 }
-                
+
+                _debugPathIndex = pathIndex;
+
                 Vector2 movementDirection = path[pathIndex] - transform.position;
                 
                 // If we should steer, rotate the direction
@@ -204,14 +207,17 @@ namespace Potions.Gameplay
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.green;
+            
             if (_debugPath == null)
                 return;
             for (int i = 0; i < _debugPath.Count - 1; i++)
             {
-                Gizmos.DrawWireSphere(_debugPath[i], 0.2f);
+                Gizmos.color = Color.blue;
                 Gizmos.DrawLine(_debugPath[i], _debugPath[i + 1]);
+                Gizmos.color = i == _debugPathIndex ? Color.green : Color.blue;
+                Gizmos.DrawWireSphere(_debugPath[i], 0.25f);
             }
+            Gizmos.DrawWireSphere(_debugPath[_debugPath.Count - 1], 0.25f);
 
             // Gizmos.color = Color.yellow;
             // Gizmos.DrawLine(transform.position, transform.position + (Vector3) _character.Forward);
@@ -265,7 +271,6 @@ namespace Potions.Gameplay
             var type = _teacher.Character.ItemHolder.Item == null
                 ? BaseInteractable.InteractionType.Drop
                 : BaseInteractable.InteractionType.Pickup;
-            print($"Taught interaction of type {type}");
             _tasks.Add(new Task(interactable, type));
             _taskList.SetStateLearning(_tasks);
             _character.Visuals.Bump();
@@ -314,6 +319,7 @@ namespace Potions.Gameplay
         private bool _justStartedWork;
 
         // Debug
+        private int _debugPathIndex;
         private List<Vector3> _debugPath;
     }
 }

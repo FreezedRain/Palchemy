@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Drop
   m_EditorClassIdentifier: 
   _clips:
-  - {fileID: 8300000, guid: ade0ad7b98c7a7c4bbbfe85727da4129, type: 3}
+  - {fileID: 8300000, guid: 5f842c4d1b533f9438e19434594e5506, type: 3}
   _volume: 1
   _pitchMin: 1
   _pitchMax: 1

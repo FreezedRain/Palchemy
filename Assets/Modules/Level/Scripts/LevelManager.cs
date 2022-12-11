@@ -57,7 +57,7 @@ namespace Potions.Level
                     goal.SetFinished(true);
                 _isComplete = true;
                 print("Level Complete!");
-                LeanTween.delayedCall(1f, () => GameManager.Instance.Transitions.LoadLevel("LevelSelect"));
+                LeanTween.delayedCall(1f, () => GameManager.Instance.Transitions.LoadLevel("Bedroom"));
             }
         }
 

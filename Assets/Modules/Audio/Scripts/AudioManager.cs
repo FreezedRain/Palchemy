@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Potions.Global
 {
@@ -10,7 +11,10 @@ namespace Potions.Global
             source.loop = false;
             source.pitch = pitch;
             source.volume = volume;
+            source.outputAudioMixerGroup = _effectsMixerGroup;
+            // source.spatialBlend = 0.5f;
             source.PlayOneShot(clip);
+            Destroy(source.gameObject, clip.length + 0.5f);
         }
         
         private AudioSource CreateSource(Vector3 position)
@@ -19,5 +23,10 @@ namespace Potions.Global
             source.transform.position = position;
             return source;
         }
+
+        [SerializeField]
+        private AudioSource _effectsSource;
+        [SerializeField]
+        private AudioMixerGroup _effectsMixerGroup;
     }
 }

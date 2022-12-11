@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pickup
   m_EditorClassIdentifier: 
   _clips:
-  - {fileID: 8300000, guid: eff328e6c3e99fb4d94808d93ce2e0e6, type: 3}
+  - {fileID: 8300000, guid: 216b42aa3a22a624c98262ce6fcd1f2f, type: 3}
   _volume: 1
   _pitchMin: 1
   _pitchMax: 1

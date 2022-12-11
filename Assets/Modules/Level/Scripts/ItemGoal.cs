@@ -14,37 +14,38 @@ namespace Potions.Level
         public void AcceptItem(string id)
         {
             // _itemLog.Add(_timer);
-            _count++;
+            _count = Mathf.Clamp(_count + 1, 0, _data.NumericGoal);
+            _card.SetProgress(_count, _data.NumericGoal);
+            _timer = 0f;
         }
 
         public void Update()
         {
-            if (_data.Timespan == 0)
-                return;
             // Update logic
-            _timer += Time.deltaTime;
-
-            while (_timer > _data.Timespan)
+            if (_count > 0)
             {
-                _timer -= _data.Timespan;
-                _count--;
-                if (_count < 0)
+                _timer += Time.deltaTime;
+                if (_timer > _data.Timespan)
+                {
+                    _timer -= _data.Timespan;
                     _count = 0;
+                    _card.SetProgress(_count, _data.NumericGoal);
+                }
             }
-            if (_count == 0)
+            else
             {
-                _timer = 0f;
+                _timer = _data.Timespan;
             }
             // _itemLog = _itemLog.Where(i => _timer - i <= _data.Timespan).ToList();
             // int itemsOverTimespan = _itemLog.Count;
+            
             _isComplete = _count >= _data.NumericGoal;
             
 
             
             // Update card visuals
             _card.IsShining = _isComplete;
-            _card.SetProgress(_count, _data.NumericGoal);
-            _card.Fill = Mathf.Clamp01(_timer / _data.Timespan);
+            _card.Fill = 1.0f - Mathf.Clamp01(_timer / _data.Timespan);
         }
 
         public void SetFinished(bool finished)
@@ -63,6 +64,7 @@ namespace Potions.Level
             _card = card;
             _card.SetBase(ItemDatabase.FindRecipeByOutcome(_data.ItemId).PageSprite);
             _itemLog = new();
+            _card.SetProgress(0, _data.NumericGoal);
         }
 
         private bool _isComplete;
