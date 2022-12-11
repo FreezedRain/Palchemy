@@ -97,12 +97,16 @@ namespace Potions.Gameplay
                 case State.Cook:
                     _boilSource.volume = 0f;
                     _boilSource.Play();
+                    var e = _boilParticles.emission;
+                    e.enabled = true;
                     LeanTween.cancel(gameObject);
                     LeanTween.value(gameObject, f => _boilSource.volume = f, 0f, 0.1f, 0.4f);
                     _cookTimer = _cookDuration;
                     _spriteRenderer.sprite = _cookSprite;
                     break;
                 case State.Full:
+                    var e2 = _boilParticles.emission;
+                    e2.enabled = false;
                     LeanTween.cancel(gameObject);
                     LeanTween.value(gameObject, f => _boilSource.volume = f, 0.1f, 0f, 0.4f)
                         .setOnComplete(_boilSource.Stop);
@@ -136,6 +140,8 @@ namespace Potions.Gameplay
         private Sprite _emptySprite;
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
+        [SerializeField]
+        private ParticleSystem _boilParticles;
         [Header("Audio")]
         [SerializeField]
         private AudioClipData _pickupClip;

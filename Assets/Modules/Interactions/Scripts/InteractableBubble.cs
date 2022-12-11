@@ -28,6 +28,11 @@ namespace Potions.Gameplay
             LeanTween.scale(_visuals, Vector3.one, 0.15f).setEaseInCubic();
         }
 
+        public void SetFill(float value)
+        {
+            _fill.transform.localScale = Vector3.one * 0.275f * value;
+        }
+
         private void Awake()
         {
             _visuals.transform.localScale = Vector3.zero;
@@ -35,5 +40,7 @@ namespace Potions.Gameplay
 
         [SerializeField]
         private GameObject _visuals;
+        [SerializeField]
+        private Transform _fill;
     }
 }

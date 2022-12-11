@@ -8,13 +8,25 @@ namespace Potions.Gameplay
     public class PlayerInputProvider : MonoBehaviour, IInputProvider
     {
         public event Action Interacted;
-        public event Action AltInteracted;
+        public event Action AltInteractStarted;
+        public event Action AltInteractFinished;
 
         public InputState GetState() => _currentState;
 
         private void OnMove(InputValue value) => _currentState.Direction = value.Get<Vector2>();
-        private void OnInteract() => Interacted?.Invoke();
-        private void OnAltInteract() => AltInteracted?.Invoke();
+        private void OnInteract(InputValue value)
+        {
+            if (value.isPressed)
+            {
+                Interacted?.Invoke();
+                AltInteractStarted?.Invoke();
+            }
+            else
+            {
+                AltInteractFinished?.Invoke();
+            }
+        }
+
         private void OnRestart() => GameManager.Instance.Transitions.LoadLevel("LevelSelect");
 
         private InputState _currentState;

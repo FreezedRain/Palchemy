@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: _allowedAngle
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 7953425037859952771, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
+      propertyPath: _altInteractionDuration
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
 --- !u!1 &5509162957265380673 stripped
