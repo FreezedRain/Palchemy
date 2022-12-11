@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelUI: {fileID: 0}
   _goalsData: []
+  _completeClip: {fileID: 11400000, guid: 74d0a93ada1688f4b801af0a61df771d, type: 2}
