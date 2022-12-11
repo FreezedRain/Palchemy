@@ -146,7 +146,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 4450147086058663351}
   _boilParticles: {fileID: 5178866814586218153}
   _pickupClip: {fileID: 11400000, guid: 9697d38a9c5262943843684f7087ce7d, type: 2}
-  _dropClip: {fileID: 11400000, guid: ffc294f5c8eeb724e85a36c24b447004, type: 2}
+  _dropClip: {fileID: 11400000, guid: 4c9e482082be7024898fbe443962150a, type: 2}
   _boilSource: {fileID: 2743194693895035002}
 --- !u!1 &4450147086058663344
 GameObject:
