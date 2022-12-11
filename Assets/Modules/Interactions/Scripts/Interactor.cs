@@ -21,19 +21,32 @@ namespace Potions.Gameplay
 
         public void Interact()
         {
-            if (!CanInteract()) return;
+            if (!CanInteract() || CanAltInteract) return;
             
             _closestInteractable.Interact(this);
             Interacted?.Invoke(_closestInteractable);
             Character.Visuals.Bump();
         }
 
-        public void AltInteract()
+        public void StartAltInteraction()
         {
             if (!CanAltInteract) return;
-            
-            _closestInteractable.AltInteract(this);
-            Interacted?.Invoke(_closestInteractable);
+            _altInteractable = _closestInteractable;
+            _altInteractionTimer = 0f;
+        }
+
+        public void StopAltInteraction()
+        {
+            if (_altInteractable)
+                _altInteractable.SetFill(0f);
+            _altInteractable = null;
+        }
+
+        public void AltInteract()
+        {
+            if (_altInteractable == null) return;
+            _altInteractable.AltInteract(this);
+            Interacted?.Invoke(_altInteractable);
             Character.Visuals.Bump();
         }
 
@@ -64,6 +77,17 @@ namespace Potions.Gameplay
                     if (_showBubbles)
                         _closestInteractable?.SetActive(canInteractNow);
                     _canInteractBefore = canInteractNow;
+                }
+            }
+
+            if (_altInteractable)
+            {
+                _altInteractionTimer += Time.deltaTime;
+                _altInteractable.SetFill(_altInteractionTimer / _altInteractionDuration);
+                if (_altInteractionTimer >= _altInteractionDuration)
+                {
+                    AltInteract();
+                    StopAltInteraction();
                 }
             }
         }
@@ -112,6 +136,8 @@ namespace Potions.Gameplay
         private BaseInteractable _closestInteractable;
         private List<BaseInteractable> _ownInteractables;
         private bool _canInteractBefore;
+        private BaseInteractable _altInteractable;
+        private float _altInteractionTimer;
 
         [SerializeField]
         private float _allowedAngle;
@@ -119,5 +145,7 @@ namespace Potions.Gameplay
         private bool _showBubbles;
         [SerializeField]
         private bool _allowGolems;
+        [SerializeField]
+        private float _altInteractionDuration;
     }
 }

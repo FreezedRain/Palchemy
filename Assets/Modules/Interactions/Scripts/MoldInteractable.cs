@@ -29,14 +29,6 @@ namespace Potions.Gameplay
             });
         }
 
-        protected override bool CanHolderSkip(ItemHolder holder)
-        {
-            if (holder.ItemId != "golem_heart")
-                return true;
-
-            return !_inProgress;
-        }
-
         [SerializeField]
         private CharacterLogic _golemPrefab;
         [SerializeField]

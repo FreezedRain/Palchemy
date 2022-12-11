@@ -50,6 +50,8 @@ namespace Potions.Gameplay
                 _interactClip.Play(transform.position);
         }
 
+        public void SetFill(float value) => _bubble.SetFill(value);
+
         private void OnEnable() => Interactables.Add(this);
 
         private void OnDisable() => Interactables.Remove(this);

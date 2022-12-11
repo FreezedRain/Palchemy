@@ -19,6 +19,20 @@ public class TaskList : MonoBehaviour
     //     SetStateExecuting(7, 4);
     // }
 
+    public void Show()
+    {
+        LeanTween.cancel(gameObject);
+        transform.localScale = new Vector3(1f, 0f, 1f);
+        LeanTween.scaleY(gameObject, 1f, 0.125f).setEaseOutCubic();
+    }
+    
+    public void Hide()
+    {
+        LeanTween.cancel(gameObject);
+        transform.localScale = new Vector3(1f, 1f, 1f);
+        LeanTween.scaleY(gameObject, 0f, 0.125f).setEaseInCubic();
+    }
+
     public void Setup(int numTasksPerRow, int numRows)
     {
         float width = numTasksPerRow * taskWidth;

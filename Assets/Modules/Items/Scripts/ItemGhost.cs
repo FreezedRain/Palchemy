@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Potions.Global;
 using UnityEngine;
 
 namespace Potions.Gameplay
@@ -18,7 +19,14 @@ namespace Potions.Gameplay
             seq.append(LeanTween.moveLocalY(gameObject, transform.localPosition.y + 0.7f, 0.3f).setEaseOutCubic());
             seq.append(LeanTween.scale(gameObject, Vector3.one * 1.85f, 0.2f).setEaseInCubic());
             seq.insert(LeanTween.alpha(gameObject, 0, 0.15f));
-            seq.append(() => Destroy(gameObject));
+            seq.append(() =>
+            {
+                _popClip.Play(transform.position);
+                Destroy(gameObject);
+            });
         }
+        
+        [SerializeField]
+        private AudioClipData _popClip;
     }
 }
