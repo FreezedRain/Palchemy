@@ -40,7 +40,7 @@ public class RecipeCard : MonoBehaviour
         
         SetBarFill(_barDark, _smoothFill);
         // SetBarFill(_barBright, _smoothFill);
-        _barCap.anchoredPosition = new Vector3(159 * _smoothFill, 0);
+        _barCap.anchoredPosition = new Vector3(157.5f * _smoothFill, 0);
     }
 
     private void SetBarFill(RectTransform bar, float fill) => bar.sizeDelta = new Vector2(159 * fill, 22.5f);

@@ -58,7 +58,8 @@ namespace Potions.Level
                     goal.SetFinished(true);
                 _isComplete = true;
                 GameManager.Instance.RecordLevelCompleted(SceneManager.GetActiveScene().name);
-                LeanTween.delayedCall(1f, () => GameManager.Instance.Transitions.LoadLevel("Bedroom"));
+                _completeClip.Play(transform.position);
+                LeanTween.delayedCall(1.25f, () => GameManager.Instance.Transitions.LoadLevel("Bedroom"));
             }
         }
 
@@ -66,6 +67,8 @@ namespace Potions.Level
         private LevelUI _levelUI;
         [SerializeField]
         private List<ItemGoalData> _goalsData;
+        [SerializeField]
+        private AudioClipData _completeClip;
 
         private List<ItemGoal> _goals;
         private bool _isComplete;

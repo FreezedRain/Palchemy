@@ -15,8 +15,10 @@ namespace Potions.Level
         {
             _levelText = GetComponentInChildren<TMP_Text>();
             GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.Transitions.LoadLevel(_scene));
-            int index = transform.GetSiblingIndex();
-            _levelText.text = $"{index + 1}. {_name}";
+            // int index = transform.GetSiblingIndex();
+            // _levelText.text = $"{index + 1}. {_name}";
+            _levelText.text = $"{_name}";
+
         }
 
         private void Start()

@@ -27,7 +27,7 @@ namespace Potions.Global
         private void LoadGame()
         {
             string saveString = PlayerPrefs.GetString("save");
-            SaveData = saveString == null ? new SaveData() : JsonUtility.FromJson<SaveData>(saveString);
+            SaveData = String.IsNullOrEmpty(saveString) ? new SaveData() : JsonUtility.FromJson<SaveData>(saveString);
         }
 
         private void SaveGame()
