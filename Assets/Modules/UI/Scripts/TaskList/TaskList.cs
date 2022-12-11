@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class TaskList : MonoBehaviour
         LeanTween.cancel(gameObject);
         transform.localScale = new Vector3(1f, 0f, 1f);
         LeanTween.scaleY(gameObject, 1f, 0.125f).setEaseOutCubic();
+        print("Showing");
     }
     
     public void Hide()
@@ -47,6 +49,7 @@ public class TaskList : MonoBehaviour
 
                 blip_obj.transform.SetParent(transform);
                 blip_obj.transform.localPosition = new Vector2(-width / 2 + j * width / (numTasksPerRow - 1), height / 2 - i * height / (float)numRows);
+                blip_obj.transform.localScale = new Vector3(1f, 1f, 1f);
 
                 blips.Add(blip_obj.GetComponent<TaskListBlip>());
             }
