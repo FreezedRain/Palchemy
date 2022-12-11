@@ -18,7 +18,12 @@ namespace Potions.Level
             int index = transform.GetSiblingIndex();
             _levelText.text = $"{index + 1}. {_name}";
         }
-        
+
+        private void Start()
+        {
+            SetCompleted(GameManager.Instance.SaveData.CompletedLevels.Contains(_scene));
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             _levelText.fontStyle = FontStyles.Underline;
@@ -29,10 +34,20 @@ namespace Potions.Level
             _levelText.fontStyle = FontStyles.Normal;
         }
 
+        private void SetCompleted(bool completed)
+        {
+            _completedTick.SetActive(completed);
+            _uncompletedTick.SetActive(!completed);
+        }
+
         [SerializeField]
         private string _scene;
         [SerializeField]
         private string _name;
+        [SerializeField]
+        private GameObject _completedTick;
+        [SerializeField]
+        private GameObject _uncompletedTick;
         private TMP_Text _levelText;
     }
 }

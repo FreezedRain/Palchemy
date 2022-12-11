@@ -19,6 +19,8 @@ namespace Potions.Gameplay
         {
             var holder = interactor.Character.ItemHolder;
             string heldItemId = holder.ItemId;
+            if (heldItemId != null && _character.ItemHolder.ItemId != null)
+                return;
             holder.SetItem(_character.ItemHolder.ItemId);
             _character.ItemHolder.SetItem(heldItemId);
             _character.Visuals.Bump();

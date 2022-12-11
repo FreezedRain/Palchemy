@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 namespace Potions.Gameplay
@@ -21,7 +20,7 @@ namespace Potions.Gameplay
 
         public void Interact()
         {
-            if (!CanInteract() || CanAltInteract) return;
+            if (!CanInteract()) return;
             
             _closestInteractable.Interact(this);
             Interacted?.Invoke(_closestInteractable);
@@ -47,6 +46,14 @@ namespace Potions.Gameplay
             if (_altInteractable == null) return;
             _altInteractable.AltInteract(this);
             Interacted?.Invoke(_altInteractable);
+            Character.Visuals.Bump();
+        }
+        
+        public void NormalAltInteract()
+        {
+            if (!CanAltInteract) return;
+            _closestInteractable.AltInteract(this);
+            Interacted?.Invoke(_closestInteractable);
             Character.Visuals.Bump();
         }
 
