@@ -21,8 +21,11 @@ namespace Potions.Gameplay
             seq.insert(LeanTween.alpha(gameObject, 0, 0.15f));
             seq.append(() =>
             {
-                _popClip.Play(transform.position);
-                Destroy(gameObject);
+                if (gameObject)
+                {
+                    _popClip.Play(transform.position);
+                    Destroy(gameObject);
+                }
             });
         }
 

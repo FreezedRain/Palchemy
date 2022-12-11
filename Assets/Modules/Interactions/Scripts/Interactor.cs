@@ -111,6 +111,11 @@ namespace Potions.Gameplay
             bool IsFacingAngle(BaseInteractable interactable, out float distance)
             {
                 Vector3 diff = (interactable.transform.position - transform.position);
+                if (_ignoreAngle)
+                {
+                    distance = diff.magnitude;
+                    return distance <= interactable.Range;
+                }
                 if (Mathf.Acos(Vector3.Dot(diff.normalized, _character.Forward)) * Mathf.Rad2Deg <= _allowedAngle)
                 {
                     distance = diff.magnitude;
@@ -148,6 +153,8 @@ namespace Potions.Gameplay
 
         [SerializeField]
         private float _allowedAngle;
+        [SerializeField]
+        private bool _ignoreAngle;
         [SerializeField]
         private bool _showBubbles;
         [SerializeField]
