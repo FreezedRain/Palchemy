@@ -9,13 +9,15 @@ using UnityEngine.UI;
 
 namespace Potions.Level
 {
-    public class LevelButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class LevelButton : MonoBehaviour, IPointerEnterHandler
     {
         private void Awake()
         {
             _levelText = GetComponentInChildren<TMP_Text>();
             GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.Transitions.LoadLevel(_scene));
-            // int index = transform.GetSiblingIndex();
+            int index = transform.GetSiblingIndex();
+            if (index == 0)
+                EventSystem.current.SetSelectedGameObject(gameObject);
             // _levelText.text = $"{index + 1}. {_name}";
             _levelText.text = $"{_name}";
 
@@ -26,14 +28,27 @@ namespace Potions.Level
             SetCompleted(GameManager.Instance.SaveData.CompletedLevels.Contains(_scene));
         }
 
+        private void Update()
+        {
+            if (EventSystem.current.currentSelectedGameObject == gameObject)
+            {
+                _levelText.fontStyle = FontStyles.Underline;
+            }
+            else
+            {
+                _levelText.fontStyle = FontStyles.Normal;
+            }
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
-            _levelText.fontStyle = FontStyles.Underline;
+            // _levelText.fontStyle = FontStyles.Underline;
+            EventSystem.current.SetSelectedGameObject(gameObject);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            _levelText.fontStyle = FontStyles.Normal;
+            // _levelText.fontStyle = FontStyles.Normal;
         }
 
         private void SetCompleted(bool completed)

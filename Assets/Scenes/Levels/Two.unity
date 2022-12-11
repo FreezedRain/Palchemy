@@ -483,6 +483,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2616655912063515433, guid: 1d03743e56e85504994224463f117d32, type: 3}
+      propertyPath: _itemId
+      value: shroom
+      objectReference: {fileID: 0}
     - target: {fileID: 2616655912063515434, guid: 1d03743e56e85504994224463f117d32, type: 3}
       propertyPath: m_Name
       value: Chest
@@ -974,7 +978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8130008227402757154, guid: 8933aa279feaa6f41bea79c4a3a9b7f7, type: 3}
       propertyPath: _goalsData.Array.data[0].ItemId
-      value: red_potion
+      value: blue_potion
       objectReference: {fileID: 0}
     - target: {fileID: 8130008227402757154, guid: 8933aa279feaa6f41bea79c4a3a9b7f7, type: 3}
       propertyPath: _goalsData.Array.data[0].Timespan
