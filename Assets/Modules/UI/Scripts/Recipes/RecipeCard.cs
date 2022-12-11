@@ -25,6 +25,10 @@ public class RecipeCard : MonoBehaviour
 
     public void SetProgress(int current, int goal)
     {
+        LeanTween.cancel(gameObject);
+        var rt = GetComponent<RectTransform>();
+        rt.localScale = Vector3.one * 0.95f;
+        LeanTween.scale(rt, Vector3.one, 0.125f).setEaseInCubic();
         _text.text = $"{current}/{goal}";
     }
 

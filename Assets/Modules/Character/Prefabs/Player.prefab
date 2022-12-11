@@ -20,6 +20,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 38de3f3999fefb0419d42da2d29cfb12, type: 3}
     - target: {fileID: 948053717280605085, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
+      propertyPath: _squashAmount
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 948053717280605085, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
       propertyPath: _spriteSet.Down
       value: 
       objectReference: {fileID: 21300000, guid: 1f5a4976c338df0438da159180969148, type: 3}

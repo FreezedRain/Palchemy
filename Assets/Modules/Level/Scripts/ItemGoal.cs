@@ -15,6 +15,7 @@ namespace Potions.Level
         {
             // _itemLog.Add(_timer);
             _count = Mathf.Clamp(_count + 1, 0, _data.NumericGoal);
+            _card.SetProgress(_count, _data.NumericGoal);
             _timer = 0f;
         }
 
@@ -28,6 +29,7 @@ namespace Potions.Level
                 {
                     _timer -= _data.Timespan;
                     _count = 0;
+                    _card.SetProgress(_count, _data.NumericGoal);
                 }
             }
             else
@@ -43,7 +45,6 @@ namespace Potions.Level
             
             // Update card visuals
             _card.IsShining = _isComplete;
-            _card.SetProgress(_count, _data.NumericGoal);
             _card.Fill = 1.0f - Mathf.Clamp01(_timer / _data.Timespan);
         }
 
@@ -63,6 +64,7 @@ namespace Potions.Level
             _card = card;
             _card.SetBase(ItemDatabase.FindRecipeByOutcome(_data.ItemId).PageSprite);
             _itemLog = new();
+            _card.SetProgress(0, _data.NumericGoal);
         }
 
         private bool _isComplete;

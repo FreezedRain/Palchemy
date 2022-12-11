@@ -286,7 +286,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.3954446, y: -3.0706134}
+  m_Offset: {x: 1.7694349, y: -3.0706134}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -297,7 +297,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0833097, y: 2.5852804}
+  m_Size: {x: 3.335329, y: 2.5852804}
   m_EdgeRadius: 0
 --- !u!1001 &1862762930
 PrefabInstance:
@@ -533,6 +533,10 @@ PrefabInstance:
     - target: {fileID: 4506280415731565422, guid: ed7daab4cd8fef44da54d5ef70f3fab6, type: 3}
       propertyPath: m_Offset.y
       value: -3.0706134
+      objectReference: {fileID: 0}
+    - target: {fileID: 5727119453812122218, guid: ed7daab4cd8fef44da54d5ef70f3fab6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6390302703069231771, guid: ed7daab4cd8fef44da54d5ef70f3fab6, type: 3}
       propertyPath: m_Name
@@ -1265,6 +1269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf9035065b79e040b9f9d73b27943f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _multiplier: 1
 --- !u!1 &4884696267257752964
 GameObject:
   m_ObjectHideFlags: 0
