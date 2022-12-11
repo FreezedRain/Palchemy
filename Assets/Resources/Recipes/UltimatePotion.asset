@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UltimatePotion
   m_EditorClassIdentifier: 
   _resultId: ultimate_potion
-  _pageSprite: {fileID: 21300000, guid: 8d59c96b813ca1a48af6f67092a70c67, type: 3}
+  _pageSprite: {fileID: 21300000, guid: 13157733c3a59cd4f924f18552086962, type: 3}
   _ingredients:
   - red_fruit
   - shroom
