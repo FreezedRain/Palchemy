@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BluePotion
   m_EditorClassIdentifier: 
   _resultId: blue_potion
-  _pageSprite: {fileID: 21300000, guid: 7a50810d29258fe4bbb9a1092ad2f6bc, type: 3}
+  _pageSprite: {fileID: 21300000, guid: b0b4938c69d05bb4090ae8c72a4a8a75, type: 3}
   _ingredients:
   - shroom

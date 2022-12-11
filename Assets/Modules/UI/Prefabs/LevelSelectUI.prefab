@@ -64,7 +64,7 @@ MonoBehaviour:
     m_Top: 10
     m_Bottom: 20
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 4
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7aba8ea0445ce8f4abc332b06df486cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f4cc507cd003df4aa4c0a9d5eb16b97, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -835,6 +835,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelButton (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4111603442229030843, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4283256141
+      objectReference: {fileID: 0}
     - target: {fileID: 8237813909301751385, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: _name
       value: Helper
@@ -944,6 +968,30 @@ PrefabInstance:
     - target: {fileID: 3640734522205168407, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: m_Name
       value: LevelButton (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4111603442229030843, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4283256141
       objectReference: {fileID: 0}
     - target: {fileID: 8237813909301751385, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: _name
@@ -1055,6 +1103,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelButton (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4111603442229030843, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4283256141
+      objectReference: {fileID: 0}
     - target: {fileID: 8237813909301751385, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: _name
       value: Barrier
@@ -1165,6 +1237,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelButton
       objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.3018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.3018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.3018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4111603442229030843, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4283256141
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d71eca86de629cd478bcc764a829b977, type: 3}
 --- !u!224 &1257039082157527677 stripped
@@ -1266,6 +1362,30 @@ PrefabInstance:
     - target: {fileID: 3640734522205168407, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: m_Name
       value: LevelButton (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4111603442229030843, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4283256141
       objectReference: {fileID: 0}
     - target: {fileID: 8237813909301751385, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: _name
@@ -1377,6 +1497,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelButton (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4111603442229030843, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4283256141
+      objectReference: {fileID: 0}
     - target: {fileID: 8237813909301751385, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: _name
       value: Two
@@ -1486,6 +1630,30 @@ PrefabInstance:
     - target: {fileID: 3640734522205168407, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: m_Name
       value: LevelButton (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4111603442229030843, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4283256141
       objectReference: {fileID: 0}
     - target: {fileID: 8237813909301751385, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: _name
@@ -1597,6 +1765,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelButton (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4111603442229030843, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4283256141
+      objectReference: {fileID: 0}
     - target: {fileID: 8237813909301751385, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: _name
       value: Maze
@@ -1706,6 +1898,30 @@ PrefabInstance:
     - target: {fileID: 3640734522205168407, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: m_Name
       value: LevelButton (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4111603442229030843, guid: 486cc109491f1f24781a03b07a804f74, type: 2}
+    - target: {fileID: 3640734522466809731, guid: d71eca86de629cd478bcc764a829b977, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4283256141
       objectReference: {fileID: 0}
     - target: {fileID: 8237813909301751385, guid: d71eca86de629cd478bcc764a829b977, type: 3}
       propertyPath: _name

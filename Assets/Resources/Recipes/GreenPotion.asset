@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GreenPotion
   m_EditorClassIdentifier: 
   _resultId: green_potion
-  _pageSprite: {fileID: 21300000, guid: 62dd5ea707aaa8e4d9d8220894ccad5f, type: 3}
+  _pageSprite: {fileID: 21300000, guid: dcfccb291b7f5684daf5ebbd33ed36e4, type: 3}
   _ingredients:
   - leaf
