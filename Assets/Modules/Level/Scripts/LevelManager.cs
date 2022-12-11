@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Potions.Gameplay;
 using Potions.Global;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Potions.Level
 {
@@ -56,7 +57,7 @@ namespace Potions.Level
                 foreach (var goal in _goals)
                     goal.SetFinished(true);
                 _isComplete = true;
-                print("Level Complete!");
+                GameManager.Instance.RecordLevelCompleted(SceneManager.GetActiveScene().name);
                 LeanTween.delayedCall(1f, () => GameManager.Instance.Transitions.LoadLevel("Bedroom"));
             }
         }

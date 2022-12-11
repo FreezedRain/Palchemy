@@ -19,13 +19,16 @@ namespace Potions.Gameplay
             if (value.isPressed)
             {
                 Interacted?.Invoke();
-                AltInteractStarted?.Invoke();
             }
-            else
-            {
-                AltInteractFinished?.Invoke();
-            }
+            //     AltInteractStarted?.Invoke();
+            // }
+            // else
+            // {
+            //     AltInteractFinished?.Invoke();
+            // }
         }
+
+        private void OnAltInteract() => AltInteractStarted?.Invoke();
 
         private void OnRestart() => GameManager.Instance.Transitions.LoadLevel("LevelSelect");
 

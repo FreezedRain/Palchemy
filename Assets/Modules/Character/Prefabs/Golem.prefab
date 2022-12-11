@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: _allowedAngle
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 9038745230941800721, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98809ff55377fb9408fcf2ee1a2a40de, type: 3}
 --- !u!4 &7244641941828750246 stripped
@@ -143,6 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _range: 1
   _bubble: {fileID: 8549012507539657258}
+  _interactClip: {fileID: 0}
+  _animationHelper: {fileID: 0}
 --- !u!1001 &7489421789747813546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,6 +204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bubble
       objectReference: {fileID: 0}
+    - target: {fileID: 1246359082433658560, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c34e7c9cb77875a4ba2eaa8ed4b2474f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82f9b16a2d3b13a428a4e5e4a7de615e, type: 3}
 --- !u!114 &8549012507539657258 stripped

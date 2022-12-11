@@ -38,4 +38,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Maze.unity
     guid: 5ecaa05eb3a28d144b3380f6fc51637f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Double.unity
+    guid: 4a5268ca07b7bb74485d0a4199bbe85f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Sync.unity
+    guid: 460174fedf1f92d459f4793796255149
+  - enabled: 1
+    path: Assets/Scenes/Levels/Franchise.unity
+    guid: 0bac842e5521d664eb12991a822d8d1d
   m_configObjects: {}

@@ -27,8 +27,8 @@ namespace Potions.Gameplay
             
             Interactor.Setup(this);
             _input.Interacted += Interactor.Interact;
-            _input.AltInteractStarted += Interactor.StartAltInteraction;
-            _input.AltInteractFinished += Interactor.StopAltInteraction;
+            _input.AltInteractStarted += Interactor.NormalAltInteract;
+            // _input.AltInteractFinished += Interactor.StopAltInteraction;
             // _input.AltInteracted += Interactor.AltInteract;
         }
 
