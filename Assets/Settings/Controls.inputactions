@@ -320,6 +320,17 @@
                 },
                 {
                     "name": "",
+                    "id": "19680685-9d85-474f-98a1-c4618c1f539b",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AltInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7d00d70c-6eee-4888-a5af-f7c477445e7c",
                     "path": "<Keyboard>/rightBracket",
                     "interactions": "",
