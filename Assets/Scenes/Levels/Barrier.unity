@@ -1388,7 +1388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8130008227402757154, guid: 8933aa279feaa6f41bea79c4a3a9b7f7, type: 3}
       propertyPath: _goalsData.Array.data[0].Timespan
-      value: 7
+      value: 8.6
       objectReference: {fileID: 0}
     - target: {fileID: 8130008227402757154, guid: 8933aa279feaa6f41bea79c4a3a9b7f7, type: 3}
       propertyPath: _goalsData.Array.data[0].NumericGoal
