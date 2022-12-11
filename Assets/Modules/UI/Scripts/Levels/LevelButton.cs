@@ -17,7 +17,10 @@ namespace Potions.Level
             GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.Transitions.LoadLevel(_scene));
             int index = transform.GetSiblingIndex();
             if (index == 0)
-                EventSystem.current.SetSelectedGameObject(gameObject);
+            {
+                LeanTween.cancel(gameObject);
+                LeanTween.delayedCall(gameObject, 0.5f, () => EventSystem.current.SetSelectedGameObject(gameObject));
+            }
             // _levelText.text = $"{index + 1}. {_name}";
             _levelText.text = $"{_name}";
 
