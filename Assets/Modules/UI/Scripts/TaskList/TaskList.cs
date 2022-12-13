@@ -25,7 +25,6 @@ public class TaskList : MonoBehaviour
         LeanTween.cancel(gameObject);
         transform.localScale = new Vector3(1f, 0f, 1f);
         LeanTween.scaleY(gameObject, 1f, 0.125f).setEaseOutCubic();
-        print("Showing");
     }
     
     public void Hide()
