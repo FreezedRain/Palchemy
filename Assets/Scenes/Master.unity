@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0e2e8437b84cca891189e5cfc5520a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playOnAwake: 1
+  _playOnStart: 1
   _initialClip: {fileID: 8300000, guid: d1568157d3b6da944aa1cb11d6357581, type: 3}
 --- !u!82 &194940538
 AudioSource:

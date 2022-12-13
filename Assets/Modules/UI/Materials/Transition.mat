@@ -40,7 +40,7 @@ Material:
     m_Floats:
     - _ColorMask: 15
     - _EnableExternalAlpha: 0
-    - _Fade: -1.0018945
+    - _Fade: 1.53
     - _Invert: 1
     - _OffsetX: 0.4035967
     - _OffsetY: 0.55426663

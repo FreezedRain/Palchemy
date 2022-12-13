@@ -6,23 +6,30 @@ namespace Potions.Gameplay
     [RequireComponent(typeof(AudioSource))]
     public class AudioLoop : MonoBehaviour
     {
-        public void Awake()
+        public void Start()
         {
             _source = GetComponent<AudioSource>();
-            if (_playOnAwake)
+            if (_playOnStart)
                 Play();
         }
-
+        
         public void Play()
         {
             _source.Stop();
-            _source.PlayOneShot(_initialClip);
-            _source.PlayScheduled(AudioSettings.dspTime + _initialClip.length);
+            
+            var seq = LeanTween.sequence();
+            seq.append(0.25f);
+            seq.append(() =>
+            {
+                _source.PlayOneShot(_initialClip);
+                _source.PlayScheduled(AudioSettings.dspTime + _initialClip.length);
+            });
+            seq.insert(LeanTween.value(gameObject, f => _source.volume = f, 0, 1, 1.5f));
         }
 
         private AudioSource _source;
         [SerializeField]
-        private bool _playOnAwake;
+        private bool _playOnStart;
         [SerializeField]
         private AudioClip _initialClip;
     }
