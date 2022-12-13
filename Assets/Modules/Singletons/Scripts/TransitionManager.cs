@@ -1,3 +1,5 @@
+using System.Collections;
+using Potions.Gameplay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,21 +17,34 @@ namespace Potions.Global
                 Debug.LogWarning($"Tried loading scene {sceneName} while loading another scene!");
                 return;
             }
-
+            
             _inTransition = true;
             var sequence = LeanTween.sequence();
-            // sequence.append(LeanTween.alpha(_screenFade.rectTransform, 1f, 0.5f));
-            _screenFade.material.SetFloat("_Invert", 0f);
-            sequence.append(LeanTween.value(gameObject, f => _screenFade.material.SetFloat("_Fade", f), 1.2f, -1.15f, 0.5f));
+            Vector2 scale = _screenFade.rectTransform.parent.GetComponent<RectTransform>().sizeDelta;
+            _screenFade.material.SetFloat("_Ratio", scale.x / scale.y);
+
+            if (SceneManager.GetActiveScene().name != "Bedroom")
+            {
+                var playerPos = Camera.main.WorldToScreenPoint(FindObjectOfType<PlayerInputProvider>().transform.position);
+                _screenFade.material.SetFloat("_OffsetX", playerPos.x / scale.x);
+                _screenFade.material.SetFloat("_OffsetY", playerPos.y / scale.y);
+            }
+            
+            // _screenFade.material.SetFloat("_Invert", 0f);
+            sequence.append(LeanTween.value(gameObject, f => _screenFade.material.SetFloat("_Fade", f), 1.2f, -1.2f, 0.7f).setEaseOutQuad());
             sequence.append(() => SceneManager.LoadScene(sceneName));
             sequence.append(0.5f);
-            sequence.append(() => _screenFade.material.SetFloat("_Invert", 1f));
-            sequence.append(LeanTween.value(gameObject, f => _screenFade.material.SetFloat("_Fade", f), -1.15f, 1.2f, 0.5f));
-
-            // sequence.append(LeanTween.alpha(_screenFade.rectTransform, 0f, 0.5f));
+            // sequence.append(() => _screenFade.material.SetFloat("_Invert", 1f));
+            sequence.append(() =>
+            {
+                var playerPos = Camera.main.WorldToScreenPoint(FindObjectOfType<PlayerInputProvider>().transform.position);
+                _screenFade.material.SetFloat("_OffsetX", playerPos.x / scale.x);
+                _screenFade.material.SetFloat("_OffsetY", playerPos.y / scale.y);
+            });
+            sequence.append(LeanTween.value(gameObject, f => _screenFade.material.SetFloat("_Fade", f), -1.2f, 1.2f, 0.7f).setEaseOutQuad());
             sequence.append(() => _inTransition = false);
         }
-        
+
         [SerializeField]
         private Image _screenFade;
 
