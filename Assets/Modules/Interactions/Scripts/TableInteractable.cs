@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Potions.Gameplay
 {
+    /// <summary>
+    /// Hold items that can be dropped and picked up later.
+    /// Interaction type is important for golem AI.
+    /// </summary>
     public class TableInteractable : ContainerInteractable
     {
         protected override bool CanHolderInteract(ItemHolder holder, InteractionType type)

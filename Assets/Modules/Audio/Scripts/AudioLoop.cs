@@ -2,7 +2,9 @@ using UnityEngine;
 
 namespace Potions.Gameplay
 {
-    // Loop an AudioSource and play the initial segment first
+    /// <summary>
+    /// Loop an AudioSource and play the initial segment first
+    /// </summary>
     [RequireComponent(typeof(AudioSource))]
     public class AudioLoop : MonoBehaviour
     {

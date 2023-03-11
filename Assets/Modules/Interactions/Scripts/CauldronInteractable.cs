@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace Potions.Gameplay
 {
+    /// <summary>
+    /// Accepts ingredients and outputs a potion after a while which can be collected with a bottle.
+    /// 
+    /// Features a simple state machine with 3 states: Empty, Cook, Full.
+    /// Transition logic:
+    /// Empty -> (drop item) -> Cook (until no item is dropped in X seconds) -> Full -> (pick up with a bottle) -> Empty
+    /// </summary>
     public class CauldronInteractable : ContainerInteractable
     {
         protected override bool CanHolderInteract(ItemHolder holder, InteractionType type)

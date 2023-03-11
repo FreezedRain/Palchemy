@@ -1,5 +1,8 @@
 namespace Potions.Gameplay
 {
+    /// <summary>
+    /// General class for all interactables that deal with items (chests, cauldrons, etc)
+    /// </summary>
     public abstract class ContainerInteractable : BaseInteractable
     {
         public override bool CanInteract(Interactor interactor, InteractionType type = InteractionType.Any) => CanHolderInteract(interactor.Character.ItemHolder, type);

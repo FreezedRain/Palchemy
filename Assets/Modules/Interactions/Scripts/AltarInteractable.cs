@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Potions.Gameplay
 {
+    /// <summary>
+    /// Altar accepts items that can be destroyed and to contribute to the level's progress
+    /// </summary>
     public class AltarInteractable : ContainerInteractable
     {
         public event Action<string> ItemAdded;
