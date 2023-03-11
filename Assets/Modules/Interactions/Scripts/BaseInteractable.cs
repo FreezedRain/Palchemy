@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Potions.Gameplay
 {
+    /// <summary>
+    /// Base class responsible for all interactables
+    /// </summary>
     public abstract class BaseInteractable : MonoBehaviour
     {
         public enum InteractionType

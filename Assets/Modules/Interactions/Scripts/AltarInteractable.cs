@@ -7,7 +7,11 @@ namespace Potions.Gameplay
     {
         public event Action<string> ItemAdded;
 
-        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type) => holder.ItemId != null && holder.ItemId != "golem_heart";
+        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type)
+        {
+            // Only accept items that can be destroyed
+            return holder.ItemId != null && holder.Item.CanDestroy;
+        }
 
         protected override string GetItem() => null;
 

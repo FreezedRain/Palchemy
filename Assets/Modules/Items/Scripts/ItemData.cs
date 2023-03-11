@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Potions.Gameplay
@@ -9,7 +8,7 @@ namespace Potions.Gameplay
         public string Id => _id;
         public Sprite Sprite => _sprite;
         public bool IsIngredient => _isIngredient;
-        public string GrindedId => String.IsNullOrEmpty(_grindedId) ? null : _grindedId;
+        public bool CanDestroy => _canDestroy;
 
         [SerializeField]
         private string _id;
@@ -18,6 +17,6 @@ namespace Potions.Gameplay
         [SerializeField]
         private bool _isIngredient;
         [SerializeField]
-        private string _grindedId;
+        private bool _canDestroy;
     }
 }

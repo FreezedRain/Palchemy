@@ -8,7 +8,7 @@ namespace Potions.Gameplay
     [RequireComponent(typeof(Sprite))]
     public class ItemHolder : MonoBehaviour
     {
-        public ItemData Item => ItemDatabase.Get(_id);
+        public ItemData Item => ItemDatabase.GetItem(_id);
         public string ItemId => _id;
         
         public void SetItem(string id, bool animate = true)

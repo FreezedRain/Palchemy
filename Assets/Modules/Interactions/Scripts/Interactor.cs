@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Potions.Gameplay
 {
+    /// <summary>
+    /// Responsible for tracking and interacting with Interactables
+    /// </summary>
     public class Interactor : MonoBehaviour
     {
         public event Action<BaseInteractable> Interacted;
@@ -98,13 +101,6 @@ namespace Potions.Gameplay
                 }
             }
         }
-
-        // private void OnDrawGizmosSelected()
-        // {
-        //     Handles.matrix = transform.localToWorldMatrix;
-        //     Vector3 from = Quaternion.AngleAxis(-_allowedAngle * 0.5f, Vector3.forward) * Vector3.up;
-        //     Handles.DrawWireArc(Vector3.zero, Vector3.forward, from, _allowedAngle, 1f);
-        // }
 
         private BaseInteractable FindInteractable()
         {

@@ -62,7 +62,7 @@ namespace Potions.Level
         {
             _data = data;
             _card = card;
-            _card.SetBase(ItemDatabase.FindRecipeByOutcome(_data.ItemId).PageSprite);
+            _card.SetBase(ItemDatabase.Instance.FindRecipeByOutcome(_data.ItemId).PageSprite);
             _itemLog = new();
             _card.SetProgress(0, _data.NumericGoal);
         }

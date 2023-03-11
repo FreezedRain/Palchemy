@@ -6,8 +6,9 @@ namespace Potions.Gameplay
     {
         protected override bool CanHolderInteract(ItemHolder holder, InteractionType type)
         {
-            return holder.Item == null;
+            return holder.ItemId == null;
         }
+        
         protected override string GetItem() => _itemId;
 
         private void Start() => _itemHolder.SetItem(_itemId, animate: false);

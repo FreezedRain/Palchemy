@@ -26,30 +26,6 @@ namespace Potions.Gameplay
             return false;
         }
 
-        protected override bool CanHolderSkip(ItemHolder holder)
-        {
-            return false;
-            if (holder.ItemId == null)
-                return true;
-
-            if (_currentState == State.Full)
-            {
-                return holder.ItemId != "bottle";
-            }
-
-            if (_currentState == State.Empty)
-            {
-                return !holder.Item.IsIngredient;
-            }
-            
-            if (_currentState == State.Cook && _ingredients.Count >= _maxIngredients)
-            {
-                return holder.ItemId != "bottle";
-            }
-
-            return false;
-        }
-
         protected override string GetItem() => _cookedItemId;
 
         protected override void OnItemAdded(string id)
@@ -70,12 +46,7 @@ namespace Potions.Gameplay
             var clip = interactor.Character.ItemHolder.Item == null ? _dropClip : _pickupClip;
             clip.Play(transform.position);
         }
-
-        private void Awake()
-        {
-            _ingredients = new();
-        }
-
+        
         private void Update()
         {
             if (_currentState == State.Cook)
@@ -111,7 +82,7 @@ namespace Potions.Gameplay
                     LeanTween.value(gameObject, f => _boilSource.volume = f, 0.1f, 0f, 0.4f)
                         .setOnComplete(_boilSource.Stop);
                     _cookTimer = 0;
-                    _cookedItemId = ItemDatabase.FindRecipeByIngredients(_ingredients)?.ResultId ?? "mistake";
+                    _cookedItemId = ItemDatabase.Instance.FindRecipeByIngredients(_ingredients)?.ResultId ?? "mistake";
                     _ingredients.Clear();
                     _spriteRenderer.sprite = _fullSprite;
                     break;
@@ -129,8 +100,6 @@ namespace Potions.Gameplay
 
         [SerializeField]
         private float _cookDuration;
-        [SerializeField]
-        private int _maxIngredients;
         [Header("Sprites")]
         [SerializeField]
         private Sprite _cookSprite;
@@ -152,7 +121,7 @@ namespace Potions.Gameplay
 
         private State _currentState = State.Empty;
         
-        private List<string> _ingredients;
+        private List<string> _ingredients = new();
         private float _cookTimer;
         private string _cookedItemId;
     }

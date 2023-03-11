@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Potions.Global;
 using UnityEngine;
 
@@ -7,7 +5,7 @@ namespace Potions.Gameplay
 {
     public class MoldInteractable : ContainerInteractable
     {
-        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type) => !_inProgress && holder.ItemId == "golem_heart";
+        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type) => !_inProgress && holder.ItemId == _requiredItemId;
 
         protected override string GetItem() => null;
 
@@ -45,5 +43,7 @@ namespace Potions.Gameplay
         [SerializeField]
         private AudioClipData _closeClip;
         private bool _inProgress;
+
+        private const string _requiredItemId = "golem_heart";
     }
 }
