@@ -11,6 +11,7 @@ public abstract class Singleton<T> where T : Singleton<T>
             {
                 _instance = Activator.CreateInstance(typeof(T), true) as T;
             }
+            
             return _instance;
         }
     }

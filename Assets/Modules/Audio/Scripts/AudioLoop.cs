@@ -12,11 +12,11 @@ namespace Potions.Gameplay
             if (_playOnStart)
                 Play();
         }
-        
+
         public void Play()
         {
             _source.Stop();
-            
+
             var seq = LeanTween.sequence();
             seq.append(0.25f);
             seq.append(() =>
@@ -27,10 +27,8 @@ namespace Potions.Gameplay
             seq.insert(LeanTween.value(gameObject, f => _source.volume = f, 0, 1, 1.5f));
         }
 
+        [SerializeField] private bool _playOnStart;
+        [SerializeField] private AudioClip _initialClip;
         private AudioSource _source;
-        [SerializeField]
-        private bool _playOnStart;
-        [SerializeField]
-        private AudioClip _initialClip;
     }
 }

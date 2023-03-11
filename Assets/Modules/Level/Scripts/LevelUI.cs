@@ -8,10 +8,8 @@ namespace Potions.Level
         {
             return Instantiate(_recipeCardPrefab, _cardHolder);
         }
-        
-        [SerializeField]
-        private RecipeCard _recipeCardPrefab;
-        [SerializeField]
-        private RectTransform _cardHolder;
+
+        [SerializeField] private RecipeCard _recipeCardPrefab;
+        [SerializeField] private RectTransform _cardHolder;
     }
 }

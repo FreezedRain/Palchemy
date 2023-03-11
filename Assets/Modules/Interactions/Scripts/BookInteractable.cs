@@ -10,7 +10,6 @@ namespace Potions.Gameplay
                 _levelSelectUI.Show();
         }
 
-        [SerializeField]
-        private LevelSelectUI _levelSelectUI;
+        [SerializeField] private LevelSelectUI _levelSelectUI;
     }
 }

@@ -28,7 +28,7 @@ namespace Potions.Gameplay
             _itemId = id;
             _itemHolder.SetItem(id);
         }
-        
+
         protected override void PlayInteractAudio(Interactor interactor)
         {
             var clip = interactor.Character.ItemHolder.Item == null ? _dropClip : _pickupClip;
@@ -41,14 +41,10 @@ namespace Potions.Gameplay
                 OnItemAdded(_overrideItemId);
         }
 
-        [SerializeField]
-        private ItemHolder _itemHolder;
-        [SerializeField]
-        private string _overrideItemId;
-        [SerializeField]
-        private AudioClipData _pickupClip;
-        [SerializeField]
-        private AudioClipData _dropClip;
+        [SerializeField] private ItemHolder _itemHolder;
+        [SerializeField] private string _overrideItemId;
+        [SerializeField] private AudioClipData _pickupClip;
+        [SerializeField] private AudioClipData _dropClip;
         private string _itemId;
     }
 }

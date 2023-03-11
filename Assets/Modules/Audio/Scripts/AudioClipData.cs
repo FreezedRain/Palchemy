@@ -11,13 +11,9 @@ namespace Potions.Global
                 position, Random.Range(_pitchMin, _pitchMax), _volume);
         }
 
-        [SerializeField]
-        protected AudioClip[] _clips;
-        [SerializeField, Min(0)]
-        private float _volume = 1;
-        [SerializeField, Min(0)]
-        private float _pitchMin = 1;
-        [SerializeField, Min(0)]
-        private float _pitchMax = 1;
+        [SerializeField] protected AudioClip[] _clips;
+        [SerializeField, Min(0)] private float _volume = 1;
+        [SerializeField, Min(0)] private float _pitchMin = 1;
+        [SerializeField, Min(0)] private float _pitchMax = 1;
     }
 }

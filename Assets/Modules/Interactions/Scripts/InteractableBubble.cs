@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Potions.Gameplay
@@ -38,9 +37,7 @@ namespace Potions.Gameplay
             _visuals.transform.localScale = Vector3.zero;
         }
 
-        [SerializeField]
-        private GameObject _visuals;
-        [SerializeField]
-        private Transform _fill;
+        [SerializeField] private GameObject _visuals;
+        [SerializeField] private Transform _fill;
     }
 }

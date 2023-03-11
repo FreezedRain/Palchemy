@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Potions.Global;
 using TMPro;
 using UnityEngine;
@@ -21,9 +18,8 @@ namespace Potions.Level
                 LeanTween.cancel(gameObject);
                 LeanTween.delayedCall(gameObject, 0.5f, () => EventSystem.current.SetSelectedGameObject(gameObject));
             }
-            // _levelText.text = $"{index + 1}. {_name}";
-            _levelText.text = $"{_name}";
 
+            _levelText.text = $"{_name}";
         }
 
         private void Start()
@@ -33,25 +29,14 @@ namespace Potions.Level
 
         private void Update()
         {
-            if (EventSystem.current.currentSelectedGameObject == gameObject)
-            {
-                _levelText.fontStyle = FontStyles.Underline;
-            }
-            else
-            {
-                _levelText.fontStyle = FontStyles.Normal;
-            }
+            _levelText.fontStyle = EventSystem.current.currentSelectedGameObject == gameObject
+                ? FontStyles.Underline
+                : FontStyles.Normal;
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            // _levelText.fontStyle = FontStyles.Underline;
             EventSystem.current.SetSelectedGameObject(gameObject);
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            // _levelText.fontStyle = FontStyles.Normal;
         }
 
         private void SetCompleted(bool completed)
@@ -60,14 +45,10 @@ namespace Potions.Level
             _uncompletedTick.SetActive(!completed);
         }
 
-        [SerializeField]
-        private string _scene;
-        [SerializeField]
-        private string _name;
-        [SerializeField]
-        private GameObject _completedTick;
-        [SerializeField]
-        private GameObject _uncompletedTick;
+        [SerializeField] private string _scene;
+        [SerializeField] private string _name;
+        [SerializeField] private GameObject _completedTick;
+        [SerializeField] private GameObject _uncompletedTick;
         private TMP_Text _levelText;
     }
 }

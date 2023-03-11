@@ -15,8 +15,11 @@ namespace Potions.Gameplay
         public bool ShowBubbles => _showBubbles;
         public CharacterLogic Character => _character;
         public BaseInteractable ClosestInteractable => _closestInteractable;
-        public bool CanInteract(BaseInteractable.InteractionType type = BaseInteractable.InteractionType.Any) => _closestInteractable
-                                                                          && _closestInteractable.CanInteract(this, type);
+
+        public bool CanInteract(BaseInteractable.InteractionType type = BaseInteractable.InteractionType.Any) =>
+            _closestInteractable
+            && _closestInteractable.CanInteract(this, type);
+
         public bool CanAltInteract => _closestInteractable && _closestInteractable.CanAltInteract(this);
 
         public void Setup(CharacterLogic character) => _character = character;
@@ -24,7 +27,7 @@ namespace Potions.Gameplay
         public void Interact()
         {
             if (!CanInteract()) return;
-            
+
             _closestInteractable.Interact(this);
             Interacted?.Invoke(_closestInteractable);
             Character.Visuals.Bump();
@@ -51,7 +54,7 @@ namespace Potions.Gameplay
             Interacted?.Invoke(_altInteractable);
             Character.Visuals.Bump();
         }
-        
+
         public void NormalAltInteract()
         {
             if (!CanAltInteract) return;
@@ -76,6 +79,7 @@ namespace Potions.Gameplay
                     if (newInteractable && newInteractable.CanInteract(this, BaseInteractable.InteractionType.Any))
                         newInteractable.SetActive(true);
                 }
+
                 _closestInteractable = newInteractable;
             }
             else
@@ -112,6 +116,7 @@ namespace Potions.Gameplay
                     distance = diff.magnitude;
                     return distance <= interactable.Range;
                 }
+
                 if (Mathf.Acos(Vector3.Dot(diff.normalized, _character.Forward)) * Mathf.Rad2Deg <= _allowedAngle)
                 {
                     distance = diff.magnitude;
@@ -121,7 +126,7 @@ namespace Potions.Gameplay
                 distance = 0f;
                 return false;
             }
-            
+
             float minDistance = float.MaxValue;
             BaseInteractable closest = null;
             foreach (var interactable in BaseInteractable.Interactables)
@@ -147,15 +152,10 @@ namespace Potions.Gameplay
         private BaseInteractable _altInteractable;
         private float _altInteractionTimer;
 
-        [SerializeField]
-        private float _allowedAngle;
-        [SerializeField]
-        private bool _ignoreAngle;
-        [SerializeField]
-        private bool _showBubbles;
-        [SerializeField]
-        private bool _allowGolems;
-        [SerializeField]
-        private float _altInteractionDuration;
+        [SerializeField] private float _allowedAngle;
+        [SerializeField] private bool _ignoreAngle;
+        [SerializeField] private bool _showBubbles;
+        [SerializeField] private bool _allowGolems;
+        [SerializeField] private float _altInteractionDuration;
     }
 }

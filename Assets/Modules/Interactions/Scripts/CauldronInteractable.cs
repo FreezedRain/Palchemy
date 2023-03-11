@@ -12,12 +12,12 @@ namespace Potions.Gameplay
             {
                 return false;
             }
-            
+
             if (_currentState is State.Cook or State.Empty)
             {
                 return holder.Item.IsIngredient;
             }
-            
+
             if (_currentState == State.Full)
             {
                 return holder.ItemId == "bottle";
@@ -40,13 +40,13 @@ namespace Potions.Gameplay
                 SetState(State.Empty);
             }
         }
-        
+
         protected override void PlayInteractAudio(Interactor interactor)
         {
             var clip = interactor.Character.ItemHolder.Item == null ? _dropClip : _pickupClip;
             clip.Play(transform.position);
         }
-        
+
         private void Update()
         {
             if (_currentState == State.Cook)
@@ -98,29 +98,20 @@ namespace Potions.Gameplay
             Full
         }
 
-        [SerializeField]
-        private float _cookDuration;
+        [SerializeField] private float _cookDuration;
         [Header("Sprites")]
-        [SerializeField]
-        private Sprite _cookSprite;
-        [SerializeField]
-        private Sprite _fullSprite;
-        [SerializeField]
-        private Sprite _emptySprite;
-        [SerializeField]
-        private SpriteRenderer _spriteRenderer;
-        [SerializeField]
-        private ParticleSystem _boilParticles;
+        [SerializeField] private Sprite _cookSprite;
+        [SerializeField] private Sprite _fullSprite;
+        [SerializeField] private Sprite _emptySprite;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private ParticleSystem _boilParticles;
         [Header("Audio")]
-        [SerializeField]
-        private AudioClipData _pickupClip;
-        [SerializeField]
-        private AudioClipData _dropClip;
-        [SerializeField]
-        private AudioSource _boilSource;
+        [SerializeField] private AudioClipData _pickupClip;
+        [SerializeField] private AudioClipData _dropClip;
+        [SerializeField] private AudioSource _boilSource;
 
         private State _currentState = State.Empty;
-        
+
         private List<string> _ingredients = new();
         private float _cookTimer;
         private string _cookedItemId;

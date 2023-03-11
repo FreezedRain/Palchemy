@@ -25,7 +25,7 @@ namespace Potions.Gameplay
             _character.ItemHolder.SetItem(heldItemId);
             _character.Visuals.Bump();
         }
-        
+
         public void AltInteract(Interactor interactor)
         {
             switch (_currentState)
@@ -42,6 +42,7 @@ namespace Potions.Gameplay
                     SetState(State.Learn);
                     break;
             }
+
             _character.Visuals.Bump();
         }
 
@@ -103,10 +104,10 @@ namespace Potions.Gameplay
             _debugPath = null;
 
             yield return new WaitForSeconds(startDelay);
-            
+
             // Find path to the goal
             var path = CustomNavMesh.CalculatePath(transform.position, goal.transform, _pathMask);
-            
+
             if (path == null)
             {
                 _taskInProgress = false;
@@ -117,7 +118,7 @@ namespace Potions.Gameplay
             _debugPath = path;
 
             int pathIndex = 0;
-            
+
             // Wait until we can interact
             while (true)
             {
@@ -130,7 +131,7 @@ namespace Potions.Gameplay
                 _debugPathIndex = pathIndex;
 
                 Vector2 movementDirection = path[pathIndex] - transform.position;
-                
+
                 // If we should steer, rotate the direction
                 if (ShouldSteer(movementDirection.normalized, out float amount))
                 {
@@ -138,7 +139,7 @@ namespace Potions.Gameplay
                                         movementDirection;
                 }
 
-                MoveTowards(transform.position + (Vector3) movementDirection, 0.0f);
+                MoveTowards(transform.position + (Vector3)movementDirection, 0.0f);
 
                 // If we can interact
                 if (_character.Interactor.ClosestInteractable == goal)
@@ -151,7 +152,8 @@ namespace Potions.Gameplay
                     {
                         yield return new WaitForSeconds(0.2f);
                         // If we can still interact, do it and exit the loop
-                        if (_character.Interactor.ClosestInteractable == goal && _character.Interactor.CanInteract(_tasks[_taskIdx].Type))
+                        if (_character.Interactor.ClosestInteractable == goal &&
+                            _character.Interactor.CanInteract(_tasks[_taskIdx].Type))
                         {
                             Interacted?.Invoke();
                             break;
@@ -164,6 +166,7 @@ namespace Potions.Gameplay
                         yield break;
                     }
                 }
+
                 // Otherwise, wait
                 yield return null;
             }
@@ -180,6 +183,7 @@ namespace Potions.Gameplay
                 _inputState.Direction = diff.normalized;
                 return true;
             }
+
             _inputState.Direction = Vector2.zero;
             return false;
         }
@@ -208,12 +212,12 @@ namespace Potions.Gameplay
                     _taskList.SetStateExecuting(_tasks, 0);
                     break;
             }
+
             _currentState = state;
         }
 
         private void OnDrawGizmos()
         {
-            
             if (_debugPath == null)
                 return;
             for (int i = 0; i < _debugPath.Count - 1; i++)
@@ -223,13 +227,8 @@ namespace Potions.Gameplay
                 Gizmos.color = i == _debugPathIndex ? Color.green : Color.blue;
                 Gizmos.DrawWireSphere(_debugPath[i], 0.25f);
             }
-            Gizmos.DrawWireSphere(_debugPath[_debugPath.Count - 1], 0.25f);
 
-            // Gizmos.color = Color.yellow;
-            // Gizmos.DrawLine(transform.position, transform.position + (Vector3) _character.Forward);
-            //
-            // Gizmos.color = Color.cyan;
-            // Gizmos.DrawLine(transform.position, closestGolem.transform.position);
+            Gizmos.DrawWireSphere(_debugPath[_debugPath.Count - 1], 0.25f);
         }
 
         private bool ShouldSteer(Vector2 moveDirection, out float amount)
@@ -244,7 +243,7 @@ namespace Potions.Gameplay
                 // Skip ourselves
                 if (golem == _character || !golem.IsMoving)
                     continue;
-                
+
                 Vector2 obstacleDiff = golem.transform.position - transform.position;
                 float obstacleAngle = Vector2.SignedAngle(moveDirection, obstacleDiff.normalized) / 90f;
                 float golemAngle = Vector2.SignedAngle(moveDirection, golem.Forward) / 90f;
@@ -263,7 +262,7 @@ namespace Potions.Gameplay
                 amount = 0f;
                 return false;
             }
-            
+
             // Compute steering amount
             float averageAngle = totalAngle / totalObstacles;
             amount = (1f - Mathf.Abs(averageAngle)) * Mathf.Sign(averageAngle);
@@ -281,7 +280,7 @@ namespace Potions.Gameplay
             _taskList.SetStateLearning(_tasks);
             _character.Visuals.Bump();
         }
-        
+
         private enum State
         {
             Idle,
@@ -301,20 +300,15 @@ namespace Potions.Gameplay
             }
         }
 
-        [SerializeField]
-        private float _steerAmount;
-        [SerializeField]
-        private int _maxTaskCount;
-        [SerializeField]
-        private TaskList _taskList;
-        [SerializeField]
-        private LayerMask _pathMask;
+        [SerializeField] private float _steerAmount;
+        [SerializeField] private int _maxTaskCount;
+        [SerializeField] private TaskList _taskList;
+        [SerializeField] private LayerMask _pathMask;
 
         private CharacterLogic _character;
         private Interactor _teacher;
 
         private Coroutine _taskCoroutine;
-        // private BaseInteractable _currentGoal => _taskIdx < _tasks.Count ? _tasks[_taskIdx] : null;
         private BaseInteractable _currentGoal => _taskIdx < _tasks.Count ? _tasks[_taskIdx].Interactable : null;
 
         private State _currentState = State.Idle;

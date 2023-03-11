@@ -6,7 +6,8 @@ namespace Potions.Gameplay
 {
     public static class CustomNavMesh
     {
-        public static List<Vector3> CalculatePath(Vector3 from, Transform goal, LayerMask obstacleMask, float avoidRadius = 0.1f)
+        public static List<Vector3> CalculatePath(Vector3 from, Transform goal, LayerMask obstacleMask,
+            float avoidRadius = 0.1f)
         {
             var path = new List<Vector3>();
             NavMeshPath navMeshPath = new();
@@ -33,13 +34,6 @@ namespace Potions.Gameplay
                         minPathLength = length;
                         navMeshPath = newPath;
                     }
-                    // Debug.Log($"Found path {i}, total length: {length}, best length: {minPathLength}");
-                    // NavMeshHit _navMeshHit;
-                    // NavMesh.SamplePosition(goal.position, out _navMeshHit, 2.5f, NavMesh.AllAreas);
-                    // if (!NavMesh.CalculatePath(from, _navMeshHit.position, NavMesh.AllAreas, navMeshPath))
-                    // {
-                    //     return null;
-                    // }
                 }
             }
 
@@ -50,8 +44,9 @@ namespace Potions.Gameplay
             {
                 Vector3 point = navMeshPath.corners[i];
 
-                RaycastHit2D hit = Physics2D.CircleCast(point, avoidRadius, (goal.position - point).normalized, 999f, obstacleMask);
-                
+                RaycastHit2D hit = Physics2D.CircleCast(point, avoidRadius, (goal.position - point).normalized, 999f,
+                    obstacleMask);
+
 
                 if (hit.collider != null && hit.collider.transform.parent.gameObject != goal.gameObject)
                 {
@@ -65,10 +60,10 @@ namespace Potions.Gameplay
                     break;
                 }
             }
-            
+
             if (!raycastEverHit)
                 path.Add(goal.position);
-            
+
             return path;
         }
     }

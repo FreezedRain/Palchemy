@@ -12,11 +12,10 @@ namespace Potions.Global
             source.pitch = pitch;
             source.volume = volume;
             source.outputAudioMixerGroup = _effectsMixerGroup;
-            // source.spatialBlend = 0.5f;
             source.PlayOneShot(clip);
             Destroy(source.gameObject, clip.length + 0.5f);
         }
-        
+
         private AudioSource CreateSource(Vector3 position)
         {
             var source = new GameObject("Oneshot").AddComponent<AudioSource>();
@@ -24,9 +23,6 @@ namespace Potions.Global
             return source;
         }
 
-        [SerializeField]
-        private AudioSource _effectsSource;
-        [SerializeField]
-        private AudioMixerGroup _effectsMixerGroup;
+        [SerializeField] private AudioMixerGroup _effectsMixerGroup;
     }
 }

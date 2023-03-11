@@ -10,13 +10,9 @@ namespace Potions.Gameplay
         public bool IsIngredient => _isIngredient;
         public bool CanDestroy => _canDestroy;
 
-        [SerializeField]
-        private string _id;
-        [SerializeField]
-        public Sprite _sprite;
-        [SerializeField]
-        private bool _isIngredient;
-        [SerializeField]
-        private bool _canDestroy;
+        [SerializeField] private string _id;
+        [SerializeField] public Sprite _sprite;
+        [SerializeField] private bool _isIngredient;
+        [SerializeField] private bool _canDestroy;
     }
 }

@@ -34,7 +34,6 @@ namespace Potions.Gameplay
             LeanTween.cancel(gameObject);
         }
 
-        [SerializeField]
-        private AudioClipData _popClip;
+        [SerializeField] private AudioClipData _popClip;
     }
 }

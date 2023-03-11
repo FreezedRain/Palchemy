@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,9 +13,7 @@ public class RecipeCard : MonoBehaviour
             if (_isShining != value)
             {
                 _isShining = value;
-                //LeanTween.cancel(_barShine);
                 LeanTween.cancel(_crystalShine);
-                //LeanTween.alpha(_barShine, value ? 1f : 0f, 0.2f);
                 LeanTween.alpha(_crystalShine, value ? 1f : 0f, 0.2f);
             }
         }
@@ -37,28 +33,18 @@ public class RecipeCard : MonoBehaviour
     private void Update()
     {
         _smoothFill = Mathf.Lerp(_smoothFill, Fill, Time.deltaTime * 5f);
-        
+
         SetBarFill(_barDark, _smoothFill);
-        // SetBarFill(_barBright, _smoothFill);
         _barCap.anchoredPosition = new Vector3(157.5f * _smoothFill, 0);
     }
 
     private void SetBarFill(RectTransform bar, float fill) => bar.sizeDelta = new Vector2(159 * fill, 22.5f);
 
-    [SerializeField]
-    private Image _base;
-    [SerializeField]
-    private RectTransform _barCap;
-    [SerializeField]
-    private RectTransform _barDark;
-    [SerializeField]
-    private RectTransform _barBright;
-    [SerializeField]
-    private RectTransform _barShine;
-    [SerializeField]
-    private RectTransform _crystalShine;
-    [SerializeField]
-    private TMP_Text _text;
+    [SerializeField] private Image _base;
+    [SerializeField] private RectTransform _barCap;
+    [SerializeField] private RectTransform _barDark;
+    [SerializeField] private RectTransform _crystalShine;
+    [SerializeField] private TMP_Text _text;
 
     private float _smoothFill;
     private bool _isShining;

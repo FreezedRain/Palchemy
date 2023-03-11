@@ -14,18 +14,13 @@ namespace Potions.Gameplay
         public InputState GetState() => _currentState;
 
         private void OnMove(InputValue value) => _currentState.Direction = value.Get<Vector2>();
+
         private void OnInteract(InputValue value)
         {
             if (value.isPressed)
             {
                 Interacted?.Invoke();
             }
-            //     AltInteractStarted?.Invoke();
-            // }
-            // else
-            // {
-            //     AltInteractFinished?.Invoke();
-            // }
         }
 
         private void OnAltInteract() => AltInteractStarted?.Invoke();

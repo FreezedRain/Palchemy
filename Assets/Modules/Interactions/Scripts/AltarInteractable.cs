@@ -23,9 +23,7 @@ namespace Potions.Gameplay
             ghost.Setup(id);
         }
 
-        [SerializeField]
-        private ItemGhost _itemGhostPrefab;
-        [SerializeField]
-        private Transform _ghostOrigin;
+        [SerializeField] private ItemGhost _itemGhostPrefab;
+        [SerializeField] private Transform _ghostOrigin;
     }
 }

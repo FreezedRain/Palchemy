@@ -8,14 +8,12 @@ namespace Potions.Gameplay
         {
             return holder.ItemId == null;
         }
-        
+
         protected override string GetItem() => _itemId;
 
         private void Start() => _itemHolder.SetItem(_itemId, animate: false);
 
-        [SerializeField]
-        private string _itemId;
-        [SerializeField]
-        private ItemHolder _itemHolder;
+        [SerializeField] private string _itemId;
+        [SerializeField] private ItemHolder _itemHolder;
     }
 }

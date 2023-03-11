@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Potions.Gameplay
 {
     public abstract class ContainerInteractable : BaseInteractable

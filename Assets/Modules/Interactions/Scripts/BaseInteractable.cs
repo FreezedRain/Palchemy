@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Potions.Global;
 using UnityEngine;
@@ -12,16 +11,18 @@ namespace Potions.Gameplay
     {
         public enum InteractionType
         {
-            Any, Pickup, Drop
+            Any,
+            Pickup,
+            Drop
         }
-        
+
         public static List<BaseInteractable> Interactables = new();
         public float Range => _range;
 
         public virtual bool CanInteract(Interactor interactor, InteractionType type) => true;
-        
+
         public virtual bool CanSkip(Interactor interactor) => false;
-        
+
         public virtual bool CanAltInteract(Interactor interactor) => false;
 
         public virtual void SetActive(bool active) => _bubble.IsActive = active;
@@ -38,7 +39,7 @@ namespace Potions.Gameplay
                 _animationHelper.Bump();
             PlayInteractAudio(interactor);
         }
-        
+
         protected virtual void OnAltInteract(Interactor interactor)
         {
             if (interactor.ShowBubbles)
@@ -65,13 +66,9 @@ namespace Potions.Gameplay
             Gizmos.DrawWireSphere(transform.position, _range);
         }
 
-        [SerializeField]
-        private float _range;
-        [SerializeField]
-        protected InteractableBubble _bubble;
-        [SerializeField]
-        private AudioClipData _interactClip;
-        [SerializeField]
-        protected AnimationHelper _animationHelper;
+        [SerializeField] private float _range;
+        [SerializeField] protected InteractableBubble _bubble;
+        [SerializeField] private AudioClipData _interactClip;
+        [SerializeField] protected AnimationHelper _animationHelper;
     }
 }

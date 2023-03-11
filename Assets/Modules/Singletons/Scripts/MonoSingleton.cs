@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
-{ 
+{
     private static T _instance;
     public static T Instance => _instance;
 
@@ -12,6 +12,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
             Debug.LogWarning($"Found second instance of {typeof(T)}!");
             Destroy(gameObject);
         }
+
         _instance = this as T;
     }
 }

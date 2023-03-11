@@ -11,7 +11,7 @@ namespace Potions.Global
         public void RecordLevelCompleted(string id)
         {
             if (SaveData.CompletedLevels.Contains(id)) return;
-            
+
             print($"Completed level {id}!");
             SaveData.CompletedLevels.Add(id);
             SaveGame();

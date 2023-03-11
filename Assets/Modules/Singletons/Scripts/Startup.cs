@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +14,7 @@ namespace Potions.Global
                 SceneManager.LoadScene("Master", LoadSceneMode.Additive);
                 _isInitialized = true;
             }
-                
+
             Destroy(gameObject);
         }
 

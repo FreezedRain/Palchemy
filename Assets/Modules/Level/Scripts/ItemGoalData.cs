@@ -6,8 +6,6 @@ namespace Potions.Level
     public struct ItemGoalData
     {
         public string ItemId;
-        public float Goal;
-        public float Decay;
         public int NumericGoal;
         public float Timespan;
     }

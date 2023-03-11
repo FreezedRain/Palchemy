@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Potions.Gameplay;
 using Potions.Global;
@@ -11,12 +10,12 @@ namespace Potions.Level
     {
         private void Start()
         {
-            // Listen to altars
+            // Subscribe to altars
             foreach (var altar in FindObjectsOfType<AltarInteractable>())
             {
                 altar.ItemAdded += OnAltarItemAdded;
             }
-            
+
             // Setup recipe cards
             _goals = new();
             foreach (var goalData in _goalsData)
@@ -63,12 +62,9 @@ namespace Potions.Level
             }
         }
 
-        [SerializeField]
-        private LevelUI _levelUI;
-        [SerializeField]
-        private List<ItemGoalData> _goalsData;
-        [SerializeField]
-        private AudioClipData _completeClip;
+        [SerializeField] private LevelUI _levelUI;
+        [SerializeField] private List<ItemGoalData> _goalsData;
+        [SerializeField] private AudioClipData _completeClip;
 
         private List<ItemGoal> _goals;
         private bool _isComplete;

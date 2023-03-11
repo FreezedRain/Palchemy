@@ -16,7 +16,6 @@ namespace Potions.Level
             }
         }
 
-        [SerializeField]
-        private string _levelId;
+        [SerializeField] private string _levelId;
     }
 }

@@ -5,7 +5,8 @@ namespace Potions.Gameplay
 {
     public class MoldInteractable : ContainerInteractable
     {
-        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type) => !_inProgress && holder.ItemId == _requiredItemId;
+        protected override bool CanHolderInteract(ItemHolder holder, InteractionType type) =>
+            !_inProgress && holder.ItemId == _requiredItemId;
 
         protected override string GetItem() => null;
 
@@ -27,21 +28,14 @@ namespace Potions.Gameplay
             });
         }
 
-        [SerializeField]
-        private CharacterLogic _golemPrefab;
-        [SerializeField]
-        private Transform _golemSpawnPoint;
-        [SerializeField]
-        private SpriteRenderer _spriteRenderer;
-        [SerializeField]
-        private Sprite _openSprite;
-        [SerializeField]
-        private Sprite _closedSprite;
+        [SerializeField] private CharacterLogic _golemPrefab;
+        [SerializeField] private Transform _golemSpawnPoint;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Sprite _openSprite;
+        [SerializeField] private Sprite _closedSprite;
         [Header("Audio")]
-        [SerializeField]
-        private AudioClipData _openClip;
-        [SerializeField]
-        private AudioClipData _closeClip;
+        [SerializeField] private AudioClipData _openClip;
+        [SerializeField] private AudioClipData _closeClip;
         private bool _inProgress;
 
         private const string _requiredItemId = "golem_heart";

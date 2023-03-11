@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelSelectUI : MonoBehaviour
 {
     public bool IsActive { get; private set; }
-    
+
     public void Show()
     {
         _contents.anchoredPosition = new Vector3(0, -1000f, 0f);
@@ -15,7 +13,7 @@ public class LevelSelectUI : MonoBehaviour
             .setEaseOutCubic();
         IsActive = true;
     }
-    
+
     public void Hide()
     {
         _contents.transform.position = Vector3.zero;
@@ -26,6 +24,5 @@ public class LevelSelectUI : MonoBehaviour
         IsActive = false;
     }
 
-    [SerializeField]
-    private RectTransform _contents;
+    [SerializeField] private RectTransform _contents;
 }

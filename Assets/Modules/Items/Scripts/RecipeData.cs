@@ -17,11 +17,8 @@ namespace Potions.Gameplay
             return new HashSet<string>(usedIngredients).SetEquals(_ingredients);
         }
 
-        [SerializeField]
-        private string _resultId;
-        [SerializeField]
-        private Sprite _pageSprite;
-        [SerializeField]
-        public List<string> _ingredients;
+        [SerializeField] private string _resultId;
+        [SerializeField] private Sprite _pageSprite;
+        [SerializeField] public List<string> _ingredients;
     }
 }

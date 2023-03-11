@@ -9,7 +9,7 @@ namespace Potions.Gameplay
         Splash,
         Mold
     }
-    
+
     public class ParticleManager : MonoSingleton<ParticleManager>
     {
         public static void Spawn(ParticleType type, Vector3 position, Transform parent = null)
@@ -18,7 +18,7 @@ namespace Potions.Gameplay
             if (prefab)
                 Instantiate(prefab, position, Quaternion.identity, parent);
         }
-        
+
         private GameObject GetParticleObject(ParticleType type) => type switch
         {
             ParticleType.None => null,
@@ -28,10 +28,7 @@ namespace Potions.Gameplay
         };
 
         [Header("Particles")]
-        [SerializeField]
-        private GameObject _splash;
-        [SerializeField]
-        private GameObject _mold;
+        [SerializeField] private GameObject _splash;
+        [SerializeField] private GameObject _mold;
     }
-
 }

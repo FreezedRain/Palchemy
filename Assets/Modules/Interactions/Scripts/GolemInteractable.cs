@@ -1,5 +1,3 @@
-using System;
-
 namespace Potions.Gameplay
 {
     public class GolemInteractable : BaseInteractable
@@ -14,7 +12,7 @@ namespace Potions.Gameplay
             base.OnInteract(interactor);
             _golem.Interact(interactor);
         }
-        
+
         protected override void OnAltInteract(Interactor interactor)
         {
             base.OnAltInteract(interactor);

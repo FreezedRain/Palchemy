@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Potions.Gameplay
@@ -6,11 +5,11 @@ namespace Potions.Gameplay
     public class CharacterVisuals : MonoBehaviour
     {
         public bool IsMoving;
-        
+
         public void FaceDirection(Vector2 dir)
         {
             if (dir == Vector2.zero) return;
-            
+
             (Sprite sprite, bool flip) = _spriteSet.GetSprite(dir);
             _spriteRenderer.sprite = sprite;
             _spriteRenderer.flipX = flip;
@@ -22,7 +21,7 @@ namespace Potions.Gameplay
         {
             _time += (IsMoving ? 2 : 1) * Time.deltaTime * _squashSpeed;
             float squashAmount = (IsMoving ? 2 : 1) * _squashAmount;
-            
+
             Vector2 bumpDeformation = new Vector2(_currentBumpAmount / 10, -_currentBumpAmount / 10);
             Vector2 squashDeformation = new Vector2(
                 1 + Mathf.Sin(_time) * squashAmount,
@@ -36,18 +35,12 @@ namespace Potions.Gameplay
         private float _time;
         private float _currentBumpAmount;
 
-        [SerializeField]
-        private SpriteRenderer _spriteRenderer;
-        [SerializeField]
-        private SpriteSet _spriteSet;
-        [SerializeField]
-        private Transform _visualsParent;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private SpriteSet _spriteSet;
+        [SerializeField] private Transform _visualsParent;
         [Header("Animation")]
-        [SerializeField]
-        private float _squashSpeed;
-        [SerializeField]
-        private float _squashAmount;
-        [SerializeField]
-        private float _bumpAmount;
+        [SerializeField] private float _squashSpeed;
+        [SerializeField] private float _squashAmount;
+        [SerializeField] private float _bumpAmount;
     }
 }
