@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Potions.Gameplay
 {
@@ -82,7 +81,7 @@ namespace Potions.Gameplay
             }
         }
 
-        [FormerlySerializedAs("blip_prefab")] public GameObject blipPrefab;
+        public GameObject blipPrefab;
 
         private float _taskWidth = 0.12f;
         private float _taskHeight = 0.12f;

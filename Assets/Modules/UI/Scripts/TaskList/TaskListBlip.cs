@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Potions.Gameplay
 {
@@ -13,11 +12,11 @@ namespace Potions.Gameplay
             DONE
         }
 
-        [FormerlySerializedAs("spriteUp")] public Sprite SpriteUp;
-        [FormerlySerializedAs("spriteDown")] public Sprite SpriteDown;
+        public Sprite SpriteUp;
+        public Sprite SpriteDown;
 
-        [FormerlySerializedAs("detail")] public SpriteRenderer Detail;
-        [FormerlySerializedAs("progress")] public SpriteRenderer Progress;
+        public SpriteRenderer Detail;
+        public SpriteRenderer Progress;
 
         public void SetState(TASK_BLIP_STATE newState,
             BaseInteractable.InteractionType type = BaseInteractable.InteractionType.Any)
