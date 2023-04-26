@@ -15,3 +15,4 @@ MonoBehaviour:
   _id: bottle
   _sprite: {fileID: 21300000, guid: 9f81c344ce1eb6343910a65978c9e8ab, type: 3}
   _isIngredient: 0
+  _canDestroy: 1

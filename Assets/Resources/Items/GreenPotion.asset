@@ -15,4 +15,4 @@ MonoBehaviour:
   _id: green_potion
   _sprite: {fileID: 21300000, guid: 36ccfcb51a663c346b38b01448efc2d5, type: 3}
   _isIngredient: 0
-  _grindedId: 
+  _canDestroy: 1

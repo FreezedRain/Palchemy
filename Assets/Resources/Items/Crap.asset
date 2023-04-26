@@ -15,3 +15,4 @@ MonoBehaviour:
   _id: mistake
   _sprite: {fileID: 21300000, guid: 8cf429f9642e17a4e9d460e4d8bc6fbb, type: 3}
   _isIngredient: 0
+  _canDestroy: 1

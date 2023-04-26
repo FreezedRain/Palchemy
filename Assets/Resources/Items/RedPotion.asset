@@ -15,4 +15,4 @@ MonoBehaviour:
   _id: red_potion
   _sprite: {fileID: 21300000, guid: 923f1d2b41afbb44ba76286c46c1432a, type: 3}
   _isIngredient: 0
-  _grindedId: 
+  _canDestroy: 1

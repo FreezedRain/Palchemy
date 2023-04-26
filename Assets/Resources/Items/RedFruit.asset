@@ -15,4 +15,4 @@ MonoBehaviour:
   _id: red_fruit
   _sprite: {fileID: 21300000, guid: 2a1f179664f0afe408ee11378671ab12, type: 3}
   _isIngredient: 1
-  _grindedId: fruit_powder
+  _canDestroy: 1

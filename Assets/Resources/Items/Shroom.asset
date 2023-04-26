@@ -15,4 +15,4 @@ MonoBehaviour:
   _id: shroom
   _sprite: {fileID: 21300000, guid: f4e0d252f53433746876cb53739f5993, type: 3}
   _isIngredient: 1
-  _grindedId: shroom_powder
+  _canDestroy: 1
