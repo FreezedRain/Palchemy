@@ -37,7 +37,7 @@ namespace Potions.Global
             if (name != "Bedroom")
             {
                 var playerPos =
-                    Camera.main.WorldToScreenPoint(FindObjectOfType<PlayerInputProvider>().transform.position);
+                    Camera.main.WorldToScreenPoint(FindObjectOfType<PlayerBrain>().transform.position);
                 _screenFade.material.SetFloat("_OffsetX", playerPos.x / scale.x);
                 _screenFade.material.SetFloat("_OffsetY", playerPos.y / scale.y);
             }

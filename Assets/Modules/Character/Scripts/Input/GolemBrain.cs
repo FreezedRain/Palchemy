@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Potions.Gameplay
 {
-    public class GolemInputProvider : MonoBehaviour, IInputProvider
+    public class GolemBrain : MonoBehaviour, IBrain
     {
         public event Action Interacted;
         public event Action AltInteractStarted;

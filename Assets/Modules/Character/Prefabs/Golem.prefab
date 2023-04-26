@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TaskList
       objectReference: {fileID: 0}
+    - target: {fileID: 2712022215911162031, guid: 5fb5a9091c4a66e4c83e908409f6bf76, type: 3}
+      propertyPath: blipPrefab
+      value: 
+      objectReference: {fileID: 6407959403050028488, guid: fa0d217f7a1b0014f90884058e265848, type: 3}
     - target: {fileID: 5801435042181129765, guid: 5fb5a9091c4a66e4c83e908409f6bf76, type: 3}
       propertyPath: m_RootOrder
       value: 4

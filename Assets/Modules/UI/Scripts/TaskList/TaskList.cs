@@ -40,7 +40,7 @@ namespace Potions.Gameplay
             }
         }
 
-        public void SetStateLearning(List<Potions.Gameplay.GolemInputProvider.Task> tasks)
+        public void SetStateLearning(List<Potions.Gameplay.GolemBrain.Task> tasks)
         {
             for (int i = 0; i < _blips.Count; i++)
             {
@@ -55,7 +55,7 @@ namespace Potions.Gameplay
             }
         }
 
-        public void SetStateExecuting(List<Potions.Gameplay.GolemInputProvider.Task> tasks, int executingIndex)
+        public void SetStateExecuting(List<Potions.Gameplay.GolemBrain.Task> tasks, int executingIndex)
         {
             for (int i = 0; i < _blips.Count; i++)
             {

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace Potions.Gameplay
 {
-    public class PlayerInputProvider : MonoBehaviour, IInputProvider
+    public class PlayerBrain : MonoBehaviour, IBrain
     {
         public event Action Interacted;
         public event Action AltInteractStarted;

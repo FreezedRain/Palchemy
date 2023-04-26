@@ -9,7 +9,7 @@ namespace Potions.Level
     {
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.attachedRigidbody.gameObject.TryGetComponent<PlayerInputProvider>(out var player))
+            if (col.attachedRigidbody.gameObject.TryGetComponent<PlayerBrain>(out var player))
             {
                 if (!String.IsNullOrEmpty(_levelId))
                     GameManager.Instance.Transitions.LoadLevel(_levelId);

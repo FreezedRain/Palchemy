@@ -2,7 +2,7 @@ using System;
 
 namespace Potions.Gameplay
 {
-    public interface IInputProvider
+    public interface IBrain
     {
         public event Action Interacted;
         public event Action AltInteractStarted;

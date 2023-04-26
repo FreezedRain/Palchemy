@@ -9,7 +9,7 @@ namespace Potions.Gameplay
         public static List<CharacterLogic> AllCharacters = new();
 
         public Vector2 Forward => _forward;
-        public bool IsMoving => _input.GetState().Direction != Vector2.zero;
+        public bool IsMoving => _brain.GetState().Direction != Vector2.zero;
         public ItemHolder ItemHolder => _itemHolder;
         public Interactor Interactor { get; private set; }
         public CharacterMovement Movement { get; private set; }
@@ -19,14 +19,14 @@ namespace Potions.Gameplay
 
         private void Awake()
         {
-            _input = GetComponent<IInputProvider>();
+            _brain = GetComponent<IBrain>();
             Movement = GetComponent<CharacterMovement>();
             Visuals = GetComponent<CharacterVisuals>();
             Interactor = GetComponent<Interactor>();
 
             Interactor.Setup(this);
-            _input.Interacted += Interactor.Interact;
-            _input.AltInteractStarted += Interactor.NormalAltInteract;
+            _brain.Interacted += Interactor.Interact;
+            _brain.AltInteractStarted += Interactor.NormalAltInteract;
         }
 
         private void OnEnable() => AllCharacters.Add(this);
@@ -34,7 +34,7 @@ namespace Potions.Gameplay
 
         private void Update()
         {
-            var inputState = _input.GetState();
+            var inputState = _brain.GetState();
             if (inputState.Direction != Vector2.zero)
             {
                 _forward = inputState.Direction;
@@ -48,10 +48,8 @@ namespace Potions.Gameplay
         }
 
         [SerializeField] private ItemHolder _itemHolder;
-
         private Vector2 _forward;
         private Vector2? _lookDirection;
-
-        private IInputProvider _input;
+        private IBrain _brain;
     }
 }

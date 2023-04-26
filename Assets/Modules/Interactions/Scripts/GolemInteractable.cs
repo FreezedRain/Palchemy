@@ -2,7 +2,7 @@ namespace Potions.Gameplay
 {
     public class GolemInteractable : BaseInteractable
     {
-        public GolemInputProvider Golem => _golem;
+        public GolemBrain Golem => _golem;
 
         public override bool CanInteract(Interactor interactor, InteractionType type) => true;
         public override bool CanAltInteract(Interactor interactor) => true;
@@ -21,9 +21,9 @@ namespace Potions.Gameplay
 
         private void Awake()
         {
-            _golem = GetComponent<GolemInputProvider>();
+            _golem = GetComponent<GolemBrain>();
         }
 
-        private GolemInputProvider _golem;
+        private GolemBrain _golem;
     }
 }
